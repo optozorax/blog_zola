@@ -6,6 +6,7 @@
 * https://medium.com/clear-left-thinking/all-you-need-to-know-about-hyphenation-in-css-2baee2d89179
 * firefox красавчики, поддерживают переносы на новую строку почти для каждого популярного языка: https://developer.mozilla.org/en-US/docs/Web/CSS/hyphens
 * katex from https://www.getzola.org/themes/even/
+* https://hugoloveit.com/theme-documentation-extended-shortcodes/
 
 https://codepen.io/josephmaynard/pen/OjWvNP
 https://www.w3schools.com/howto/howto_css_modal_images.asp
@@ -48,6 +49,7 @@ debug all:
 * permalink неадекватно много используется, даже в toc, где он должен быть просто `#адрес`, там пишется полный адрес :facepalm:
 * шорткоды с телом не рендерят то что внутри них изначально
 * язык можно было бы сделать и пожёстче с нормальными option и работы с ними, а то все вот эти `if page.variable then` очень неприятны когда у тебя там хранится какая-то фигня. да и вообще написать что-то типо `unwrap_or` было бы в миллион раз проще и удобней, чем городить сотню ифов.
+* стандартный синтаксис diff ужасен, он не идёт на всю строку и фон слишком контрастный чтобы что-то видеть
 
 я сделал: https://zola.discourse.group/t/run-commands/1018/3
 
@@ -142,7 +144,39 @@ format, alts
 ## telegram
 
 ```
+{{ telegram(post="") }}
 ```
+
+## pros_cons
+
+```
+{{ pros_cons_start() }}
+* плюс1
+* плюс2
+{{ pros_cons_middle() }}
+* минус1
+* минус2
+{{ pros_cons_end() }}
+```
+
+## admonition
+
+```
+{{ admonition_start(color="green", title="Summary `ololo` hi") }}
+When building the website, you can set a theme by using `--theme` option. However, we suggest you modify the configuration file (`config.toml`) and set the theme as the default.
+{{ admonition_end() }}
+```
+
+доступные цвета: `blue, blue2, blue3, green, green2, green3, orange, red, red2, red3, violet, gray`
+
+## figure
+
+```
+{{ figure_start() }}
+{{ image(path="preview.png") }}
+{{ figure_end(caption="This is the `snthh` preview") }}
+```
+
 
 # page
 

@@ -15,19 +15,15 @@ vk = "https://vk.com/optoblog?w=wall-169103586_29"
 
 У вас не возникало ощущения что все текущие нейросети какие-то слишком линейные? Посмотрим, например, на перцептрон:
 
-![](perceptron.png)
-
-[Источник](https://ru.wikipedia.org/wiki/%D0%9F%D0%B5%D1%80%D1%86%D0%B5%D0%BF%D1%82%D1%80%D0%BE%D0%BD#/media/%D0%A4%D0%B0%D0%B9%D0%BB:Perceptron-ru.svg)
-
-<!-- todo -->
+{{ figure_start() }}
+{{ image(path="perceptron.png") }}
+{{ figure_end(caption="[Источник](https://ru.wikipedia.org/wiki/%D0%9F%D0%B5%D1%80%D1%86%D0%B5%D0%BF%D1%82%D1%80%D0%BE%D0%BD#/media/%D0%A4%D0%B0%D0%B9%D0%BB:Perceptron-ru.svg)") }}
 
 Или на многослойную нейронную сеть:
 
-![](multilayered.png)
-
-[Источник](https://ru.wikipedia.org/wiki/%D0%9F%D0%B5%D1%80%D1%86%D0%B5%D0%BF%D1%82%D1%80%D0%BE%D0%BD#/media/%D0%A4%D0%B0%D0%B9%D0%BB:Neuro.PNG)
-
-<!-- todo -->
+{{ figure_start() }}
+{{ image(path="multilayered.png") }}
+{{ figure_end(caption="[Источник](https://ru.wikipedia.org/wiki/%D0%9F%D0%B5%D1%80%D1%86%D0%B5%D0%BF%D1%82%D1%80%D0%BE%D0%BD#/media/%D0%A4%D0%B0%D0%B9%D0%BB:Neuro.PNG)") }}
 
 Когда я только изучал эту тему, у меня была такая мысль:
 

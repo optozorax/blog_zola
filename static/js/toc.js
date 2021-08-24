@@ -1,9 +1,13 @@
-let toc_elements = {};
 let previous_top = 0;
 let can_change = true;
 let scroll_user = 0;
-
 let toc_toggled = false;
+let all_elements = null;
+let all_links = null;
+let toc_element = null;
+let link_by_id = {};
+let current_id = null;
+
 function toggle_toc() {
 	let button = document.querySelector('.side-button');
 	toc_toggled = !toc_toggled;
@@ -25,11 +29,11 @@ function toc_update() {
 
 	let first = true;
 	let answer = null;
-	document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]').forEach((element) => {
+	all_elements.forEach((element) => {
 		let rect = element.getBoundingClientRect();
 		let id = element.getAttribute("id");
 		let hidden = rect.top == 0 && rect.bottom == 0 && rect.left == 0 && rect.right == 0;
-		if (!hidden && toc_elements["#" + id]) {
+		if (!hidden) {
 			let pos = rect.top;
 
 			if (pos > 10 && first) {
@@ -41,14 +45,14 @@ function toc_update() {
 		}
 	});
 
-	if (answer != null) {
-		document.querySelectorAll(`.section-nav a`).forEach((x) => {
+	if (answer != null && answer != current_id) {
+		current_id = answer;
+		all_links.forEach((x) => {
 			x.classList.remove("active");
 			x.classList.remove("selected");
 		});
-		let sel = document.querySelector(`.section-nav a[href="#${answer}"]`);
+		let sel = link_by_id["#" + answer];
 		sel.classList.add('active');
-		history.pushState(null, null, "#" + answer);
 
 		let parent = sel.parentElement;
 		while (true) {
@@ -66,17 +70,15 @@ function toc_update() {
 		if (big_screen) {
 			let rect = sel.getBoundingClientRect();
 			let top = rect.top - window.innerHeight / 2. + previous_top + scroll_user;
-			console.log(`set ${top}`);
-
 			if (top > 20) {
 				previous_top = top;
 				scroll_user = 0;
 				top = -top;
-				document.querySelector('.section-nav').style["transform"] = `translateY(${top}px)`;
+				toc_element.style["transform"] = `translateY(${top}px)`;
 			} else {
 				previous_top = 20;
 				scroll_user = 0;
-				document.querySelector('.section-nav').style["transform"] = ``;
+				toc_element.style["transform"] = ``;
 			}
 
 			can_change = false;
@@ -90,11 +92,17 @@ function toc_update() {
 let hammertime = null;
 
 window.addEventListener('DOMContentLoaded', () => {
-	document.querySelectorAll(`.section-nav a`).forEach((x) => {
-		toc_elements[x.getAttribute("href")] = true;
-	});
+	let toc_elements = {};
+	toc_element = document.querySelector('.section-nav');
 
-	hammertime = new Hammer(document.querySelector('.section-nav'), { touchAction: "none" });
+	all_links = document.querySelectorAll(`.section-nav a`);
+	all_links.forEach((x) => {
+		toc_elements[x.getAttribute("href")] = true;
+		link_by_id[x.getAttribute("href")] = x;
+	});
+	all_elements = Array.from(document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]')).filter((x) => toc_elements["#" + x.getAttribute("id")]);
+
+	hammertime = new Hammer(toc_element, { touchAction: "none" });
 
 	hammertime.get('pan').set({ direction: Hammer.DIRECTION_VERTICAL, threshold: 10 });
 
@@ -110,24 +118,23 @@ window.addEventListener('DOMContentLoaded', () => {
 		if (ev.isFinal) {
 			scroll_user = scroll_user - ev.deltaY;
 		}
-		document.querySelector('.section-nav').style["transform"] = `translateY(${top}px)`;
+		toc_element.style["transform"] = `translateY(${top}px)`;
 	});
 
 	toc_update();
 
-	document.querySelector(`.section-nav`).addEventListener("wheel", (e) => {
+	toc_element.addEventListener("wheel", (e) => {
 		e.preventDefault();
 		scroll_user = scroll_user + e.deltaY / 2;
 		let top = -(previous_top + scroll_user);
-		console.log(`set wheel ${top}`);
-		document.querySelector('.section-nav').style["transform"] = `translateY(${top}px)`;
+		toc_element.style["transform"] = `translateY(${top}px)`;
 	});
-});
 
-document.addEventListener("scroll", (e) => {
-	toc_update();
-});
+	document.addEventListener("scroll", (e) => {
+		toc_update();
+	});
 
-window.addEventListener('resize', (e) => {
-	toc_update();
+	window.addEventListener('resize', (e) => {
+		toc_update();
+	});
 });

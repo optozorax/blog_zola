@@ -18,10 +18,10 @@
     <tr>
       <td class="first">
         <a href="/{{ post.permalink | trim_start_matches(pat=config.base_url) }}" title="{{ post.title }}">
-          <!-- todo: make resizing of image -->
           {% set image = post.permalink ~ post.extra.image | trim_start_matches(pat=config.base_url) %}
           {% set new_image = resize_image(path=image, width=200, height=200, op="fit", format="webp") %}
-          <img src="/{{ new_image.url | trim_start_matches(pat=config.base_url) }}">
+          <img src="/{{ new_image.url | trim_start_matches(pat=config.base_url) }}"
+            width="{{ new_image.width }}" height="{{ new_image.height }}">
         </a>
         {% set day = post.date | date(format="%d") %}
         {% set month = post.date | date(format="%m") %}

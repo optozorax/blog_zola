@@ -18,11 +18,15 @@
 <div class="gallery-container">
 
 {% set processed_images = [] %}
+{% set processed_width = [] %}
+{% set processed_height = [] %}
 {% for image in images %}
   {% set new_image = resize_image(path=page.path ~ image, width=1280, height=1280, op="fit", format=format, quality=75) %}
   {% set path = new_image.static_path| trim_start_matches(pat="static") %}
 
   {% set_global processed_images = processed_images | concat(with=path) %}
+  {% set_global processed_width = processed_width | concat(with=new_image.width) %}
+  {% set_global processed_height = processed_height | concat(with=new_image.height) %}
 {% endfor %}
 
 <!-- Images -->
@@ -35,7 +39,8 @@
   <svg class="gallery-svg" viewBox="0 0 1 {{ height }}"></svg>
   <img class="gallery-img" 
     src="{{image}}" 
-    onclick="full_screen('{{images[loop.index0]}}')">
+    onclick="full_screen('{{images[loop.index0]}}')"
+    width="{{processed_width[loop.index0]}}" height="{{processed_height[loop.index0]}}">
   <svg class="gallery-svg" viewBox="0 0 1 {{ height }}"></svg>
 </div>
 {% endfor %}
@@ -54,7 +59,8 @@
     <svg class="gallery-svg" viewBox="0 0 1 {{ height }}"></svg>
     <img class="gallery-demo{% if loop.first %} gallery-active{% endif %}" src="{{image}}" 
       id="{{ "demo_" ~ nth ~ "_" ~ loop.index0 }}" 
-      onclick="gallery_set({{nth}}, {{loop.index0}})">
+      onclick="gallery_set({{nth}}, {{loop.index0}})"
+      width="{{processed_width[loop.index0]}}" height="{{processed_height[loop.index0]}}">
     <svg class="gallery-svg" viewBox="0 0 1 {{ height }}"></svg>
   </div>
 {% endfor %}

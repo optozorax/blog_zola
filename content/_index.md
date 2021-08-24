@@ -4,5 +4,5 @@ description = "Мои программульки и результаты их р
 sort_by = "date"
 template = "index.html"
 page_template = "page.html"
-insert_anchor_links = "right"
+insert_anchor_links = "left"
 +++

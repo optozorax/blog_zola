@@ -1,4 +1,4 @@
-base_url = "https://optozorax.github.io/"
+base_url = "https://testzorax.github.io/"
 title = "optozorax.blog"
 description = "Мои програмульки и результаты их работы"
 default_language = "ru"
@@ -38,6 +38,7 @@ author = "optozorax"
 header_paths = ["/c/ideas", "/c/repos", "/tags", "/c/about"]
 header_titles = ["Идеи", "Репозитории", "Теги", "Обо мне"]
 show_debug = false
+enable_metrica = false
 
 [extra.social]
 github = "optozorax"

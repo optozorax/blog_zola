@@ -273,11 +273,9 @@ vk = "https://vk.com/optoblog?w=wall-169103586_15"
 
 Просто обычно симуляция эволюции представляет собой подобный график:
 
+{{ figure_start() }}
 {{ image(path="fitness_function.png") }}
-
-_Взято [отсюда](https://www.researchgate.net/publication/221472180_Skin_Lesion_Diagnosis_Using_Fluorescence_Images)._
-
-<!-- todo сделать чтобы текст были привязан к картинке -->
+{{ figure_end(caption="Взято [отсюда](https://www.researchgate.net/publication/221472180_Skin_Lesion_Diagnosis_Using_Fluorescence_Images).") }}
 
 **Фитнес-функция** --- это функция, которая оценивает эффективность решения особью поставленной задачи. Как видим из графика, в процессе эволюции значение этой функции растет, а затем сходится к какому-то пределу и далее не изменяется.
 

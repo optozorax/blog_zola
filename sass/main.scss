@@ -12,6 +12,8 @@
 @import "shortcodes/gallery";
 @import "shortcodes/details";
 @import "shortcodes/full_screen";
+@import "shortcodes/pros_cons";
+@import "shortcodes/admonition";
 
 @import "fonts/JetBrainsMono";
 @import "fonts/Rubik";
@@ -58,4 +60,18 @@ code, pre {
 
 .archive-year:after {
     margin: 0 0 0 20px;
+}
+
+.anchor {
+    color: $section-headings-color;
+    margin-right: 5px;
+    // text-decoration: none !important;
+}
+
+
+figcaption {
+    margin-top: 10px;
+    text-align: center;
+    color: $blockquote-text-color;
+    font-style: italic;
 }
