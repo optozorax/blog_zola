@@ -14,11 +14,21 @@ function toggle_toc() {
 	if (toc_toggled) {
 		button.innerHTML = "❯";
 		button.classList.add('button-pressed')
-		document.querySelector(`.section-nav`).classList.add('showed-mobile');
+		toc_element.classList.add('showed-mobile');
+
+		if (scroll_user == 0) {
+			let rect = toc_element.getBoundingClientRect();
+			let offset = window.innerHeight - (rect.top + rect.height);
+			if (offset > 0) {
+				scroll_user = -offset + 20;
+				let top = -(previous_top + scroll_user);
+				toc_element.style["transform"] = `translateY(${top}px)`;
+			}
+		}
 	} else {
 		button.innerHTML = "❰";
 		button.classList.remove('button-pressed')
-		document.querySelector(`.section-nav`).classList.remove("showed-mobile");
+		toc_element.classList.remove("showed-mobile");
 	}
 }
 

@@ -52,21 +52,21 @@
 		position: fixed;
 		right: 0px;
 		border-radius: 10px 0 0 10px;
-		padding: 20px 5px;
+		padding: 30px 7px;
 		border: 2px solid #cdcdcd;
 		border-right: 0px;
 		background: white;
 
-		top: 50%;
+		top: 95%;
 
-		transform: translateY(-50%);
+		transform: translateY(-100%);
 
 		z-index: 9;
 	}
 }
 
 .button-pressed {
-	padding: 20px calc(5px + 20rem) 20px 5px;
+	padding: 30px calc(5px + 20rem) 30px 7px;
 }
 
 .section-nav a {
