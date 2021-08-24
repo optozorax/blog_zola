@@ -1,0 +1,21 @@
+{% import "macros.html" as macros %}
+
+{% if scale is not defined %}
+    {% set_global scale = 1 %}
+{% endif %}
+{% if format is not defined %}
+    {% set_global format = "webp" %}
+{% endif %}
+{% set class = macros::frac_to_class(frac=scale) %}
+
+{% set scale = macros::frac_to_number(frac=scale) | float %}
+{% set size = 1280 * scale | int %}
+{% set new_image = resize_image(path=page.path ~ path, width=size, height=size, op="fit", format=format, quality=75) %}
+{% set path1 = new_image.static_path | trim_start_matches(pat="static") %}
+
+<img
+    class="not-default {{class}}"
+    width="{{new_image.width}}"
+    height="{{new_image.height}}"
+    src="{{path1}}" 
+    onclick="full_screen('{{path}}')">

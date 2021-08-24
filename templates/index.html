@@ -1,0 +1,48 @@
+{% import "macros.html" as macros %}
+
+{% extends "base.html" %}
+
+{# -------------------------------------------------------------------------------------------------------- #}
+{% block page_header %}
+<h1 class="project-name">{{section.title | safe}}</h1>
+<h2 class="project-tagline">{{section.description | safe}}</h2>
+{% endblock page_header %}
+
+{# -------------------------------------------------------------------------------------------------------- #}
+{% block content %}
+<div class="index">
+{% for year, posts in section.pages | group_by(attribute="year") %}
+<h1 class="archive-year">{{year}}</h1>
+{% for post in posts %}
+  <table>
+    <tr>
+      <td class="first">
+        <a href="/{{ post.permalink | trim_start_matches(pat=config.base_url) }}" title="{{ post.title }}">
+          <!-- todo: make resizing of image -->
+          {% set image = post.permalink ~ post.extra.image | trim_start_matches(pat=config.base_url) %}
+          {% set new_image = resize_image(path=image, width=200, height=200, op="fit", format="webp") %}
+          <img src="/{{ new_image.url | trim_start_matches(pat=config.base_url) }}">
+        </a>
+        {% set day = post.date | date(format="%d") %}
+        {% set month = post.date | date(format="%m") %}
+        {% set month = macros::month_to_name(month=month) %}
+        <span class="post-date">{{ day ~ " " ~ month }}</span>
+        <span class="post-date">🕑 {{ post.reading_time }} мин</span>
+      </td>
+      <td class="second">
+        <h2>
+          <a class="post-link" href="{{ post.permalink | trim_start_matches(pat=config.base_url) | safe }}" title="{{ post.title }}">
+            {{ post.title | safe }}
+          </a>
+        </h2>
+        <span>{{ post.description | safe }}</span>
+      </td>
+    </tr>
+  </table>
+  {% if not loop.last %}
+  <hr>
+  {% endif %}
+{% endfor %}
+{% endfor %}
+</div>
+{% endblock content %}

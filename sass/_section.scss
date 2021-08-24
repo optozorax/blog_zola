@@ -1,0 +1,27 @@
+.section {
+  word-wrap: break-word;
+
+  @include large {
+    max-width: 55rem;
+    padding: 1rem 2rem;
+    margin: 0 auto;
+    font-size: 0.95rem;
+    box-shadow: 0 0 50px rgba(0,0,0,0.1);
+  }
+
+  @include medium {
+    padding: 1rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  @include small {
+    padding: 1rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+.second-section {
+  @include large {
+    margin-top: 1rem;
+  }
+}

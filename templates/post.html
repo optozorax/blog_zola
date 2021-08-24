@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{# -------------------------------------------------------------------------------------------------------- #}
+{% block before_site_header %}
+<table class="toc-aligmenter"><tr><td>
+{% endblock before_site_header %}
+
+{# -------------------------------------------------------------------------------------------------------- #}
+{% block after_site_header %}
+</td><td>
+</td></tr></table>
+{% endblock after_site_header %}
+
+{# -------------------------------------------------------------------------------------------------------- #}
+{% block before_site_footer %}
+<table class="toc-aligmenter"><tr><td>
+{% endblock before_site_footer %}
+
+{# -------------------------------------------------------------------------------------------------------- #}
+{% block after_site_footer %}
+</td><td>
+</td></tr></table>
+{% endblock after_site_footer %}
+
+{# -------------------------------------------------------------------------------------------------------- #}
+{% block extra_head %}
+{% if page.extra.use_katex %}
+<link rel="stylesheet" href="/katex.min.css">
+<script defer src="/js/katex.min.js"></script>
+<script defer src="/js/mathtex-script-type.min.js"></script>
+{% endif %}
+<script type="text/javascript" src="/js/toc.js"></script>
+{% endblock extra_head %}
+
+{# -------------------------------------------------------------------------------------------------------- #}
+{% block page_header %}
+<table class="toc-aligmenter"><tr><td>
+
+<h1 class="project-name">{{page.title}}</h1>
+{% if page.description %}
+<h2 class="project-tagline">{{page.description}}</h2>
+{% endif %}
+
+{% if page.taxonomies.tags %}
+<span style="margin-bottom: 10px;">
+  {% for tag in page.taxonomies.tags %}
+    <a href="/tags#{{ tag | slugify }}"><code class="tag"><nobr>#{{ tag }}</nobr></code></a>&nbsp;
+  {% endfor %}
+</span>
+{% endif %}
+
+{% if page.extra.vk is defined or page.extra.tg is defined %}
+<center>
+<table style="margin-top: 8px;">
+<tr><td style="padding-right: 10px; border-right: 0px solid #ffffff;">
+{% endif %}
+
+{% if page.date %}
+<h2 class="project-date" style="margin-top: 0px;">
+  <time datetime="{{ page.date | date(format="%+") }}" itemprop="datePublished">
+    {% set day = page.date | date(format="%d") %}
+    {% set month = page.date | date(format="%m") %}
+    {% set month = macros::month_to_name(month=month) %}
+    {% set year = page.date | date(format="%Y") %}
+    <span class="post-date">{{ day ~ " " ~ month ~ " " ~ year }}</span>
+  </time>
+</h2>
+{% endif %}
+
+{% if page.extra.vk is defined or page.extra.tg is defined %}
+  </td>
+  <td style="padding-left: 10px;">
+    {% if page.extra.vk %}
+    <a href="{{ page.extra.vk }}">
+    <code class="tag">Пост в ВК</code>
+    </a>
+    {% endif %}
+    {% if page.extra.tg %}
+    <a href="{{ page.extra.tg }}">
+    <code class="tag">Пост в Telegram</code>
+    </a>
+    {% endif %}
+    {% if page.extra.tg_comments %}
+    ({{ page.extra.tg_comments }} 💬)
+    {% endif %}
+  </td>
+</tr>
+</table>
+</center>
+{% endif %}
+
+</td><td>
+</td></tr></table>
+
+{% if page.extra.github %}
+<br><a href="{{ page.extra.github }}" class="btn" style="margin: 0px;">Эта страница на GitHub</a>
+{% endif %}
+{% endblock page_header %}
+
+{# -------------------------------------------------------------------------------------------------------- #}
+{% block content %}
+<article itemscope itemtype="http://schema.org/BlogPosting">
+<div itemprop="articleBody" id="content">
+{{ page.content | safe }}
+</div>
+</article>
+{% endblock content %}
+
+{# -------------------------------------------------------------------------------------------------------- #}
+{% block before_content %}
+<table class="toc-aligmenter"><tr><td>
+{% endblock before_content %}
+
+{# -------------------------------------------------------------------------------------------------------- #}
+{% block after_content %}
+</td><td>
+<!-- TOC -->
+  <div class="side-button" onclick="toggle_toc()">❰</div>
+  <nav class="section-nav">
+    <h2>Содержание</h2>
+    <ul class="first">
+    {% for h1 in page.toc %}
+    {% set url = h1.permalink | trim_start_matches(pat=current_url) | safe %}
+        <li>
+            <a href="{{url}}">{{ h1.title }}</a>
+            {% if h1.children %}
+                <ul class="second">
+                    {% for h2 in h1.children %}
+                        {% set url = h2.permalink | trim_start_matches(pat=current_url) | safe %}
+                        <li>
+                            <a href="{{url}}">{{ h2.title }}</a>
+                            {% if h2.children %}
+                            <ul class="third">
+                                {% for h3 in h2.children %}
+                                    {% set url = h3.permalink | trim_start_matches(pat=current_url) | safe %}
+                                    <li>
+                                        <a href="{{url}}">{{ h3.title }}</a>
+                                        {% if h3.children %}
+                                        <ul class="fourth">
+                                            {% for h4 in h3.children %}
+                                                {% set url = h4.permalink | trim_start_matches(pat=current_url) | safe %}
+                                                <li>
+                                                    <a href="{{url}}">{{ h4.title }}</a>
+
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+  </nav>
+</td></tr></table>
+
+{% block comments %}
+<!-- comments -->
+<table class="toc-aligmenter"><tr><td>
+<section class="comments section second-section">
+{% if config.mode != "Serve" %}
+<script src="https://utteranc.es/client.js"
+        repo="optozorax/optozorax.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+{% else %}
+Comments are not supported on localhost.
+{% endif %}
+</section>
+</td><td>
+</td></tr></table>
+{% endblock comments %}
+
+{% endblock after_content %}

@@ -1,0 +1,79 @@
+{% macro footer_icon(user, path, name, svg) %}
+<span class="my-span-icon">
+  <a 
+    href="{{path}}{{user}}" 
+    aria-label="{{ config.extra.author }}'s {{name}}" 
+    title="{{ config.extra.author }}'s {{name}}">
+    <img 
+      class="my-svg-icon" 
+      src="/ico/{{svg}}.svg" 
+      width="24" 
+      height="24"
+      alt="{{ config.extra.author }}'s {{name}}">
+  </a>
+</span>
+{% endmacro list_articles %}
+
+{%- macro frac_to_class(frac) -%}
+  {%- if frac == "1" -%}
+      img-one
+  {%- elif frac == "3/4" -%}
+      img-three-four
+  {%- elif frac == "1/2" -%}
+      img-one-two
+  {%- elif frac == "1/4" -%}
+      img-one-four
+  {%- elif frac == "2/3" -%}
+      img-two-three
+  {%- elif frac == "1/3" -%}
+      img-one-three
+  {%- else -%}
+      img-one
+  {%- endif -%}
+{%- endmacro frac_to_class -%}
+
+{%- macro frac_to_number(frac) -%}
+  {%- if frac == "1" -%}
+      1.0
+  {%- elif frac == "3/4" -%}
+      0.75
+  {%- elif frac == "1/2" -%}
+      0.5
+  {%- elif frac == "1/4" -%}
+      0.25
+  {%- elif frac == "2/3" -%}
+      0.666666666666666
+  {%- elif frac == "1/3" -%}
+      0.333333333333333
+  {%- else -%}
+      1.0
+  {%- endif -%}
+{%- endmacro frac_to_number -%}
+
+{%- macro month_to_name(month) -%}
+  {%- if month == "01" -%}
+    января
+  {%- elif month == "02" -%}
+    февраля
+  {%- elif month == "03" -%}
+    марта
+  {%- elif month == "04" -%}
+    апреля
+  {%- elif month == "05" -%}
+    мая
+  {%- elif month == "06" -%}
+    июня
+  {%- elif month == "07" -%}
+    июля
+  {%- elif month == "08" -%}
+    августа
+  {%- elif month == "09" -%}
+    сентября
+  {%- elif month == "10" -%}
+    октября
+  {%- elif month == "11" -%}
+    ноября
+  {%- else -%}
+    декабря
+  {%- endif -%}
+{%- endmacro frac_to_number -%}
