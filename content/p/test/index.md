@@ -12,9 +12,24 @@ image = "preview.png"
 
 # раз
 
+```rust
+fn main() {
+    println!("very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long line, {}", "hello world");
+}
+```
+
+```rust
+fn main() {
+    println!("very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long line, {}", "hello world");
+}
+```
+
 {{ figure_start() }}
 {{ image(path="preview.png") }}
 {{ figure_end(caption="This is the `snthh` preview") }}
+
+<!-- disable_counting -->
+<!-- enable_counting -->
 
 # два
 

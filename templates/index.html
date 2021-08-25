@@ -3,6 +3,31 @@
 {% extends "base.html" %}
 
 {# -------------------------------------------------------------------------------------------------------- #}
+{% block social_metatags %}
+<meta name="author" content="{{config.extra.author}}">
+<meta name="title" content="{{section.title}}">
+<meta name="description" content="{{section.description}}">
+<meta name="image" content="{{section.extra.image}}">
+
+<!-- Facebook Meta Tags -->
+<meta property="og:url" content="{{section.permalink | safe}}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{section.title}}">
+<meta property="og:description" content="{{section.description}}">
+<meta property="og:image" content="{{section.extra.image}}">
+<meta property="og:locale" content="{{lang}}">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="{{config.extra.domain}}">
+<meta property="twitter:url" content="{{section.permalink | safe}}">
+<meta name="twitter:title" content="{{section.title}}">
+<meta name="twitter:description" content="{{section.description}}">
+<meta name="twitter:image" content="{{section.extra.image}}">
+<meta name="twitter:creator" content="{{config.extra.twitter_creator_username}}">
+{% endblock social_metatags %}
+
+{# -------------------------------------------------------------------------------------------------------- #}
 {% block page_header %}
 <h1 class="project-name">{{section.title | safe}}</h1>
 <h2 class="project-tagline">{{section.description | safe}}</h2>

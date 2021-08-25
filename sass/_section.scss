@@ -11,10 +11,12 @@
 
   @include medium {
     padding: 1rem 1rem;
+    width: 100vw;
   }
 
   @include small {
     padding: 1rem 1rem;
+    width: 100vw;
   }
 }
 
@@ -23,3 +25,16 @@
     margin-top: 1rem;
   }
 }
+
+hr.enabled-on-phone {
+  width: 95%;
+  height: 1px;
+  padding: 0;
+  margin: 1rem auto 1rem auto;
+  background-color: #eff0f1;
+  border: 0;
+}
+
+@include large { hr.enabled-on-phone { display: none; } }
+@include medium { hr.enabled-on-phone { display: block; } }
+@include small { hr.enabled-on-phone { display: block; } }

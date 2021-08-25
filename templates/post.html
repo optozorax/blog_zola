@@ -1,6 +1,47 @@
 {% extends "base.html" %}
 
 {# -------------------------------------------------------------------------------------------------------- #}
+{% block social_metatags %}
+<meta name="author" content="{{config.extra.author}}">
+<meta name="title" content="{{page.title}}{{config.extra.after_title}}">
+<meta name="description" content="{{page.description}}">
+<meta name="image" content="{{page.extra.image}}">
+{% if page.taxonomies.tags %}
+<meta name="keywords" itemprop="tags" content="{{ page.taxonomies.tags | join(sep=', ') }}">
+{% endif %}
+
+<!-- Facebook Meta Tags -->
+<meta property="og:url" content="{{page.permalink | safe}}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{page.title}}{{config.extra.after_title}}">
+<meta property="og:description" content="{{page.description}}">
+<meta property="og:image" content="{{page.extra.image}}">
+<meta property="og:locale" content="{{lang}}">
+
+{% if page.date %}
+<meta property="article:published_time" content="{{page.date | date(format="%F")}}">
+{% endif %}
+
+{% if page.taxonomies.tags %}
+{% for tag in page.taxonomies.tags %}
+<meta property="article:tag" content="{{tag}}">
+{% endfor %}
+{% endif %}
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="{{config.extra.domain}}">
+<meta property="twitter:url" content="{{page.permalink | safe}}">
+<meta name="twitter:title" content="{{page.title}}{{config.extra.after_title}}">
+<meta name="twitter:description" content="{{page.description}}">
+<meta name="twitter:image" content="{{page.extra.image}}">
+<meta name="twitter:creator" content="{{config.extra.twitter_creator_username}}">
+{% endblock social_metatags %}
+
+{# -------------------------------------------------------------------------------------------------------- #}
+{% block title %}{{page.title}}{{config.extra.after_title}}{% endblock title %}
+
+{# -------------------------------------------------------------------------------------------------------- #}
 {% block before_site_header %}
 <table class="toc-aligmenter"><tr><td>
 {% endblock before_site_header %}
@@ -30,6 +71,9 @@
 <script defer src="/js/mathtex-script-type.min.js"></script>
 {% endif %}
 <script type="text/javascript" src="/js/toc.js"></script>
+<script type="text/javascript" src="/js/gallery.js"></script>
+<script type="text/javascript" src="/js/full_screen.js"></script>
+<script type="text/javascript" src="/js/word_wrap.js"></script>
 {% endblock extra_head %}
 
 {# -------------------------------------------------------------------------------------------------------- #}
@@ -49,15 +93,14 @@
 </span>
 {% endif %}
 
-{% if page.extra.vk is defined or page.extra.tg is defined %}
 <center>
 <table style="margin-top: 8px;">
-<tr><td style="padding-right: 10px; border-right: 0px solid #ffffff;">
-{% endif %}
+<tr>
 
 {% if page.date %}
+<td style="padding-right: 10px; border-right: 0px solid #ffffff;">
 <h2 class="project-date" style="margin-top: 0px;">
-  <time datetime="{{ page.date | date(format="%+") }}" itemprop="datePublished">
+  <time datetime="{{ page.date | date(format="%F") }}" itemprop="datePublished">
     {% set day = page.date | date(format="%d") %}
     {% set month = page.date | date(format="%m") %}
     {% set month = macros::month_to_name(month=month) %}
@@ -65,29 +108,29 @@
     <span class="post-date">{{ day ~ " " ~ month ~ " " ~ year }}</span>
   </time>
 </h2>
+</td>
 {% endif %}
 
 {% if page.extra.vk is defined or page.extra.tg is defined %}
-  </td>
-  <td style="padding-left: 10px;">
-    {% if page.extra.vk %}
-    <a href="{{ page.extra.vk }}">
-    <code class="tag">Пост в ВК</code>
-    </a>
-    {% endif %}
-    {% if page.extra.tg %}
-    <a href="{{ page.extra.tg }}">
-    <code class="tag">Пост в Telegram</code>
-    </a>
-    {% endif %}
-    {% if page.extra.tg_comments %}
-    ({{ page.extra.tg_comments }} 💬)
-    {% endif %}
-  </td>
+<td style="padding-left: 10px;">
+  {% if page.extra.vk %}
+  <a href="{{ page.extra.vk }}">
+  <code class="tag">Пост в ВК</code>
+  </a>
+  {% endif %}
+  {% if page.extra.tg %}
+  <a href="{{ page.extra.tg }}">
+  <code class="tag">Пост в Telegram</code>
+  </a>
+  {% endif %}
+  {% if page.extra.tg_comments %}
+  ({{ page.extra.tg_comments }} 💬)
+  {% endif %}
+</td>
+{% endif %}
 </tr>
 </table>
 </center>
-{% endif %}
 
 </td><td>
 </td></tr></table>
@@ -115,53 +158,84 @@
 {% block after_content %}
 </td><td>
 <!-- TOC -->
-  <div class="side-button" onclick="toggle_toc()">❰</div>
-  <nav class="section-nav">
-    <h2>Содержание</h2>
-    <ul class="first">
-    {% for h1 in page.toc %}
-    {% set url = h1.permalink | trim_start_matches(pat=current_url) | safe %}
-        <li>
-            <a href="{{url}}">{{ h1.title }}</a>
-            {% if h1.children %}
-                <ul class="second">
-                    {% for h2 in h1.children %}
-                        {% set url = h2.permalink | trim_start_matches(pat=current_url) | safe %}
-                        <li>
-                            <a href="{{url}}">{{ h2.title }}</a>
-                            {% if h2.children %}
-                            <ul class="third">
-                                {% for h3 in h2.children %}
-                                    {% set url = h3.permalink | trim_start_matches(pat=current_url) | safe %}
-                                    <li>
-                                        <a href="{{url}}">{{ h3.title }}</a>
-                                        {% if h3.children %}
-                                        <ul class="fourth">
-                                            {% for h4 in h3.children %}
-                                                {% set url = h4.permalink | trim_start_matches(pat=current_url) | safe %}
-                                                <li>
-                                                    <a href="{{url}}">{{ h4.title }}</a>
-
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                        {% endif %}
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                            {% endif %}
-                        </li>
-                    {% endfor %}
+<div class="side-button" onclick="toggle_toc()">❰</div>
+<nav class="section-nav">
+ <h2>Содержание</h2>
+ <ul class="first">
+ {% for h1 in page.toc %}
+ {% set url = h1.permalink | trim_start_matches(pat=current_url) | safe %}
+  <li>
+   <a href="{{url}}">{{ h1.title }}</a>
+   {% if h1.children %}
+    <ul class="second">
+     {% for h2 in h1.children %}
+      {% set url = h2.permalink | trim_start_matches(pat=current_url) | safe %}
+      <li>
+       <a href="{{url}}">{{ h2.title }}</a>
+       {% if h2.children %}
+       <ul class="third">
+        {% for h3 in h2.children %}
+         {% set url = h3.permalink | trim_start_matches(pat=current_url) | safe %}
+         <li>
+          <a href="{{url}}">{{ h3.title }}</a>
+          {% if h3.children %}
+          <ul class="fourth">
+           {% for h4 in h3.children %}
+            {% set url = h4.permalink | trim_start_matches(pat=current_url) | safe %}
+            <li>
+             <a href="{{url}}">{{ h4.title }}</a>
+             {% if h4.children %}
+             <ul class="fifth">
+              {% for h5 in h4.children %}
+               {% set url = h5.permalink | trim_start_matches(pat=current_url) | safe %}
+               <li>
+                <a href="{{url}}">{{ h5.title }}</a>
+                {% if h5.children %}
+                <ul class="fifth">
+                 {% for h6 in h5.children %}
+                  {% set url = h6.permalink | trim_start_matches(pat=current_url) | safe %}
+                  <li>
+                   <a href="{{url}}">{{ h6.title }}</a>
+                  </li>
+                 {% endfor %}
                 </ul>
-            {% endif %}
-        </li>
-    {% endfor %}
+                {% endif %}
+               </li>
+              {% endfor %}
+             </ul>
+             {% endif %}
+            </li>
+           {% endfor %}
+          </ul>
+          {% endif %}
+         </li>
+        {% endfor %}
+       </ul>
+       {% endif %}
+      </li>
+     {% endfor %}
     </ul>
-  </nav>
+   {% endif %}
+  </li>
+ {% endfor %}
+ </ul>
+</nav>
 </td></tr></table>
+
+{% block self_advert %}
+<!-- comments -->
+<hr class="enabled-on-phone">
+<table class="toc-aligmenter"><tr><td>
+<section class="section second-section">
+Если вам нравится что я делаю, то подписывайтесь на меня в <a href="https://t.me/optozorax_dev">Telegram</a> и <a href="https://www.youtube.com/c/optozorax">YouTube</a>.
+</section>
+</td><td>
+</td></tr></table>
+{% endblock self_advert %}
 
 {% block comments %}
 <!-- comments -->
+<hr class="enabled-on-phone">
 <table class="toc-aligmenter"><tr><td>
 <section class="comments section second-section">
 {% if config.mode != "Serve" %}

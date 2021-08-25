@@ -34,6 +34,9 @@ highlight_theme = "cheerfully-light"
 
 [extra]
 name = "optozorax.blog"
+after_title = " — Блог optozorax'а"
+domain = "optozorax.github.io"
+twitter_creator_username = "optozorax"
 author = "optozorax"
 header_paths = ["/c/ideas", "/c/repos", "/tags", "/c/about"]
 header_titles = ["Идеи", "Репозитории", "Теги", "Обо мне"]

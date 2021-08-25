@@ -222,7 +222,6 @@ a {
     color: $code-text-color;
     background-color: $code-bg-color;
     border-radius: 0.3rem;
-    white-space: pre-wrap !important;
   }
 
   code.tag {
@@ -236,7 +235,6 @@ a {
     margin-bottom: 1rem;
     font: 1rem "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace;
     color: $code-text-color;
-    word-wrap: normal;
     background-color: $code-bg-color;
     border: solid 1px $border-color;
     border-radius: 0.3rem;
@@ -247,7 +245,6 @@ a {
       font-size: 0.9rem;
       color: $code-text-color;
       word-break: normal;
-      white-space: pre;
       background: transparent;
       border: 0;
     }
@@ -265,11 +262,9 @@ a {
   .highlight pre,
   pre {
     padding: 0.8rem;
-    overflow-x: hidden;
     font-size: 0.9rem;
     line-height: 1.1;
     border-radius: 0.3rem;
-    -webkit-overflow-scrolling: touch;
   }
 
   pre code,
@@ -280,7 +275,6 @@ a {
     margin: 0;
     overflow: initial;
     line-height: inherit;
-    word-wrap: normal;
     background-color: transparent;
     border: 0;
 
@@ -290,7 +284,7 @@ a {
     }
   }
 
-  pre[data-lang]::before {
+  code[data-lang]::before {
     content: attr(data-lang);
     display: block;
     float: right;
@@ -381,7 +375,7 @@ a {
 
 .site-footer {
   padding-top: 1rem;
-  border-top: solid 1px $hr-border-color;
+  // border-top: solid 1px $hr-border-color;
 }
 
 .site-footer-owner {
@@ -459,4 +453,14 @@ tt {
 
 iframe.youtube {
     max-width: 100% !important;
+}
+
+.small-info {
+  margin-top: 10px;
+  font-size: 12px;
+  color: $grey-color;
+
+  a {
+    color: lighten($body-link-color, 20%);
+  }
 }

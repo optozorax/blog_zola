@@ -18,6 +18,7 @@
   <meta name="theme-color" content="#157878">
   <link rel="canonical" href="{{config.base_url | safe}}">
   <meta name="robots" content="noarchive">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml"> 
   <!-- --- -->
 
   <!-- Social metatags -->
@@ -35,8 +36,6 @@
   <!-- --- -->
 
   <!-- JS -->
-  <script type="text/javascript" src="/js/gallery.js"></script>
-  <script type="text/javascript" src="/js/full_screen.js"></script>
   <script type="text/javascript" src="/js/hammer.min.js"></script>
   <!-- --- -->
 
@@ -48,7 +47,6 @@
   <link rel="manifest" href="/favicon/site.webmanifest">
   <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
   <meta name="msapplication-TileColor" content="#00aba9">
-  <meta name="theme-color" content="#ffffff">
   <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
   <!-- --- -->
 
@@ -108,12 +106,14 @@
   {% block after_content %}
   {% endblock after_content %}
 
+  <hr class="enabled-on-phone">
+
   {% block before_site_footer %}
   {% endblock before_site_footer %}
   <footer class="site-footer section second-section">
   {% block footer %}
     <center>
-    <p>© Шепрут Илья. Все материалы на этом сайте распространяются под лицензией: <a href="https://creativecommons.org/licenses/by/3.0/deed.ru">CC-BY</a>.</p>
+    <div style="margin-bottom: 10px;">© Шепрут Илья. Лицензия: <a href="https://creativecommons.org/licenses/by/3.0/deed.ru">CC-BY</a>.</div>
     <table style="border: 0px; display: contents;">
     <tr><td style="border: 0px; padding: 0.2rem;">
     </div>
@@ -155,8 +155,12 @@
     <a href="https://metrika.yandex.ru/stat/?id=53392057&amp;from=informer" target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/53392057/1_0_35B977FF_159957FF_1_pageviews" style="width:80px; height:15px; border:0; border-radius: 0px; margin-top: -4px; max-height: 100%; max-width: 100%;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры)" class="ym-advanced-informer" data-cid="53392057" data-lang="ru" /></a> 
     <!-- /Yandex.Metrika informer -->
     {% endif %}
+
     </td></tr>
     </table>
+    <div class="small-info">
+      Сделано с помощью <a href="https://www.getzola.org/">Zola</a> | База темы <a href="https://github.com/lorepirri/cayman-blog">Cayman Blog</a> | <a href="https://github.com/optozorax/optozorax.github.io">Исходники сайта</a>
+    </div>
     </center>
   {% endblock footer %}
   </footer>
