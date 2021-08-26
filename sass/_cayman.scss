@@ -238,8 +238,10 @@ a {
     background-color: $code-bg-color;
     border: solid 1px $border-color;
     border-radius: 0.3rem;
+    position: relative;
 
     > code {
+      display: block;
       padding: 0;
       margin: 0;
       font-size: 0.9rem;
@@ -265,14 +267,13 @@ a {
     font-size: 0.9rem;
     line-height: 1.1;
     border-radius: 0.3rem;
+    padding-top: 1.8rem;
   }
 
   pre code,
   pre tt {
     display: inline;
     max-width: initial;
-    padding: 0;
-    margin: 0;
     overflow: initial;
     line-height: inherit;
     background-color: transparent;
@@ -284,19 +285,24 @@ a {
     }
   }
 
+  pre tt {
+    padding: 0;
+    margin: 0;
+  }
+
   code[data-lang]::before {
     content: attr(data-lang);
     display: block;
-    float: right;
+    float: left;
     background: $background-color;
     color: $text-color;
     padding: 0.2em 0.5em;
     font-weight: bold;
     font-size: 1rem;
-    border-radius: 0 0 0 8px;
-    margin-right: -0.8rem;
-    margin-top: -0.8rem;
-    border-left: 1px $border-color solid;
+    border-radius: 0 0 8px 0;
+    margin-left: -0.8rem;
+    margin-top: -1.8rem;
+    border-right: 1px $border-color solid;
     border-bottom: 1px $border-color solid;
   }
 

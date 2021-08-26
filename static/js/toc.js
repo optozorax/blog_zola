@@ -55,7 +55,7 @@ function toc_update() {
 		}
 	});
 
-	if (answer != null && answer != current_id) {
+	if ((answer != null && answer != current_id) || scroll_user != 0) {
 		current_id = answer;
 		all_links.forEach((x) => {
 			x.classList.remove("active");

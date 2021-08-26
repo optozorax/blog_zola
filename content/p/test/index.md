@@ -41,29 +41,69 @@ configuration file (`config.toml`) and set the theme as the default.
 {{ figure_end(caption="This is the `snthh` preview") }}
 {{ admonition_end() }}
 
-{{ admonition_start(color="blue", title="Summary `ololo` hi") }}
+{{ admonition_start(color="blue", title="✨ `blue` hi") }}
 When building the website, you can set a theme by using `--theme` option. However, we suggest you modify the 
 configuration file (`config.toml`) and set the theme as the default.
 {{ admonition_end() }}
 
-{{ admonition_start(color="green", title="Summary `ololo` hi") }}
+{{ admonition_start(color="blue2", title="✨ `blue2` hi") }}
 When building the website, you can set a theme by using `--theme` option. However, we suggest you modify the 
 configuration file (`config.toml`) and set the theme as the default.
 {{ admonition_end() }}
 
-{{ admonition_start(color="orange", title="Summary `ololo` hi") }}
+{{ admonition_start(color="blue3", title="✨ `blue3` hi") }}
 When building the website, you can set a theme by using `--theme` option. However, we suggest you modify the 
 configuration file (`config.toml`) and set the theme as the default.
 {{ admonition_end() }}
 
-{{ admonition_start(color="violet", title="Summary `ololo` hi") }}
+{{ admonition_start(color="green", title="✨ `green` hi") }}
+When building the website, you can set a theme by using `--theme` option. However, we suggest you modify the 
+configuration file (`config.toml`) and set the theme as the default.
+{{ admonition_end() }}
+
+{{ admonition_start(color="green2", title="✨ `green2` hi") }}
+When building the website, you can set a theme by using `--theme` option. However, we suggest you modify the 
+configuration file (`config.toml`) and set the theme as the default.
+{{ admonition_end() }}
+
+{{ admonition_start(color="green3", title="✨ `green3` hi") }}
+When building the website, you can set a theme by using `--theme` option. However, we suggest you modify the 
+configuration file (`config.toml`) and set the theme as the default.
+{{ admonition_end() }}
+
+{{ admonition_start(color="orange", title="✨ `orange` hi") }}
+When building the website, you can set a theme by using `--theme` option. However, we suggest you modify the 
+configuration file (`config.toml`) and set the theme as the default.
+{{ admonition_end() }}
+
+{{ admonition_start(color="red", title="✨ `red` hi") }}
+When building the website, you can set a theme by using `--theme` option. However, we suggest you modify the 
+configuration file (`config.toml`) and set the theme as the default.
+{{ admonition_end() }}
+
+{{ admonition_start(color="red2", title="✨ `red2` hi") }}
+When building the website, you can set a theme by using `--theme` option. However, we suggest you modify the 
+configuration file (`config.toml`) and set the theme as the default.
+{{ admonition_end() }}
+
+{{ admonition_start(color="red3", title="✨ `red3` hi") }}
+When building the website, you can set a theme by using `--theme` option. However, we suggest you modify the 
+configuration file (`config.toml`) and set the theme as the default.
+{{ admonition_end() }}
+
+{{ admonition_start(color="violet", title="✨ `violet` hi") }}
+When building the website, you can set a theme by using `--theme` option. However, we suggest you modify the 
+configuration file (`config.toml`) and set the theme as the default.
+{{ admonition_end() }}
+
+{{ admonition_start(color="gray", title="✨ `gray` hi") }}
 When building the website, you can set a theme by using `--theme` option. However, we suggest you modify the 
 configuration file (`config.toml`) and set the theme as the default.
 {{ admonition_end() }}
 
 ## два два
 
-{{ pros_cons_start() }}
+{{ pros_start() }}
 * обработка картинок, возможность создавать уменьшенные картинки
 * возможность узнать размер картинки заранее, чтобы в галерее сделать вертикальное центрирование!!! это ваще огонь
 * шорткоды — вызов кастомных функций
@@ -72,12 +112,13 @@ configuration file (`config.toml`) and set the theme as the default.
 * маленькая, и можно всю документацию от и до прочитать за один присест
 * можно хранить картинки в одной папке с постом (ура!!!!!)
 * такономии, через которые из коробки можно сделать теги без всяких костылей и сложного кода как у меня было на jekyll
-{{ pros_cons_middle() }}
+{{ pros_end() }}
+{{ cons_start() }}
 * permalink возвращает адрес, который привязан к айпишнику на который раздаёшь, то есть если зайти с телефона по вайфаю, ничего не будет работать. ну бред же, какая теоретическая выгода от этого есть?
 * permalink неадекватно много используется, даже в toc, где он должен быть просто `#адрес`, там пишется полный адрес :facepalm:
 * шорткоды с телом не рендерят то что внутри них изначально
 * язык можно было бы сделать и пожёстче с нормальными option и работы с ними, а то все вот эти `if page.variable then` очень неприятны когда у тебя там хранится какая-то фигня. да и вообще написать что-то типо `unwrap_or` было бы в миллион раз проще и удобней, чем городить сотню ифов.
-{{ pros_cons_end() }}
+{{ cons_end() }}
 
 ### два три
 

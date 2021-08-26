@@ -10,6 +10,7 @@ tags = ["программирование", "программа", "язык", "�
 image = "full.png"
 tg = "https://t.me/optozorax_dev/489"
 tg_comments = 37
+button = { link = "https://optozorax.github.io/learn_words/", text = "Ссылка на программу" }
 +++
 
 # Про мой английский

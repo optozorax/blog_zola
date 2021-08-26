@@ -1,6 +1,8 @@
 /* Position the image container (needed to position the left and right arrows) */
 .gallery-container {
   position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 /* Hide the images by default */
@@ -22,19 +24,27 @@
   color: white;
   font-weight: bold;
   font-size: 20px;
-  border-radius: 3px;
   user-select: none !important;
   -webkit-user-select: none !important;
   background-color: rgba(0, 0, 0, 0.9);
+  text-decoration: none !important;
+  display: inline-block;
 }
 
 /* Position the "next button" to the right */
 .gallery-next {
   right: 0;
-  border-radius: 3px 0 0 3px;
 }
 
-@media screen and (min-width: 64em) {
+.gallery-prev {
+  border-radius: 0 5px 5px 0;
+}
+
+.gallery-next {
+  border-radius: 5px 0 0 5px;
+}
+
+@include large {
   .gallery-next, .fullscreen {
     margin-right: -2rem;
   }
@@ -43,10 +53,19 @@
   }
 }
 
+@include medium-small {
+  .gallery-prev {
+    margin-left: -1rem;
+  }
+  .gallery-next {
+    margin-right: -1rem;
+  }
+}
+
 /* On hover, add a black background color with a little bit see-through */
 .gallery-prev:hover,
 .gallery-next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 /* Number text (1/3 etc) */

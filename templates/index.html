@@ -48,7 +48,7 @@
           <img src="/{{ new_image.url | trim_start_matches(pat=config.base_url) }}"
             width="{{ new_image.width }}" height="{{ new_image.height }}">
         </a>
-        {% set day = post.date | date(format="%d") %}
+        {% set day = post.date | date(format="%-d") %}
         {% set month = post.date | date(format="%m") %}
         {% set month = macros::month_to_name(month=month) %}
         <span class="post-date">{{ day ~ " " ~ month }}</span>

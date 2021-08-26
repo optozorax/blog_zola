@@ -17,7 +17,7 @@
   </center>
 
   {% for term in terms %}
-  <h2 id="{{ term.slug }}">#{{ term.name }}&nbsp;<a style="display: inline-block;" href="tags/{{term.slug}}/rss.xml"><img class="my-svg-icon" src="/ico/rss.svg" width="16" height="16"></a></h2>
+  <h1 id="{{ term.slug }}"><a class="anchor" href="#{{term.slug}}">#</a>{{ term.name }}&nbsp;<a style="display: inline-block;" href="tags/{{term.slug}}/rss.xml"><img class="my-svg-icon" src="/ico/rss.svg" width="16" height="16"></a></h1>
   <ul class="posts">
     {% for page in term.pages %}
       <li itemscope><a href="{{ page.permalink }}">{{ page.title }}</a></li>

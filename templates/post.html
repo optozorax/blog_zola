@@ -130,14 +130,15 @@
 {% endif %}
 </tr>
 </table>
+
+{% if page.extra.button %}
+<br><a href="{{ page.extra.button.link }}" class="btn" style="margin: 0px;">{{page.extra.button.text}}</a>
+{% endif %}
 </center>
 
 </td><td>
 </td></tr></table>
 
-{% if page.extra.github %}
-<br><a href="{{ page.extra.github }}" class="btn" style="margin: 0px;">Эта страница на GitHub</a>
-{% endif %}
 {% endblock page_header %}
 
 {# -------------------------------------------------------------------------------------------------------- #}

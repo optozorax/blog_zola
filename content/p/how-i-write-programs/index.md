@@ -646,9 +646,7 @@ struct WordsSaved(BTreeMap<String, Vec<WordStatus>>);
 
 {% details(summary="@80a5703/ideas.md <a class='right' href='https://github.com/optozorax/learn_words/commit/80a57032f306e558d157de61fb8edf6a7f3923a1'>diff</a>") %}
 
-```
 ...
-```
 
 # синхронные субтитры
 
@@ -663,9 +661,7 @@ struct WordsSaved(BTreeMap<String, Vec<WordStatus>>);
 * если одна фраза на одном языке пересекается с несколькими на другом языке, то она показывается только для первой
 * есть галочка искать по словам или по вхождениям
 
-```
 ...
-```
 
 {% end %}
 

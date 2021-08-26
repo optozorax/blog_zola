@@ -16,8 +16,9 @@
       user-select: none;
     }
     .hidden-copy {
-      left: -999rem;
-      position: absolute;
+      width: 0px !important;
+      height: 0px !important;
+      font-size: 0px !important;
     }
   
     overflow-x: hidden;
