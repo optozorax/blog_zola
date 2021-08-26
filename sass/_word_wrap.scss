@@ -1,7 +1,7 @@
 .main-content pre code {
   @include medium-large {
     .table { display: table; }
-    .tr { display: tr; }
+    .tr { display: table-row; }
     .td { display: table-cell; }
     .td:last-child {
       text-indent: -20px;

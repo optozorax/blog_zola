@@ -8,9 +8,23 @@ function full_screen(img_src) {
 
   span.onclick = function() {
     modal.style.display = "none";
+    modalImg.src = "/ico/loading.gif";
   }
+  modal.addEventListener("click", (c) => {
+    let elem = document.elementFromPoint(c.clientX, c.clientY);
+    if (elem.id != "img_modal_01") {
+      modal.style.display = "none";
+      modalImg.src = "/ico/loading.gif";
+    }
+  });
 
   full_screen_init();
+}
+
+function full_screen_new_page(img_src) {
+  if (window.event.button == 1) { // middle button
+    window.open(img_src, '_blank').focus();
+  }
 }
 
 function full_screen_init() {

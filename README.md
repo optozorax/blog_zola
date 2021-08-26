@@ -23,11 +23,11 @@
 * firefox красавчики, поддерживают переносы на новую строку почти для каждого популярного языка: https://developer.mozilla.org/en-US/docs/Web/CSS/hyphens
 * katex from https://www.getzola.org/themes/even/
 * https://hugoloveit.com/theme-documentation-extended-shortcodes/
-
-https://codepen.io/josephmaynard/pen/OjWvNP
-https://www.w3schools.com/howto/howto_css_modal_images.asp
-https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp
-https://hammerjs.github.io/
+* https://codepen.io/josephmaynard/pen/OjWvNP
+* https://www.w3schools.com/howto/howto_css_modal_images.asp
+* https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp
+* https://hammerjs.github.io/
+* https://icons8.com/preloaders/
 
 фичи:
 * картинки центрируются
@@ -67,6 +67,7 @@ debug all:
 * шорткоды с телом не рендерят то что внутри них изначально
 * язык можно было бы сделать и пожёстче с нормальными option и работы с ними, а то все вот эти `if page.variable then` очень неприятны когда у тебя там хранится какая-то фигня. да и вообще написать что-то типо `unwrap_or` было бы в миллион раз проще и удобней, чем городить сотню ифов.
 * стандартный синтаксис diff ужасен, он не идёт на всю строку и фон слишком контрастный чтобы что-то видеть
+* фильтры нельзя юзать как обычные функции их нельзя юзать внутри скобок
 
 я сделал: https://zola.discourse.group/t/run-commands/1018/3
 
@@ -97,6 +98,11 @@ debug all:
 * написать про весь жыэс что юзается и зачем
 * рассказать насколько ужасно сделать перенос кода на новую строку при word-wrap, и что там ни талицу, ни flexbox не заюзать нормально, и что приходится извращаться как я щас
 * по идее можно сделать галерею через радио баттоны и чистый css
+
+ссылки:
+* https://github.com/getzola/zola/issues/1600
+* https://zola.discourse.group/t/run-commands/1018
+* https://zola.discourse.group/t/word-wrap-in-code-with-indent/1020
 
 переод новых статей:
 * не использовать обычный инклюдинг картинок ![]()

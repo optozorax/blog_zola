@@ -45,4 +45,4 @@ tg = "https://t.me/optozorax_dev/287"
 
 Ещё есть отличная [иллюстрация с рэддита](https://www.reddit.com/r/gaming/comments/ky7lqq/how_gamers_see_review_scores_now/) о том, как геймеры видят оценки игр:
 
-![](gamer-marks.jpg)
+{{ image(path="gamer-marks.jpg") }}

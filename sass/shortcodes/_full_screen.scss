@@ -59,3 +59,36 @@
     width: 100%;
   }
 }
+
+.full-screen-img {
+  cursor: pointer;
+}
+
+.magnifier-container {
+  position: relative;
+}
+
+.magnifier {
+  display: none !important;
+  position: absolute;
+  top: 0px;
+  background: rgba(#dfdfdf, 0.9);
+  border-radius: 5px;
+  padding: 2px;
+  width: 25px !important;
+
+  border: 2px #cfcfcf solid;
+
+  @include medium-large {
+    right: 5%;
+  }
+
+  @include small {
+    right: 5px;
+  }
+}
+
+.full-screen-img:hover + .magnifier,
+.magnifier:hover {
+  display: block !important;
+}

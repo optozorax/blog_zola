@@ -43,24 +43,32 @@
 
 {# -------------------------------------------------------------------------------------------------------- #}
 {% block before_site_header %}
+{% if page.toc | length > 0 %}
 <table class="toc-aligmenter"><tr><td>
+{% endif %}
 {% endblock before_site_header %}
 
 {# -------------------------------------------------------------------------------------------------------- #}
 {% block after_site_header %}
+{% if page.toc | length > 0 %}
 </td><td>
 </td></tr></table>
+{% endif %}
 {% endblock after_site_header %}
 
 {# -------------------------------------------------------------------------------------------------------- #}
 {% block before_site_footer %}
+{% if page.toc | length > 0 %}
 <table class="toc-aligmenter"><tr><td>
+{% endif %}
 {% endblock before_site_footer %}
 
 {# -------------------------------------------------------------------------------------------------------- #}
 {% block after_site_footer %}
+{% if page.toc | length > 0 %}
 </td><td>
 </td></tr></table>
+{% endif %}
 {% endblock after_site_footer %}
 
 {# -------------------------------------------------------------------------------------------------------- #}
@@ -78,7 +86,9 @@
 
 {# -------------------------------------------------------------------------------------------------------- #}
 {% block page_header %}
+{% if page.toc | length > 0 %}
 <table class="toc-aligmenter"><tr><td>
+{% endif %}
 
 <h1 class="project-name">{{page.title}}</h1>
 {% if page.description %}
@@ -136,8 +146,10 @@
 {% endif %}
 </center>
 
+{% if page.toc | length > 0 %}
 </td><td>
 </td></tr></table>
+{% endif %}
 
 {% endblock page_header %}
 
@@ -152,11 +164,14 @@
 
 {# -------------------------------------------------------------------------------------------------------- #}
 {% block before_content %}
+{% if page.toc | length > 0 %}
 <table class="toc-aligmenter"><tr><td>
+{% endif %}
 {% endblock before_content %}
 
 {# -------------------------------------------------------------------------------------------------------- #}
 {% block after_content %}
+{% if page.toc | length > 0 %}
 </td><td>
 <!-- TOC -->
 <div class="side-button" onclick="toggle_toc()">❰</div>
@@ -222,22 +237,29 @@
  </ul>
 </nav>
 </td></tr></table>
+{% endif %}
 
 {% block self_advert %}
 <!-- comments -->
 <hr class="enabled-on-phone">
+{% if page.toc | length > 0 %}
 <table class="toc-aligmenter"><tr><td>
+{% endif %}
 <section class="section second-section">
 Если вам нравится что я делаю, то подписывайтесь на меня в <a href="https://t.me/optozorax_dev">Telegram</a> и <a href="https://www.youtube.com/c/optozorax">YouTube</a>.
 </section>
+{% if page.toc | length > 0 %}
 </td><td>
 </td></tr></table>
+{% endif %}
 {% endblock self_advert %}
 
 {% block comments %}
 <!-- comments -->
 <hr class="enabled-on-phone">
+{% if page.toc | length > 0 %}
 <table class="toc-aligmenter"><tr><td>
+  {% endif %}
 <section class="comments section second-section">
 {% if config.mode != "Serve" %}
 <script src="https://utteranc.es/client.js"
@@ -251,8 +273,10 @@
 Comments are not supported on localhost.
 {% endif %}
 </section>
+{% if page.toc | length > 0 %}
 </td><td>
 </td></tr></table>
+{% endif %}
 {% endblock comments %}
 
 {% endblock after_content %}

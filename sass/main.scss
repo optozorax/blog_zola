@@ -69,10 +69,14 @@ code, pre {
     // text-decoration: none !important;
 }
 
-
 figcaption {
     margin-top: 10px;
     text-align: center;
     color: $blockquote-text-color;
     font-style: italic;
+}
+
+html {
+    -moz-tab-size: 4;
+    tab-size: 4;
 }

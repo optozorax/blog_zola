@@ -21,4 +21,4 @@ vk = "https://vk.com/optoblog?w=wall-169103586_8"
 
 Можно сказать, что два последних слова являются подмножествами первого: `lie` ⊂ `false`, `misinformation` ⊂ `false`, при этом множества `lie` и `misinformation` не пересекаются.
 
-![](lie.png)
+{{ image(path="lie.png") }}
