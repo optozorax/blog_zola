@@ -13,9 +13,11 @@
 {% set_global image_height = image_meta.height %}
 
 <div class="yt-container">
+<a target="_blank" href="https://www.youtube.com/watch?v={{ id }}">
 <div class="yt-image-wrapper">
 <img class="yt-image not-default" src="/{{ data.image_path }}" width="{{image_width}}" height="{{image_height}}">
 </div>
+</a>
 <div class="yt-title-wrapper">
 <a class="yt-title" target="_blank" href="https://www.youtube.com/watch?v={{ id }}">{{ data.title }}</a>
 <span class="yt-text">Канал: </span><a target="_blank" class="yt-channel" href="{{ data.channel_url }}">{{ data.channel_name }}</a>
