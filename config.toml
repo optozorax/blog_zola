@@ -8,8 +8,7 @@ minify_html = false # todo change to `true`
 generate_feed = true
 feed_filename = "rss.xml"
 taxonomies = [
-	{name = "posts", feed = true},
-	{name = "tags", feed = true},
+	{name = "tags"},
 ]
 build_search_index = false
 

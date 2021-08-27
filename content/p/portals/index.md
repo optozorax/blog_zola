@@ -116,10 +116,6 @@ _(спойлер из далёкого будущего: судьба, я оши
 
 Вот [ссылка](https://www.reddit.com/r/Portal/comments/l9agp9/this_happens_if_you_put_one_portal_inside_another/) на новый пост в реддите. Прошу оценить.
 
-<center>
-<iframe id="reddit-embed" src="https://www.redditmedia.com/r/Portal/comments/l9agp9/this_happens_if_you_put_one_portal_inside_another/?ref_source=embed&amp;ref=share&amp;embed=true" sandbox="allow-scripts allow-same-origin allow-popups" style="border: none;" height="431" width="640" scrolling="no"></iframe>
-</center>
-
 ## Выводы
 
 Спасибо всем за поддержку, пост набрал 2.8к апвоутов и остановился в подъёме. А теперь немного размышлений по поводу реддита.  
