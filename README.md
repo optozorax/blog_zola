@@ -106,6 +106,7 @@ debug all:
 * https://github.com/getzola/zola/issues/1600
 * https://zola.discourse.group/t/run-commands/1018
 * https://zola.discourse.group/t/word-wrap-in-code-with-indent/1020
+* https://github.com/getzola/zola/issues/1601
 
 переод новых статей:
 * не использовать обычный инклюдинг картинок ![]()

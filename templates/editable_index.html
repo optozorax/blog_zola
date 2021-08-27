@@ -1,6 +1,9 @@
 {% extends "index.html" %}
 
 {# -------------------------------------------------------------------------------------------------------- #}
+{% block title %}{{section.title}}{{config.extra.after_title}}{% endblock title %}
+
+{# -------------------------------------------------------------------------------------------------------- #}
 {% block content %}
 <div class="index">
 {% for post in section.pages %}

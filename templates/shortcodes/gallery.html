@@ -43,7 +43,12 @@
     onclick="full_screen('{{images[loop.index0]}}')"
     onauxclick="full_screen_new_page('{{images[loop.index0]}}')"
     width="{{processed_width[loop.index0]}}" height="{{processed_height[loop.index0]}}">
+  <div class="magnifier-display">
   <img class="magnifier" src="/ico/magnifier.svg">
+  {%- set meta = get_image_metadata(path=page.path ~ images[loop.index0]) -%}
+  {%- set actual_scale = meta.width / processed_width[loop.index0] | round(method="ceil", precision=1) -%}
+  <div class="magnifier-info">×{{actual_scale}}<br>{{meta.format}}</div>
+  </div>
   </div>
   <svg class="gallery-svg" viewBox="0 0 1 {{ height }}"></svg>
 </div>

@@ -199,7 +199,7 @@ tg_comments = 209
 
 Ещё есть идея, что чтобы удобнее было писать код, надо подумать о том как представить данные в том виде, чтобы задача в них решалась максимально естественно, и перевести их в этот формат: 
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">one lesson from functional programming:<br>when ya got some data and something to do with it, DON&#39;T just do the thing.<br>imagine a form of the data that would make the thing easy.<br><br>Transform the data, then do the thing.<br><br>I call this &quot;cook your food, then eat it.&quot;</p>&mdash; Jessica Joy Kerr (@jessitron) <a href='https://twitter.com/jessitron/status/1286677596005171200?ref_src=twsrc'5Etfw">July 24, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">one lesson from functional programming:<br>when ya got some data and something to do with it, DON&#39;T just do the thing.<br>imagine a form of the data that would make the thing easy.<br><br>Transform the data, then do the thing.<br><br>I call this &quot;cook your food, then eat it.&quot;</p>&mdash; Jessica Joy Kerr (@jessitron) <a href="https://twitter.com/jessitron/status/1286677596005171200">July 24, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 Далее я буду кидаться коммитами, начинающимися с `@`. Мне кажется что оптимальным способом смотрения их будет: открыть в новой вкладке и пролистать diff, увидеть _примерно_ что произошло. Либо можно просто их игнорировать, особо ничего не потеряете. Смотреть что происходило в коммитах может быть полезно если вам нужны прям детали как происходила моя разработка.
 
@@ -672,11 +672,9 @@ struct WordsSaved(BTreeMap<String, Vec<WordStatus>>);
 
 {{ image(path="1.jpg") }}
 
-
 Затем выбрал худший общий вариант и начал планирвоать алгоритм субтитров как на картинке. Всё аналогично предыдущей, только английский и русский язык разделяет волнистая линия. Видно, что тут нарушается гарантия того что в одном файле субтитров все реплики обязаны идти друг за другом.
 
 {{ image(path="2.jpg") }}
-
 
 Тут очень пригождаются навыки олимпиадного программирования, ибо надо:
 * Рассмотреть крайние случаи.

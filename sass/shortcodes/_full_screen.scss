@@ -69,7 +69,6 @@
 }
 
 .magnifier {
-  display: none !important;
   position: absolute;
   top: 3px;
   right: 3px;
@@ -80,7 +79,22 @@
   border: 2px #cfcfcf solid;
 }
 
-.full-screen-img:hover + .magnifier,
-.magnifier:hover {
+.magnifier-info {
+  position: absolute;
+  top: 30px;
+  right: 3px;
+  background: rgba(#dfdfdf, 0.9);
+  border-radius: 5px;
+  padding: 2px;
+  border: 2px #cfcfcf solid;
+  font-size: 12px;
+}
+
+.magnifier-display {
+  display: none !important;
+}
+
+.full-screen-img:hover + .magnifier-display,
+.magnifier-display:hover {
   display: block !important;
 }

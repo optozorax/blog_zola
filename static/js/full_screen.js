@@ -30,7 +30,7 @@ function full_screen_new_page(img_src) {
 function full_screen_init() {
   const imageContainer = document.getElementById("img_modal");
 
-  let minScale = 1;
+  let minScale = 0.5;
   let maxScale = 4;
   let imageWidth = 0;
   let imageHeight = 0;

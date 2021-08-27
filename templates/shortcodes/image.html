@@ -21,5 +21,10 @@
     src="{{path1}}" 
     onclick="full_screen('{{path}}')"
     onauxclick="full_screen_new_page('{{path}}')">
+<div class="magnifier-display">
 <img class="magnifier" src="/ico/magnifier.svg">
+{%- set meta = get_image_metadata(path=page.path ~ path) -%}
+{%- set actual_scale = meta.width / new_image.width | round(method="ceil", precision=1) -%}
+<div class="magnifier-info">×{{actual_scale}}<br>{{meta.format}}</div>
+</div>
 </div>
