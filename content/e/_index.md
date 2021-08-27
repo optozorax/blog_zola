@@ -5,7 +5,7 @@ template = "editable_index.html"
 sort_by = "weight"
 page_template = "editable.html"
 insert_anchor_links = "left"
-ignored_content = ["*.txtmd", "*/changelog.md"]
+ignored_content = ["*.txt", "*/.git*"]
 
 [extra]
 image = "rewrite.png"

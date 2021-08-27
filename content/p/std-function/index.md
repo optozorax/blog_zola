@@ -1,7 +1,8 @@
 +++
-title = "Статья об использовании std::function"
+title = "Применения std::function"
 date = 2019-01-30
 description = "Рассказываю как улучшить качество кода при помощи типа данных функций и лямбда-функций."
+aliases = ["std-function-article"]
 
 [taxonomies]
 tags = ["программирование", "c++"]

@@ -2,6 +2,7 @@
 title = "Проблема подписок"
 date = 2020-08-04
 description = "Рассуждение о том почему так сложно отписываться"
+aliases = ["subscription-problem"]
 
 [taxonomies]
 tags = ["рассуждения", "идеи", "интерфейс"]

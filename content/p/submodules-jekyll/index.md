@@ -2,6 +2,7 @@
 title = "Один репозиторий = Один пост в блоге"
 date = 2020-11-16
 description = "Делаем такое возможным с помощью `git submodules` на Jekyll + GitHub Pages."
+aliases = ["submodules-jekyll"]
 
 [taxonomies]
 tags = ["мета", "блог", "git"]
