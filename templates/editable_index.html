@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+
+{# -------------------------------------------------------------------------------------------------------- #}
+{% block content %}
+<div class="index">
+{% for post in section.pages %}
+  {{ macros::index_entry(post=post) }}
+  {% if not loop.last %}
+  <hr>
+  {% endif %}
+{% endfor %}
+</div>
+{% endblock content %}

@@ -110,6 +110,16 @@ debug all:
 
 # shortcodes
 
+## youtube
+
+```
+{{ youtube(id="") }}
+```
+
+```
+\[!\[\]\(http://img.youtube.com/vi/[^/]*/0.jpg\)\]\(http://www.youtube.com/watch\?v=([^ ]*) ""\)
+```
+
 ## scale allowed values
 
 `1, 3/4, 1/2, 1/4, 2/3, 1/3`
@@ -209,8 +219,8 @@ When building the website, you can set a theme by using `--theme` option. Howeve
 
 ```
 {{ figure_start() }}
-{{ image(path="preview.png") }}
-{{ figure_end(caption="This is the `snthh` preview") }}
+{{ image(path="") }}
+{{ figure_end(caption="[Источник]()") }}
 ```
 
 
@@ -220,4 +230,3 @@ When building the website, you can set a theme by using `--theme` option. Howeve
 [extra]
 use_katex = true
 ```
-

@@ -77,3 +77,33 @@
     декабря
   {%- endif -%}
 {%- endmacro frac_to_number -%}
+
+{% macro index_entry(post) %}
+<table>
+  <tr>
+    <td class="first">
+      <a href="/{{ post.permalink | trim_start_matches(pat=config.base_url) }}" title="{{ post.title }}">
+        {% set image = post.permalink ~ post.extra.image | trim_start_matches(pat=config.base_url) %}
+        {% set new_image = resize_image(path=image, width=200, height=200, op="fit", format="webp") %}
+        <img src="/{{ new_image.url | trim_start_matches(pat=config.base_url) }}"
+          width="{{ new_image.width }}" height="{{ new_image.height }}">
+      </a>
+      {% if post.date %}
+      {% set day = post.date | date(format="%-d") %}
+      {% set month = post.date | date(format="%m") %}
+      {% set month = macros::month_to_name(month=month) %}
+      <span class="post-date">{{ day ~ " " ~ month }}</span>
+      {% endif %}
+      <span class="post-date">🕑 {{ post.reading_time }} мин</span>
+    </td>
+    <td class="second">
+      <h2>
+        <a class="post-link" href="/{{ post.permalink | trim_start_matches(pat=config.base_url) | safe }}" title="{{ post.title }}">
+          {{ post.title | safe }}
+        </a>
+      </h2>
+      <span>{{ post.description | safe }}</span>
+    </td>
+  </tr>
+</table>
+{% endmacro list_articles %}

@@ -1,9 +1,10 @@
 +++
 title = "Обо мне"
 description = "Что за человек этот optozorax"
+page_template = "page.html"
 
 [extra]
-image = "ideas/thumbnail.jpg"
+image = ""
 +++
 
 22 года. Выпускник бакалавриата [НГТУ](https://nstu.ru/) на факультете [ФПМИ](https://ami.nstu.ru/).

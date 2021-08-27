@@ -12,6 +12,18 @@ image = "preview.png"
 
 # раз
 
+{{ container_start() }}
+{{ image(path="../learn-words-post/lw8.png", scale="1/2") }}
+{{ image(path="../learn-words-post/lw9.png", scale="1/2") }}
+{{ image(path="../learn-words-post/lw10.png", scale="1/2") }}
+{{ container_end() }}
+
+{{ container_start() }}
+{{ image(path="../learn-words-post/lw8.png", scale="1/3") }}
+{{ image(path="../learn-words-post/lw9.png", scale="1/3") }}
+{{ image(path="../learn-words-post/lw10.png", scale="1/3") }}
+{{ container_end() }}
+
 ```rust
 fn main() {
     println!("very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long line, {}", "hello world");

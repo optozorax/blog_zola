@@ -1,0 +1,24 @@
+{% extends "post.html" %}
+
+{# -------------------------------------------------------------------------------------------------------- #}
+{% block comments %}
+{% if not page.extra.button %}
+{{ throw(message="Page must have button to github") }}
+{% endif %}
+<!-- comments -->
+<hr class="enabled-on-phone">
+{% if page.toc | length > 0 %}
+<table class="toc-aligmenter"><tr><td>
+{% endif %}
+<section class="comments section second-section main-content">
+<h1 class="archive-year">Changelog</h1>
+{% set data = load_data(path=page.path ~ "changelog.txt") %}
+{{ data | markdown | safe }}
+</section>
+{% if page.toc | length > 0 %}
+</td><td>
+</td></tr></table>
+{% endif %}
+
+{{ super() }}
+{% endblock comments %}

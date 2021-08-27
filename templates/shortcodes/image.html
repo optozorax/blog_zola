@@ -13,9 +13,9 @@
 {% set new_image = resize_image(path=page.path ~ path, width=size, height=size, op="fit", format=format, quality=75) %}
 {% set path1 = new_image.static_path | trim_start_matches(pat="static") %}
 
-<div class="magnifier-container">
+<div class="magnifier-container {{class}}">
 <img
-    class="not-default full-screen-img {{class}}"
+    class="not-default full-screen-img"
     width="{{new_image.width}}"
     height="{{new_image.height}}"
     src="{{path1}}" 

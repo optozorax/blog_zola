@@ -1,0 +1,15 @@
+[submodule "content/e/4d"]
+	path = content/e/4d
+	url = https://github.com/optozorax/4d
+[submodule "content/e/emergevolution"]
+	path = content/e/emergevolution
+	url = https://github.com/optozorax/emergevolution
+[submodule "content/e/hyperbolic"]
+	path = content/e/hyperbolic
+	url = https://github.com/optozorax/hyperbolic
+[submodule "content/e/ideas"]
+	path = content/e/ideas
+	url = https://github.com/optozorax/ideas
+[submodule "content/e/repos"]
+	path = content/e/repos
+	url = https://github.com/optozorax/repos

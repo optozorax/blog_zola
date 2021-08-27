@@ -38,8 +38,8 @@ after_title = " — Блог optozorax'а"
 domain = "optozorax.github.io"
 twitter_creator_username = "optozorax"
 author = "optozorax"
-header_paths = ["/c/ideas", "/c/repos", "/tags", "/c/about"]
-header_titles = ["Идеи", "Репозитории", "Теги", "Обо мне"]
+header_paths = ["/", "/e", "/tags", "/about"]
+header_titles = ["Блог", "Систематизация", "Теги", "Обо мне"]
 show_debug = false
 enable_metrica = false
 
