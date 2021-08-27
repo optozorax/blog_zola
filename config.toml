@@ -11,6 +11,7 @@ taxonomies = [
 	{name = "tags"},
 ]
 build_search_index = false
+ignored_content = ["static/youtube/*.json"]
 
 [markdown]
 highlight_code = true
