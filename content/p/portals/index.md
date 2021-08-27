@@ -1142,7 +1142,9 @@ if ui.button("Add").clicked() {
 
 ## Опрос
 
-{{ telegram(post="optozorax_dev/420") }}
+{{ figure_start() }}
+{{ image(path="tg_optozorax_dev_420.png", scale="2/3") }}
+{{ figure_end(caption="[Ссылка на сообщение](https://t.me/optozorax_dev/420)") }}
 
 ## Результат
 
@@ -1150,7 +1152,9 @@ if ui.button("Add").clicked() {
 
 Опубликовал в твиттере: (заходите по ссылке, там тред)
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Thread about portals with only one part (monoportals) which I discovered. With web demos and explanations.<br><br>Presented all known kinds: Mobius, N-monoportal, logarithmic spiral, regular, offsetting, rotating, scaling.<a href="https://twitter.com/hashtag/portal_explorer?src=hash&amp;ref_src=twsrc%5Etfw">#portal_explorer</a> <a href="https://t.co/35BIlCNydA">pic.twitter.com/35BIlCNydA</a></p>&mdash; ilya sheprut (@optozorax) <a href="https://twitter.com/optozorax/status/1390241834232913923?ref_src=twsrc%5Etfw">May 6, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+{{ figure_start() }}
+{{ image(path="twitter_1390241834232913923.png", scale="2/3") }}
+{{ figure_end(caption="[Ссылка на твит](https://twitter.com/optozorax/status/1390241834232913923)") }}
 
 В этот раз я попробовал публиковаться по-другому:
 * Много вещей за один раз.
@@ -1416,7 +1420,9 @@ if ui.button("Add").clicked() {
 
 ## Опрос
 
-{{ telegram(post="optozorax_dev/456") }}
+{{ figure_start() }}
+{{ image(path="tg_optozorax_dev_456.png", scale="2/3") }}
+{{ figure_end(caption="[Ссылка на сообщение](https://t.me/optozorax_dev/456)") }}
 
 # 4.06.2021
 

@@ -217,7 +217,9 @@ ImGui со всеми его минусами выглядит так, что о
 
 Это показалось слишком просто, я почувствовал силушку богатырскую, взял и напилил целый визуальный редактор на ImGui:
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Immediate mode GUI is a marvelous thing! I just *did* visual scene editor in a couple of days using megaui from <a href="https://twitter.com/fedor_games?ref_src=twsrc%5Etfw">@fedor_games</a> in <a href="https://twitter.com/hashtag/macroquad?src=hash&amp;ref_src=twsrc%5Etfw">#macroquad</a>! <a href="https://t.co/iWoQeXJYER">pic.twitter.com/iWoQeXJYER</a></p>&mdash; ilya sheprut (@optozorax) <a href="https://twitter.com/optozorax/status/1369940146460762112?ref_src=twsrc%5Etfw">March 11, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+{{ figure_start() }}
+{{ image(path="twitter_1369940146460762112.png", scale="2/3") }}
+{{ figure_end(caption="[Ссылка на твит](https://twitter.com/optozorax/status/1369940146460762112)") }}
 
 Уже через него можно было редактировать матрицы, объекты и их код в шейдерах. Это на порядок упрощало процесс создания сцен, благодаря чему я стал эффективнее. Главный прикол что я сделал его просто за пару дней и он просто работал. Это самое приятное чувство при использовании ImGui.
 

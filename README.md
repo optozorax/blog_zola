@@ -52,6 +52,7 @@
 * Теперь у всех заголовков есть ссылка на них самих, и там оч прикольно #², #⁴
 * цветные блоки, особенно в статье про раскладку
 * все картинки ресайзятся и в них всех вставляется их размер через атрибуты width, height
+* а всякие твиттеры и телеграмы я тупо вставляю картинкой или текстом, если его много (как у тонского)
 
 debug:
 ```
@@ -142,6 +143,7 @@ debug all:
 * https://github.com/getzola/zola/issues/1601
 * https://zola.discourse.group/t/tag-to-disable-counting-of-words-and-reading-time/1021/2
 * https://github.com/jaredforth/webp/issues/7
+* https://github.com/optozorax/youtube-zola
 
 переод новых статей:
 * не использовать обычный инклюдинг картинок ![]()
