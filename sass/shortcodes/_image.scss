@@ -13,36 +13,40 @@
   height: auto;
   margin-top: 10px;
   margin-bottom: 10px;
-
-  @include small { max-width: 98%; }
 }
 
 .img-one {
   @include large { max-width: 90%; }
   @include medium { max-width: 90%; }
+  @include small { max-width: 98%; }
 }
 
 .img-three-four {
   @include large { max-width: 74%; }
   @include medium { max-width: 74%; }
+  @include small { max-width: 98%; }
 }
 
 .img-one-two {
   @include large { max-width: 49%; }
   @include medium { max-width: 49%; }
+  @include small { max-width: 98%; }
 }
 
 .img-one-four {
   @include large { max-width: 24%; }
   @include medium { max-width: 49%; }
+  @include small { max-width: 49%; }
 }
 
 .img-two-three {
   @include large { max-width: 65%; }
   @include medium { max-width: 65%; }
+  @include small { max-width: 74%; }
 }
 
 .img-one-three {
   @include large { max-width: 32%; }
   @include medium { max-width: 49%; }
+  @include small { max-width: 49%; }
 }

@@ -1,6 +1,8 @@
 .admonition {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    
 	position: relative;
-    margin: 1rem 0;
     padding: 0 .75rem;
     overflow: auto;
     border-left: 0.25rem solid white;
@@ -10,8 +12,12 @@
     margin: 0 -0.75rem;
     padding: .25rem .75rem;
 }
+.admonition-content {
+    padding-top: 1rem;
+}
 .admonition p {
-	margin: 10px 0px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 .blue-bg { background-color: rgba(68,138,255,0.1); }

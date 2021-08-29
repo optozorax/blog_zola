@@ -42,7 +42,8 @@
     src="{{image}}" 
     onclick="full_screen('{{images[loop.index0]}}')"
     onauxclick="full_screen_new_page('{{images[loop.index0]}}')"
-    width="{{processed_width[loop.index0]}}" height="{{processed_height[loop.index0]}}">
+    width="{{processed_width[loop.index0]}}" 
+    height="{{processed_height[loop.index0]}}">
   <div class="magnifier-display">
   <img class="magnifier" src="/ico/magnifier.svg">
   {%- set meta = get_image_metadata(path=page.path ~ images[loop.index0]) -%}
@@ -66,7 +67,7 @@
     {% set meta = get_image_metadata(path=page.path ~ images[loop.index0]) %}
     {% set height = (max_height - meta.height / meta.width) / 2 %}
     <svg class="gallery-svg" viewBox="0 0 1 {{ height }}"></svg>
-    <img class="gallery-demo{% if loop.first %} gallery-active{% endif %}" src="{{image}}" 
+    <img class="gallery-demo not-default{% if loop.first %} gallery-active{% endif %}" src="{{image}}" 
       id="{{ "demo_" ~ nth ~ "_" ~ loop.index0 }}" 
       onclick="gallery_set({{nth}}, {{loop.index0}})"
       width="{{processed_width[loop.index0]}}" height="{{processed_height[loop.index0]}}">

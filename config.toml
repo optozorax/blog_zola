@@ -6,7 +6,7 @@ output_dir = "docs"
 compile_sass = true
 minify_html = false # todo change to `true`
 generate_feed = true
-feed_filename = "rss.xml"
+feed_filename = "atom.xml"
 taxonomies = [
 	{name = "tags"},
 ]
@@ -41,7 +41,7 @@ author = "optozorax"
 header_paths = ["/", "/e", "/tags", "/about"]
 header_titles = ["Блог", "Систематизация", "Теги", "Обо мне"]
 show_debug = false
-enable_metrica = false
+enable_metrica = true
 
 [extra.social]
 github = "optozorax"

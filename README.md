@@ -1,274 +1,45 @@
 # Мой личный блог [optozorax.github.io](https://optozorax.github.io)
 
-# Использованные материалы
+## Что использовалось раньше
 
-- [Cayman blog](https://github.com/lorepirri/cayman-blog) - основа блога.
-- [TOC](https://github.com/allejo/jekyll-toc) - оглавление статьи в MarkDown.
-- [Как поднять блог на Github Pages](http://alexprivalov.org/setup-blog-on-github/) - начальная информация, а так же теги.
-- [iconmonstr](https://iconmonstr.com/) - иконки социальных сетей внизу страницы.
-- [Creating and Hosting a Personal Site on GitHub](http://jmcglone.com/guides/github-pages/) - тоже начальная информация о GitHub Pages, Jekyll.
-- [Как создать полный набор favicon вашего сайта для всех типов устройств](https://pugofka.com/blog/technology/how-to-create-a-complete-set-favicon-on-your-site-for-all-device-types/), [realfavicongenerator.net](https://realfavicongenerator.net) - favicon'ы для всех типов устройств.
-- [Disqus](https://disqus.com/) - комментарии.
-- [MathJax](https://www.mathjax.org/) - математические формулы.
-- [img mp4](https://calendar.perfplanet.com/2017/animated-gif-without-the-gif/) - статья о том, как использовать mp4 видео вместо гифок в тэгах `<img>`. [Код.](https://codepen.io/shshaw/pen/MOMezY)
-- [draw.io](https://www.draw.io/) - сайт для рисования векторной графики. Рисовал в нём изображения для некоторых статей (в частности про эволюцию 1994 года).
+* [TOC](https://github.com/allejo/jekyll-toc) - оглавление статьи в MarkDown.
+* [Disqus](https://disqus.com/) - комментарии.
+* [Как поднять блог на Github Pages](http://alexprivalov.org/setup-blog-on-github/) - начальная информация, а так же теги.
+* [Creating and Hosting a Personal Site on GitHub](http://jmcglone.com/guides/github-pages/) - тоже начальная информация о GitHub Pages, Jekyll.
+* [MathJax](https://www.mathjax.org/) - математические формулы.
+* [img mp4](https://calendar.perfplanet.com/2017/animated-gif-without-the-gif/) - статья о том, как использовать mp4 видео вместо гифок в тэгах `<img>`. [Код.](https://codepen.io/shshaw/pen/MOMezY)
 
+## Использованные материалы
 
-# Used
+### Генератор
 
-* svg icons from https://iconmonstr.com
-* yandex metrica
-* https://stackoverflow.com/a/53336754, https://codepen.io/sosuke/pen/Pjoqqp
-* https://medium.com/clear-left-thinking/all-you-need-to-know-about-hyphenation-in-css-2baee2d89179
-* firefox красавчики, поддерживают переносы на новую строку почти для каждого популярного языка: https://developer.mozilla.org/en-US/docs/Web/CSS/hyphens
-* katex from https://www.getzola.org/themes/even/
-* https://hugoloveit.com/theme-documentation-extended-shortcodes/
-* https://codepen.io/josephmaynard/pen/OjWvNP
-* https://www.w3schools.com/howto/howto_css_modal_images.asp
-* https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp
-* https://hammerjs.github.io/
-* https://icons8.com/preloaders/
-* https://gist.github.com/jaydenseric/220c785d6289bcfd7366
+* [Zola](https://www.getzola.org/) — отличный генератор статических сайтов.
 
-фичи:
-* картинки центрируются
-* картинки реенкодятся
-* можно открыть фулскрин
-* в фулскрине можно масштабировать и двигать картинку
-* переносы на новую строку в лисе, и для больших экранов, а для хрома на телефоне отключается
-* формулы через katex
-* всё скачано локально
-* подсчёт времени чтения (но тут есть свои подводные камни)
-* прилипающее содержание
-	* автоматически пролистывается
-	* на телефоне сразу отправляется вниз к кнопке
-	* не генерируется если оно пустое
-	* а ещё оно требует вмешиваться в структуру страницы довольно сильно
-* картинки можно открыть в новой вкладке
-	* можно их увеличивать и передвигать пальцами и мышкой
-	* можно закрыть нажатием по чёрному полю или по кнопке закрытия
-	* можно открыть в новой вкладке
-	* при наведении мыши показывается иконка лупы, а ещё формат оригинала, и во сколько раз он больше уменьшенной версии
-* Теперь у всех заголовков есть ссылка на них самих, и там оч прикольно #², #⁴
-* цветные блоки, особенно в статье про раскладку
-* все картинки ресайзятся и в них всех вставляется их размер через атрибуты width, height
-* а всякие твиттеры и телеграмы я тупо вставляю картинкой или текстом, если его много (как у тонского)
+### Тема
 
-debug:
-```
-<code><pre>
-{{variable | json_encode(pretty=true) | safe}}
-</pre></code>
-```
+* [Cayman blog](https://github.com/lorepirri/cayman-blog) — основа темы.
+* [LoveIt](https://hugoloveit.com/theme-documentation-extended-shortcodes/) — украл много стилей отсюда.
 
-debug all:
-```
-<code><pre>
-{{__tera_context | escape_xml | safe}}
-</pre></code>
-```
+### Сервисы
 
+* [utterances](https://utteranc.es/) — комментарии на основе GitHub.
+* [KaTeX](https://katex.org/) — рендеринг математических формул.
+* [Яндекс.Метрика](https://metrika.yandex.ru/) — замер количества посетителей.
 
-что мне нравится в золе:
-* обработка картинок, возможность создавать уменьшенные картинки
-* возможность узнать размер картинки заранее, чтобы в галерее сделать вертикальное центрирование!!! это ваще огонь
-* шорткоды — вызов кастомных функций
-* сообщения об ошибках нормальные, только не работают в zola serve, но это обещают исправить в ближайшее время (но иногда слабоваты, например не показывают файл где ошибка обработки картинки произошла)
-* не надо париться насчёт toc, он уже рассчитан
-* маленькая, и можно всю документацию от и до прочитать за один присест
-* можно хранить картинки в одной папке с постом (ура!!!!!)
-* такономии, через которые из коробки можно сделать теги без всяких костылей и сложного кода как у меня было на jekyll
-* блоки и наследование страниц удобны
+### Ресурсы
 
-что мне не нравится:
-* permalink возвращает адрес, который привязан к айпишнику на который раздаёшь, то есть если зайти с телефона по вайфаю, ничего не будет работать. ну бред же, какая теоретическая выгода от этого есть?
-* permalink неадекватно много используется, даже в toc, где он должен быть просто `#адрес`, там пишется полный адрес :facepalm:
-* шорткоды с телом не рендерят то что внутри них изначально
-* язык можно было бы сделать и пожёстче с нормальными option и работы с ними, а то все вот эти `if page.variable then` очень неприятны когда у тебя там хранится какая-то фигня. да и вообще написать что-то типо `unwrap_or` было бы в миллион раз проще и удобней, чем городить сотню ифов.
-* стандартный синтаксис diff ужасен, он не идёт на всю строку и фон слишком контрастный чтобы что-то видеть
-* фильтры нельзя юзать как обычные функции их нельзя юзать внутри скобок
+* [iconmonstr](https://iconmonstr.com/) - svg иконки.
+* [Как создать полный набор favicon вашего сайта для всех типов устройств](https://pugofka.com/blog/technology/how-to-create-a-complete-set-favicon-on-your-site-for-all-device-types/), [realfavicongenerator.net](https://realfavicongenerator.net) - favicon'ы для всех типов устройств.
+* [Encode mp4 for web](https://gist.github.com/jaydenseric/220c785d6289bcfd7366) — статья о том как энкодить видео чтобы они работали в браузере через тэг `<video>`.
+* [draw.io](https://www.draw.io/) - сайт для рисования векторной графики. Рисовал в нём изображения для некоторых статей.
+* [GraphViz online](https://dreampuf.github.io/GraphvizOnline/) — для рисования графов для некоторых статей.
+* [hammerjs](https://hammerjs.github.io/) — библиотека для обработки касаний пальцем. Используется для пролистывания содержания и просмотра картинки в полном разрешении.
+* [Генераторы анимаций](https://icons8.com/preloaders/) — использовал это для создания нормальной гифки загрузки, которую очень сложно найти в гугле, вылезает либо очень большая гифка, либо просто фигня.
 
+### HTML/CSS/JS обучающие материалы
 
-мои принципы:
-* у меня посты не показываются по страницам, ибо страницы никто листать не будет, все посты на одной странице. я не смогу написать настолько много постов, чтобы они занимали слишком много места
-* рядом с каждым постом картинка, чтобы она прикреплялась при добавлении в социальную сеть, и чтобы привлекать внимание и показывать какие все посты разные
-* сохранил все шрифты, скрипты и стили локально
-* пагинация плоха для заголовков статей, которые занимают не так много места. а ещё она отвратительна просто когда количество страниц не говорится, а говорится только текущая, и нельзя выбирать произвольную страницу
-* избавиться от submodules
-* сохранять как можно больше стилей, но попутно переосмысливать их
-* стараться делать все стили через документацию? чо я написал
-* не использовать папку themes, только локально всё
-* наверное хранить? чо я написал
-* тёмной темы не будет
-
-статья:
-* можно нарисовать граф какая страница от какой наследуется
-* теперь есть rss, даже отдельно для каждого тега (слава таксономиям!)
-* у github pages время кэша 10 минут, и это нельзя настроить, надо уходить
-* круто что дебажить легко (через принты)
-* написать отдельную главу проперенос слов через дефис
-* перечитать статью про jekyll submodules и сравнить подходы
-* одна из немногих статей, оставшаяся с прямым html-ем — 1д обратимые автоматы, ибо она довольно интерактивная
-* я не профессионал в css/html, и вам код может показаться ужасным. так что если у вас есть предложения о том как его можно улучшить, как улучшить accessibility и все такие штуки — пишите
-* в шорткодах с телом не робит функция для обработки картинок, а ещё инфа оттуда не добавляется в toc
-* хочу чтобы гуалсей затестил сайт без js скриптов и слежки
-* написать про весь жыэс что юзается и зачем
-* рассказать насколько ужасно сделать перенос кода на новую строку при word-wrap, и что там ни талицу, ни flexbox не заюзать нормально, и что приходится извращаться как я щас
-* по идее можно сделать галерею через радио баттоны и чистый css
-* переезд на золу это не только переезд, это ещё хороший повод взять все прошлые проблемы и разобраться с ними за один присест
-* в статье спросить совета что сделать чтобы на лисе toc так не обрезался по-дурацки. посоветовать ещё выключить это сворачивание вниз
-* в целом мой сайт без js довольно юзабелен, но ещё есть куда расти. например, по идее галерею можно сделать через css. ещё можно сделать выделение текущей секции через css, а не js, но этого не поддерживает зола. о, точно, надо написать об этом в статье
-* все картинки на сайте в формате webp весят всего 12мб!!!!!!
-* попробовать замерить сколько весят все остальные файлы и сгруппировать это по их расширению (и выделить в отдельную секцию `_web.mp4`), и узнать сколько же места на самом деле сэкономилось (jpg в processed_images используется всего пару раз, так что это можно не считать, а webp основноых картинок у меня нет, ибо с ними вылетает)
-* новые шрифты, и те тоже хранятся локально
-* вебп не работает в старых сафари https://caniuse.com/webp, но и пофигу, он зато с прозрачностью и лучше по размерам и качеству картинки
-* я не буду делать свайп галереи, но если вы хотите, то можете сделать PR
-* заюзать картинку «я шерстяной волчара, боже как я хорош»
-* прелоад шрифтов
-
-замерить производительность через https://developers.google.com/speed/pagespeed/insights/ :
-* сначала идут баллы по мобилкам, затем по декстопу, а затем вес страницы
-* https://testzorax.github.io/ — 100✅, 100✅, 460кб
-* https://testzorax.github.io/p/linear-algebra/ — 69✅, 97✅, 363кб
-* https://testzorax.github.io/p/portals/ — 42✅, 60✅, 4908кб 
-* https://testzorax.github.io/p/my-keyboard-layout/ — 28✅, 74✅, 5807кб
-* https://testzorax.github.io/e/emergevolution/, отказывается замерять, перезамерить когда избавлюсь от всех внешних видео
-
-Основная претензия — размер кэша для вещей всего 10 минут
-Другая претензия — ютуб жрёт очень много ресурсов когда embed его загружается. Попробовать заменить это на скачивание картинки и вставление её в виде видео, которое открывается в новой вкладке.
-
-ссылки:
-* https://github.com/getzola/zola/issues/1600
-* https://zola.discourse.group/t/run-commands/1018
-* https://zola.discourse.group/t/word-wrap-in-code-with-indent/1020
-* https://github.com/getzola/zola/issues/1601
-* https://zola.discourse.group/t/tag-to-disable-counting-of-words-and-reading-time/1021/2
-* https://github.com/jaredforth/webp/issues/7
-* https://github.com/optozorax/youtube-zola
-
-переод новых статей:
-* не использовать обычный инклюдинг картинок ![]()
-
-
-# shortcodes
-
-## youtube
-
-```
-{{ youtube(id="") }}
-```
-
-```
-\[!\[\]\(http://img.youtube.com/vi/[^/]*/0.jpg\)\]\(http://www.youtube.com/watch\?v=([^ ]*) ""\)
-```
-
-## scale allowed values
-
-`1, 3/4, 1/2, 1/4, 2/3, 1/3`
-
-## image
-
-```
-{{ image(path="") }}
-```
-
-scale, format
-
-## video
-
-```
-{{ video(path="") }}
-```
-
-scale
-
-## video_gif
-
-```
-{{ video_gif(path="") }}
-```
-
-scale
-
-## container
-
-```
-{{ container_start() }}
-{{ video_gif(path="explanation_4/4_0_web.mp4", scale="1/2") }}
-{{ image(path="explanation_4/pythagor_0.png", scale="1/2") }}
-{{ container_end() }}
-```
-
-## gallery
-
-```
-{{ gallery(images=[
-	"explanation_5/3_0.png",
-	"explanation_5/20_9.png",
-]) }}
-```
-
-format, alts
-
-## katex
-
-```
-{{ katex(body="\pi") }}
-```
-
-```
-{{ katex(body="\KaTeX") }}
-```
-
-```
-{% katex(block=true) %}
-\KaTeX
-{% end %}
-```
-
-чтобы было по центру, добавить `block=true`
-
-## telegram
-
-```
-{{ telegram(post="") }}
-```
-
-## pros_cons
-
-```
-{{ pros_start() }}
-* плюс1
-* плюс2
-{{ pros_end() }}
-{{ cons_start() }}
-* минус1
-* минус2
-{{ cons_end() }}
-```
-
-## admonition
-
-```
-{{ admonition_start(color="green", title="Summary `ololo` hi") }}
-When building the website, you can set a theme by using `--theme` option. However, we suggest you modify the configuration file (`config.toml`) and set the theme as the default.
-{{ admonition_end() }}
-```
-
-доступные цвета: `blue, blue2, blue3, green, green2, green3, orange, red, red2, red3, violet, gray`
-
-## figure
-
-```
-{{ figure_start() }}
-{{ image(path="") }}
-{{ figure_end(caption="[Источник]()") }}
-```
-
-
-# page
-
-```
-[extra]
-use_katex = true
-```
+* [To change any SVGs color](https://stackoverflow.com/a/53336754)
+* [All you need to know about hyphenation in CSS](https://medium.com/clear-left-thinking/all-you-need-to-know-about-hyphenation-in-css-2baee2d89179)
+* [Hammer JS Pinch Pan Zoom Image](https://codepen.io/josephmaynard/pen/OjWvNP)
+* [How TO - Modal Images](https://www.w3schools.com/howto/howto_css_modal_images.asp)
+* [How TO - Slideshow Gallery](https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp)

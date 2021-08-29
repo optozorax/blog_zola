@@ -110,18 +110,7 @@ a {
   max-width: 55rem;
   margin-left: auto;
   margin-right: auto;
-
-  @include large {
-    font-size: 1.75rem;
-  }
-
-  @include medium {
-    font-size: 1.75rem;
-  }
-
-  @include small {
-    font-size: 1.75rem;
-  }
+  font-size: 1.75rem;
 }
 
 .project-tagline {
@@ -131,18 +120,7 @@ a {
   max-width: 55rem;
   margin-left: auto;
   margin-right: auto;
-
-  @include large {
-    font-size: 1rem;
-  }
-
-  @include medium {
-    font-size: 1rem;
-  }
-
-  @include small {
-    font-size: 1rem;
-  }
+  font-size: 1rem;
 }
 
 .project-date {
@@ -150,18 +128,7 @@ a {
   font-weight: normal;
   opacity: 0.7;
   font-style: italic;
-
-  @include large {
-    font-size: 0.75rem;
-  }
-
-  @include medium {
-    font-size: 0.75rem;
-  }
-
-  @include small {
-    font-size: 0.75rem;
-  }
+  font-size: 0.75rem;
 }
 
 .tag {
@@ -176,7 +143,9 @@ a {
 }
 
 .main-content {
-  img:not(.not-default):not(.gallery-img):not(.cursor) {
+  margin-bottom: -1rem;
+
+  img:not(.not-default) {
     max-width: 90%;
     display: block;
     margin-left: auto;
@@ -191,14 +160,15 @@ a {
   h4,
   h5,
   h6 {
-    margin-top: 2rem;
+    margin-top: 1rem;
     margin-bottom: 1rem;
     font-weight: normal;
     color: $section-headings-color;
   }
 
   p {
-    margin-bottom: 1em;
+    margin-top: 0;
+    margin-bottom: 1rem;
 
     @include large { text-align: justify; }
     @include medium { text-align: justify; }
@@ -216,83 +186,49 @@ a {
   }
 
   code {
-    padding: 2px 4px;
-    font-family: JetBrains Mono, Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    padding: 1px 4px;
+    font-family: JetBrains Mono, Consolas, monospace;
     font-size: 0.8rem;
     color: $code-text-color;
     background-color: $code-bg-color;
     border-radius: 0.3rem;
-  }
-
-  code.tag {
-    font-size: 0.9rem;
-    line-height: 1.6rem;
+    border: 1px solid #c4c4c4;
   }
 
   pre {
-    padding: 0.9rem;
     margin-top: 0;
     margin-bottom: 1rem;
-    font: 1rem "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+
+    font-size: 0.9rem;
     color: $code-text-color;
     background-color: $code-bg-color;
-    border: solid 1px $border-color;
+    border: 1px solid #c4c4c4;
     border-radius: 0.3rem;
-    position: relative;
+    padding: 0.5rem;
+    line-height: 1.1;
+    overflow-y: hidden;
 
     > code {
       display: block;
       padding: 0;
-      margin: 0;
+      border: 0;
       font-size: 0.9rem;
       color: $code-text-color;
       word-break: normal;
       background: transparent;
-      border: 0;
+      max-width: initial;
+      overflow-y: hidden;
+      background-color: transparent;
     }
   }
 
-  .highlight {
-    margin-bottom: 1rem;
-
-    pre {
-      margin-bottom: 0;
-      word-break: normal;
-    }
-  }
-
-  .highlight pre,
-  pre {
-    padding: 0.8rem;
-    font-size: 0.9rem;
-    line-height: 1.1;
-    border-radius: 0.3rem;
+  pre[data-lang] {
     padding-top: 1.8rem;
   }
 
-  pre code,
-  pre tt {
-    display: inline;
-    max-width: initial;
-    overflow: initial;
-    line-height: inherit;
-    background-color: transparent;
-    border: 0;
-
-    &:before,
-    &:after {
-      content: normal;
-    }
-  }
-
-  pre tt {
-    padding: 0;
-    margin: 0;
-  }
-
-  code[data-lang]::before {
-    content: attr(data-lang);
+  pre[data-lang]::before {
     display: block;
+    content: attr(data-lang);
     float: left;
     background: $background-color;
     color: $text-color;
@@ -300,34 +236,39 @@ a {
     font-weight: bold;
     font-size: 1rem;
     border-radius: 0 0 8px 0;
-    margin-left: -0.8rem;
     margin-top: -1.8rem;
+    margin-left: -0.5rem;
     border-right: 1px $border-color solid;
     border-bottom: 1px $border-color solid;
+    z-index: 10;
   }
 
   ul,
   ol {
-    padding-left: 20px;
     margin-top: 0;
-  }
+    margin-bottom: 1rem;
+    
+    padding-left: 20px;
 
-  blockquote {
-    padding: 0 1rem;
-    margin-left: 0;
-    color: $blockquote-text-color;
-    border-left: 0.3rem solid $border-color;
-
-    > :first-child {
-      margin-top: 0;
-    }
-
-    > :last-child {
+    ul, ol {
       margin-bottom: 0;
     }
   }
 
+  blockquote {
+    margin-top: 0;
+    margin-bottom: 1rem;
+
+    padding: 0 1rem;
+    margin-left: 0;
+    color: $blockquote-text-color;
+    border-left: 0.3rem solid $border-color;
+  }
+
   table {
+    margin-top: 0;
+    margin-bottom: 1rem;
+
     display: block;
     width: 100%;
     overflow: auto;
@@ -339,41 +280,27 @@ a {
       font-weight: bold;
     }
 
+    tr {
+      background: #fff;
+    }
+
     th,
     td {
       padding: 0.5rem 1rem;
       border: 1px solid $table-border-color;
     }
 
-    thead {
+    thead tr {
       background: $code-bg-color;
-    }
-
-    // :not(thead) tr:hover {
-    //   background: rgba($header-bg-color, 0.05);
-    // }
-  }
-
-  dl {
-    padding: 0;
-
-    dt {
-      padding: 0;
-      margin-top: 1rem;
-      font-size: 1rem;
-      font-weight: bold;
-    }
-
-    dd {
-      padding: 0;
-      margin-bottom: 1rem;
     }
   }
 
   hr {
+    margin-top: 0;
+    margin-bottom: 1rem;
+
     height: 1px;
     padding: 0;
-    margin: 1rem 0;
     background-color: $hr-border-color;
     border: 0;
   }
@@ -381,7 +308,6 @@ a {
 
 .site-footer {
   padding-top: 1rem;
-  // border-top: solid 1px $hr-border-color;
 }
 
 .site-footer-owner {
@@ -394,31 +320,15 @@ a {
 }
 
 .site-footer {
-
-  @include large {
-  }
-
-  @include medium {
-  }
-
-  @include small {
-  }
-
   .my-span-icon {
-
-    a {
-    	text-decoration: none;
-    }
-    a:hover {
-      text-decoration: none;
-    }
+    a { text-decoration: none; }
+    a:hover { text-decoration: none; }
 
     @include large {
       padding: 0px 5px 0px 5px;
     }
 
     @include medium {
-      //font-size: 1rem;
       padding: 0px 5px 5px 5px;
     }
 
@@ -455,10 +365,6 @@ kbd {
 
 tt {
   font-family: "JetBrains Mono", monospace;
-}
-
-iframe.youtube {
-    max-width: 100% !important;
 }
 
 .small-info {
