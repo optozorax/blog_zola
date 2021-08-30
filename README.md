@@ -1,14 +1,5 @@
 # Мой личный блог [optozorax.github.io](https://optozorax.github.io)
 
-## Что использовалось раньше
-
-* [TOC](https://github.com/allejo/jekyll-toc) - оглавление статьи в MarkDown.
-* [Disqus](https://disqus.com/) - комментарии.
-* [Как поднять блог на Github Pages](http://alexprivalov.org/setup-blog-on-github/) - начальная информация, а так же теги.
-* [Creating and Hosting a Personal Site on GitHub](http://jmcglone.com/guides/github-pages/) - тоже начальная информация о GitHub Pages, Jekyll.
-* [MathJax](https://www.mathjax.org/) - математические формулы.
-* [img mp4](https://calendar.perfplanet.com/2017/animated-gif-without-the-gif/) - статья о том, как использовать mp4 видео вместо гифок в тэгах `<img>`. [Код.](https://codepen.io/shshaw/pen/MOMezY)
-
 ## Использованные материалы
 
 ### Генератор

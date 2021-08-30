@@ -1,6 +1,7 @@
 @import "normalize";
 
 @import "sizes";
+@import "justify";
 
 @import "cayman";
 @import "site_header";
@@ -16,6 +17,8 @@
 @import "shortcodes/pros_cons";
 @import "shortcodes/admonition";
 @import "shortcodes/youtube";
+@import "shortcodes/figure";
+@import "shortcodes/container";
 
 @import "fonts/JetBrainsMono";
 @import "fonts/Rubik";
@@ -55,14 +58,6 @@
 .anchor {
     color: $section-headings-color;
     margin-right: 5px;
-    // text-decoration: none !important;
-}
-
-figcaption {
-    margin-top: 10px;
-    text-align: center;
-    color: $blockquote-text-color;
-    font-style: italic;
 }
 
 html {

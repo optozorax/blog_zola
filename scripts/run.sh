@@ -1,1 +1,1 @@
-zola serve -i=0.0.0.0
+zola serve -i=0.0.0.0 --drafts

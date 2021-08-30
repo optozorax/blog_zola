@@ -41,7 +41,7 @@ tg_comments = 209
 
 (желательно его не читать, а просто увидеть масштаб)
 
-{% details(summary="@341bd26/ideas.md <a class='right' href='https://github.com/optozorax/learn_words/commit/341bd26b133ef3d0a4c9e3b9ee47f7127c07b468'>diff</a>") %}
+{{ details_start(summary="@341bd26/ideas.md <a class='right' href='https://github.com/optozorax/learn_words/commit/341bd26b133ef3d0a4c9e3b9ee47f7127c07b468'>diff</a>") }}
 
 * Хотелось бы загружать из текста и из субтитров, чтобы была кнопка, которая читает буфер обмена
   * Чтобы при добавлении субтитров или текста, смотрелись все слова, и те что уже известны или выучены, не добавлялись, а новые слова показывались для дальнейшего добавления
@@ -83,7 +83,7 @@ tg_comments = 209
   * Где-то должно быть окошко чтобы посмотреть просто количество всех слов в системе, количество выученных слов и количество изучаемых слов
 * При добавлении новых слов есть возможность говорить: я это слово знаю; это не знаю. Чтобы не учить лишний раз известные слова, и чтобы в других текстах они не добавлялись как неизвестные.
 
-{% end %}
+{{ details_end() }}
 
 Кстати, на этом этапе крайне приятно владеть быстрой слепой печатью, чтобы писать много текста и не отвлекаться процессом печати.
 
@@ -103,7 +103,8 @@ tg_comments = 209
 
 В итоге файл с идеями теперь выглядит так:
 
-{% details(summary="@5387e15/ideas.md <a class='right' href='https://github.com/optozorax/learn_words/commit/5387e1549ec5f543b56f0fc280fc0dc74a9c87da'>diff</a>") %}
+{{ details_start(summary="@5387e15/ideas.md <a class='right' href='https://github.com/optozorax/learn_words/commit/5387e1549ec5f543b56f0fc280fc0dc74a9c87da'>diff</a>") }}
+{% not_in_toc() %}
 
 # систематизированные идеи
 
@@ -185,6 +186,7 @@ tg_comments = 209
 # отсортировать
 
 {% end %}
+{{ details_end() }}
 
 ### Планирование структур данных и функций
 
@@ -283,7 +285,8 @@ struct WordsSaved(BTreeMap<String, Vec<WordStatus>>);
 
 Нам больше не настолько нужен файлик с идеями, удаляем оттуда всё реализованное: (он стал совсем маленьким)
 
-{% details(summary="@47b0669/ideas.md <a class='right' href='https://github.com/optozorax/learn_words/commit/47b06697533bc12aea0dc5bbd15d5fcdc6b1fa63'>diff</a>") %}
+{{ details_start(summary="@47b0669/ideas.md <a class='right' href='https://github.com/optozorax/learn_words/commit/47b06697533bc12aea0dc5bbd15d5fcdc6b1fa63'>diff</a>") }}
+{% not_in_toc() %}
 
 # идеи неизвестной полезности
 
@@ -299,10 +302,11 @@ struct WordsSaved(BTreeMap<String, Vec<WordStatus>>);
   * Все майлстоуны (дней после добавления)
 
 {% end %}
+{{ details_end() }}
 
 И заводим файлик todo, в котором разместим конкретные todo-пункты для выполнения:
 
-{% details(summary="@47b0669/learn_words.todo <a class='right' href='https://github.com/optozorax/learn_words/commit/47b06697533bc12aea0dc5bbd15d5fcdc6b1fa63'>diff</a>") %}
+{{ details_start(summary="@47b0669/learn_words.todo <a class='right' href='https://github.com/optozorax/learn_words/commit/47b06697533bc12aea0dc5bbd15d5fcdc6b1fa63'>diff</a>") }}
 
 ```
 общее:
@@ -353,7 +357,7 @@ struct WordsSaved(BTreeMap<String, Vec<WordStatus>>);
   ☐ кнопки для считывания и загрузки своих данных в программу в меню в пункте Data -> {Import, Export}
 ```
 
-{% end %}
+{{ details_end() }}
 
 Тут стоит отвлечься насчёт того как я веду todo-списки. Одни люди это делают через GitHub, другие через приложение на телефон, а я через расширение для текстового редактора. Я пишу в Sublime + [PlainTasks](https://packagecontrol.io/packages/PlainTasks), так же есть похожее расширение для VSCode: [Todo+](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus).
 
@@ -388,7 +392,7 @@ struct WordsSaved(BTreeMap<String, Vec<WordStatus>>);
 
 На данный момент я сделал почти всё, а в файлике с туду-пунктами очень много строк, которые отмечены как выполненные или как отменённые. Когда их становится слишком много, я просто переношу их все вниз в раздел «Архив». Я не удаляю строки, чтобы просто не терять информацию, и просто потому что приятно видеть как много работы я сделал. Конечно, я переношу выполненное вниз не только когда завершаю проект, а когда пунктов становится слишком много, такое периодически происходит в некоторых моих проектах. Посмотреть на текущий туду-файл можно здесь:
 
-{% details(summary="@42b5e72/learn_words.todo <a class='right' href='https://github.com/optozorax/learn_words/blob/42b5e72ab0f6f587b3b091b04a7d9613f74cb3fe/learn_words.todo'>link</a>") %}
+{{ details_start(summary="@42b5e72/learn_words.todo <a class='right' href='https://github.com/optozorax/learn_words/blob/42b5e72ab0f6f587b3b091b04a7d9613f74cb3fe/learn_words.todo'>link</a>") }}
 
 ```
 общее:
@@ -572,14 +576,15 @@ struct WordsSaved(BTreeMap<String, Vec<WordStatus>>);
     + это не нужно, так как есть кнопка invert
 ```
 
-{% end %}
+{{ details_end() }}
 
 ## Время работы над этой программой
 
 Кстати, если вам интересно сколько времени было потрачено на каждый пункт этой программы, то эта информация находится здесь в файле ниже. Замер времени коммитился одновременно с написанием какой-то фичи, так что дополнительную информацию можно отследить по коммитам и blame.
 
 
-{% details(summary="@aba59d5/video.md <a class='right' href='https://github.com/optozorax/learn_words/blob/aba59d5f15a23ebbce22ca1a6030b703da95396d/video.md#%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F'>link</a>") %}
+{{ details_start(summary="@aba59d5/video.md <a class='right' href='https://github.com/optozorax/learn_words/blob/aba59d5f15a23ebbce22ca1a6030b703da95396d/video.md#%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F'>link</a>") }}
+{% not_in_toc() %}
 
 # информация
 
@@ -635,6 +640,7 @@ struct WordsSaved(BTreeMap<String, Vec<WordStatus>>);
 * написание статьи про то как пишу программы: 1ч
 
 {% end %}
+{{ details_end() }}
 
 ## Пример сложной фичи
 
@@ -647,7 +653,8 @@ struct WordsSaved(BTreeMap<String, Vec<WordStatus>>);
 Вот результат продумывания в файлике `ideas.md`:
 
 
-{% details(summary="@80a5703/ideas.md <a class='right' href='https://github.com/optozorax/learn_words/commit/80a57032f306e558d157de61fb8edf6a7f3923a1'>diff</a>") %}
+{{ details_start(summary="@80a5703/ideas.md <a class='right' href='https://github.com/optozorax/learn_words/commit/80a57032f306e558d157de61fb8edf6a7f3923a1'>diff</a>") }}
+{% not_in_toc() %}
 
 ...
 
@@ -667,6 +674,7 @@ struct WordsSaved(BTreeMap<String, Vec<WordStatus>>);
 ...
 
 {% end %}
+{{ details_end() }}
 
 В процессе стало понятно что эта фича больше похожа на олимпиадную задачу, чем на обычный код. Проблема в том, что субтитры не обязаны мне ничего. У меня нет гарантий, что одна реплика идёт за другой, и что в английском и русском фразы обязательно будут иметь одинаковые тайминги. И это надо было учитывать.
 

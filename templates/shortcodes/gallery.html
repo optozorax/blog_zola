@@ -1,8 +1,6 @@
 {% set len = images | length %}
 
-{% if format is not defined %}
-    {% set_global format = "webp" %}
-{% endif %}
+{% set format = format | default(value="webp") %}
 
 <!-- Calculate max height to have consistent size for each element -->
 {% set max_height = 0 %}
