@@ -43,6 +43,8 @@
 }
 
 .side-button {
+	font-size: 1.3rem;
+
 	@media screen and (min-width: 75rem) {
 		display: none;
 	}
@@ -52,7 +54,7 @@
 		position: fixed;
 		right: 0px;
 		border-radius: 10px 0 0 10px;
-		padding: 30px 7px;
+		padding: 25px 3px;
 		border: 2px solid #cdcdcd;
 		border-right: 0px;
 		background: white;
@@ -66,7 +68,7 @@
 }
 
 .button-pressed {
-	padding: 30px calc(12px + 20rem) 30px 12px;
+	padding: 25px calc(3px + 20rem) 25px 3px;
 }
 
 .section-nav a {

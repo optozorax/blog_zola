@@ -265,7 +265,7 @@ ffmpeg -y \
 {{ admonition_start(color="violet", title="Использование в Zola") }}
 В статьях использую шорткод `youtube.html`:
 ```zola
-{{/* yotubue(id="1q0sHf_n_2Y") */}}
+{{/* youtube(id="1q0sHf_n_2Y") */}}
 ```
 
 И дополнительно скачиваю мета-информацию и преьюшку локально. Об этом подробнее сказано в [статье про фичи](/p/new-features/#embedding-youtube).
