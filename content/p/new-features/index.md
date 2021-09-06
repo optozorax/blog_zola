@@ -9,6 +9,8 @@ tags = ["мета", "блог", "zola"]
 [extra]
 image = "preview.jpeg"
 use_katex = true
+tg = "https://t.me/optozorax_dev/500"
+tg_comments = 56
 +++
 
 # Предисловие

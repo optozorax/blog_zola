@@ -8,6 +8,8 @@ tags = ["мета", "блог", "обзор", "zola"]
 
 [extra]
 image = "preview.png"
+tg = "https://t.me/optozorax_dev/506"
+tg_comments = 37
 +++
 
 # Введение

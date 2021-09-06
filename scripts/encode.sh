@@ -32,7 +32,7 @@ ffmpeg -y \
        -profile:v baseline \
        -level 3.0 \
        -crf ${2:-35} \
-       -preset veryslow 
+       -preset veryslow \
        -vf "scale=ceil(iw*min(1\,1280/iw)/2)*2:ceil(ow/dar/2)*2" \
        ${audio} \
        -movflags +faststart \
