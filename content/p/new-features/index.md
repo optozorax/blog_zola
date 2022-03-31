@@ -232,7 +232,7 @@ tg_comments = 56
 
 Максимально производительная аналогия эмбеда ютуба. Не скачивает ничего с серверов ютуба во время скачивания страницы:
 
-{{ youtube(id="1q0sHf_n_2Y", timecode=490) }}
+{{ myyoutube(id="1q0sHf_n_2Y", timecode=490) }}
 
 {{ admonition_start(color="blue", title="Использование") }}
 ```zola

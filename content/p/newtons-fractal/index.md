@@ -41,7 +41,7 @@ image = "3.1.png"
 
 **UPD:** В 2021 вышло отличное видео от 3Blue1Brown по фракталам в методе Ньютона, советую заценить:
 
-{{ youtube(id="-RdOwhmqP5s") }}
+{{ myyoutube(id="-RdOwhmqP5s") }}
 
 ---
 

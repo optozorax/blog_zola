@@ -36,7 +36,7 @@ tg_comments = 18
 
 Приятного просмотра.
 
-{{ youtube(id="fWkAfa96OmI") }}
+{{ myyoutube(id="fWkAfa96OmI") }}
 
 {{ container_start() }}
 <div class="container-col">
@@ -1499,7 +1499,7 @@ if ui.button("Add").clicked() {
 
 Наконец-то я сделал это видео, приятного просмотра!
 
-{{ youtube(id="1q0sHf_n_2Y") }}
+{{ myyoutube(id="1q0sHf_n_2Y") }}
 
 # 22.07.2021
 

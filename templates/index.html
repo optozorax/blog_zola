@@ -36,6 +36,21 @@
 
 {# -------------------------------------------------------------------------------------------------------- #}
 {% block content %}
+<h1 class="archive-year">⭐ Лучшее ⭐</h1>
+<h2>Лонгрид про правильные клавиатуры</h1>
+<div class="index">
+  {% set posts = section.pages | filter(attribute="path", value="/p/my-keyboard-layout/") %}
+  {{ macros::index_entry(post=posts[0]) }}
+</div>
+<hr>
+<h2>Моё видео на YouTube</h1>
+{{ section.content | safe }}
+<hr>
+<hr>
+<hr>
+
+
+<h1 class="archive-year">Посты в хронологическом порядке</h1>
 <div class="index">
 {% for year, posts in section.pages | group_by(attribute="year") %}
 <h1 class="archive-year">{{year}}</h1>
