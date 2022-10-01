@@ -1,5 +1,11 @@
 # Мой личный блог [optozorax.github.io](https://optozorax.github.io)
 
+## Компиляция
+
+* `git submodule update --init --recursive`
+* Компилируется `zola v0.15.3` ([commit](https://github.com/getzola/zola/commit/96db5231e74599815df381fbf90d499c2d5b3814))
+* В репозитории [optozorax.github.io](https://github.com/optozorax/optozorax.github.io/) надо выполнить скрипт `.copy`.
+
 ## Использованные материалы
 
 ### Генератор
