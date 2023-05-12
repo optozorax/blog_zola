@@ -1,2 +1,4 @@
 docs
 static/processed_images
+.DS_store
+*/.DS_store
