@@ -8,6 +8,7 @@ tags = ["идеи", "нейронные-сети", "программирован
 
 [extra]
 image = "preview.png"
+use_katex = true
 +++
 
 # О чём эта статья
@@ -1660,3 +1661,182 @@ Note that some of these ideas might be more efficient or feasible than others de
 Конечно, я рассмотрел таким образом только одну задачу (и на это у меня ушло несколько недель по выходным), для каждой новой задачи могут возникать новые необычные сложности, которые я не могу рассмотреть в этой статье. Я написал её, чтобы передать вам идею и философию, которые можно развивать дальше, при столкновении с реальностью.
 
 Как думаете, хорошее направление для развития?
+
+---
+
+# Апдейт после выхода o1, 6 декабря 2024
+
+Буквально вчера появилась новая версия o1, и она смогла решить эту задачу!
+
+Но пришлось дополнять промпт после каждой её ошибки.
+
+Без всех этих промтов она старалась откосить в сторону suffix array. Без него она пыталась сделать решение `O(n)`, со всякими ухищрениями (которые конечно же были неверны). Её ошибки обычно детектировались на самом простом примере: `ABB`, поэтому я добавил и его в промт. И когда это случилось, то она таки смогла.
+
+Конечно, нельзя отменять секцию "Самокритика" и "Возможные причины" о том что какая-то часть этого уже была в интернете, и поэтому ей повезло додуматься. Плюс она сама пишет что "известная формула". А мне эту формулу пришлось самому выводить((
+
+Это не то мышление, которое я ожидал, но явно большой шаг в правильном направлении! Ну и как я говорил, стакать больше слоёв не получится, вот не зря сделали RL. Надеюсь в какой-то момент она начнёт думать как бы опровергнуть свои мысли, тогда сможет сама додуматься до `ABB`. Ну и конечно ждём добавления ей инструментов, чтобы она смогла сама написать наивную версию, и затем сравнивать себя с наивным решением, запуская свой код.
+
+Ещё большая проблема этой модели - как дать ей возможность думать в течении множества часов, например? Потому что засовывать ВСЁ в контекст - это плохой способ. Надо будет придумывать способы чтобы она смогла ужимать найденные знания в короткий текст и заново запускать себя со свежим контекстом.
+
+Теперь надо искать новую задачу и оценивать модели на ней)
+
+{{ details_start(summary="Диалог") }}
+
+**<center>USER</center>**
+
+You have that competitive programming task:
+
+> Given string S, calculate sum of lengths of unique substrings of that string.
+
+How would you solve it using Z-function in most efficient way? You should use Z-function, not suffix array, not LCP, not hashing.
+
+Result time complexity should be O(n^2), this task can't be solved in O(n).
+
+After your solution please write a Python code of it.
+
+For string ABA it should output 9, for string ABB 9 too.
+
+**<center>o1</center>**
+
+`Thinking for 1m 16s`
+
+**Idea**
+
+We want to find the sum of lengths of all *distinct* substrings of a given string {{ katex(body=" S ") }}.
+
+A well-known formula (from suffix arrays and LCP arrays) for counting distinct substrings is:
+
+- The total number of distinct substrings of a string {{ katex(body=" S ") }} of length {{ katex(body=" n ") }} is:
+{{ katex(body="
+\frac{n(n+1)}{2} - \sum LCP
+", block=true) }}
+where {{ katex(body=" LCP ") }} is the Longest Common Prefix array from the suffix array construction. Similarly, there is a known formula for the sum of lengths of distinct substrings:
+{{ katex(body="
+\text{sum\_of\_lengths\_of\_distinct} = \sum_{i=1}^{n} \frac{(n - SA[i]) (n - SA[i] + 1)}{2} - \frac{LCP[i](LCP[i] + 1)}{2}
+", block=true) }}
+But we are forbidden from using suffix arrays or LCP arrays directly. We must use the Z-function and the solution is allowed to be {{ katex(body="O(n^2)") }}.
+
+**Key Insight Using Z-function**
+
+We can avoid building the suffix array. Instead, we can use the following trick:
+
+1. Consider suffixes of {{ katex(body=" S ") }}: {{ katex(body=" S[i..n-1] ") }} for {{ katex(body=" i = 0,1,\ldots,n-1 ") }}.
+   
+2. For each suffix {{ katex(body=" i ") }}, consider the string:
+   {{ katex(body="
+   T = S[i..n-1] + \# + S
+   ", block=true) }}
+   where {{ katex(body="\#") }} is a separator character not in the alphabet of {{ katex(body=" S ") }}.
+
+   Compute the Z-function for {{ katex(body=" T ") }}.
+
+   The part after {{ katex(body="\#") }} corresponds to the original string {{ katex(body=" S ") }}. The Z-values in that part tell us how much of the prefix of {{ katex(body=" S[i..] ") }} appears starting at various positions in {{ katex(body=" S ") }}.
+
+3. We are interested only in occurrences *before* {{ katex(body=" i ") }} (to detect previously seen substrings). That is, we look at the part of {{ katex(body=" S ") }} in {{ katex(body=" T ") }} corresponding to indices that represent starting positions in {{ katex(body=" S[0..i-1] ") }}.
+
+   Formally, in {{ katex(body=" T ") }}:
+   - {{ katex(body=" T[0..(n-i-1)] = S[i..n-1] ") }}
+   - {{ katex(body=" T[n-i] = \# ") }}
+   - {{ katex(body=" T[n-i+1..n-i+n] = S[0..n-1] ") }}
+
+   The segment {{ katex(body=" T[n-i+1..n-i+i] ") }} corresponds to {{ katex(body=" S[0..i-1] ") }}.
+
+   We take the maximum Z-value in this segment (call it {{ katex(body=" \text{maxZ}_i ") }}). This {{ katex(body=" \text{maxZ}_i ") }} tells us the longest prefix of {{ katex(body=" S[i..] ") }} that has appeared before position {{ katex(body=" i ") }}.
+
+4. The number of new distinct substrings introduced by suffix {{ katex(body=" S[i..] ") }} is:
+   {{ katex(body="
+   (n - i) - \text{maxZ}_i
+   ", block=true) }}
+   But we need the sum of lengths of these new distinct substrings.
+
+   The substrings contributed by suffix {{ katex(body=" i ") }} that are *new* are those from length {{ katex(body="\text{maxZ}_i + 1") }} up to {{ katex(body="(n - i)") }}.
+
+   The sum of these lengths is:
+   {{ katex(body="
+   \sum_{\ell = \text{maxZ}_i + 1}^{n - i} \ell = \frac{(n - i)(n - i + 1)}{2} - \frac{\text{maxZ}_i(\text{maxZ}_i + 1)}{2}
+   ", block=true) }}
+
+5. Summing this over all suffixes {{ katex(body=" i ") }} gives the total sum of lengths of distinct substrings.
+
+**Complexity**
+
+- For each {{ katex(body=" i ") }}, we construct {{ katex(body=" T ") }} of length approximately {{ katex(body=" 2n - i ") }} and compute the Z-function in {{ katex(body=" O(|T|) = O(n) ") }}.
+- Summation over {{ katex(body=" i ") }} results in {{ katex(body=" O(n^2) ") }} time.
+
+This meets the requirement and uses only Z-function.
+
+**Example Check**
+
+For {{ katex(body=" S = \text{'ABA'} ") }}:
+
+- {{ katex(body=" n=3 ") }}
+- For {{ katex(body=" i=0 ") }}:
+  - {{ katex(body=" T = 'ABA#ABA' ") }}
+  - No previous occurrences can appear before {{ katex(body=" i=0 ") }}, so {{ katex(body=" \text{maxZ}_0=0 ") }}.
+  - Contribution = {{ katex(body="\frac{3 \cdot 4}{2}-0 = 6") }}.
+- For {{ katex(body=" i=1 ") }}:
+  - {{ katex(body=" T = 'BA#ABA' ") }}
+  - Check first {{ katex(body=" i=1 ") }} positions in {{ katex(body=" S ") }}-part of {{ katex(body=" T ") }}: found {{ katex(body="\text{maxZ}_1=0 ") }}
+  - Contribution = {{ katex(body="\frac{2 \cdot 3}{2}-0=3") }}
+- For {{ katex(body=" i=2 ") }}:
+  - {{ katex(body=" T = 'A#ABA' ") }}
+  - Check first {{ katex(body=" i=2 ") }} positions: {{ katex(body="\text{maxZ}_2=1") }}
+  - Contribution = {{ katex(body="\frac{1 \cdot 2}{2}-\frac{1 \cdot 2}{2}=1-1=0") }}
+
+Sum = 6+3+0=9, matches the sample.
+
+**Code Implementation**
+
+```python
+def z_function(s):
+    n = len(s)
+    z = [0]*n
+    l, r = 0, 0
+    for i in range(1, n):
+        if i <= r:
+            z[i] = min(r - i + 1, z[i - l])
+        while i+z[i] < n and s[z[i]] == s[i+z[i]]:
+            z[i] += 1
+        if i+z[i]-1 > r:
+            l, r = i, i+z[i]-1
+    return z
+
+def solve():
+    S = input().strip()
+    n = len(S)
+    ans = 0
+    for i in range(n):
+        # Build T = S[i..] + '#' + S
+        T = S[i:] + '#' + S
+        Z = z_function(T)
+        
+        # We want max Z-value in T that corresponds to an occurrence before i in S
+        # Those positions are T-index from (n-i+1) to (n-i+i)=n, inclusive.
+        # i.e., T indices corresponding to S[0..i-1].
+        
+        start = n - i + 1
+        end = start + i - 1  # last index corresponding to S[i-1]
+        maxZ_i = 0
+        if i > 0:  # If i=0, there's no previous suffix
+            for t in range(start, end+1):
+                if Z[t] > maxZ_i:
+                    maxZ_i = Z[t]
+
+        # Calculate contribution
+        length_all = (n - i)*(n - i + 1)//2
+        length_old = maxZ_i*(maxZ_i + 1)//2
+        ans += length_all - length_old
+
+    print(ans)
+```
+
+**Explanation of Code**
+
+- We define a standard Z-function computation routine.
+- For each suffix {{ katex(body=" i ") }}, we form {{ katex(body=" T ") }} and compute Z.
+- We find `maxZ_i` by looking only at the portion of Z corresponding to suffixes starting in `S[0..i-1]`.
+- Use the formula to accumulate the result.
+- Print the final sum.
+
+This will yield the correct answer in {{ katex(body=" O(n^2) ") }} time, uses only Z-function, and matches the provided test cases.
+{{ details_end() }}
