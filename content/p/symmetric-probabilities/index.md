@@ -10,6 +10,7 @@ tags = ["математика", "программирование"]
 [extra]
 image = "preview.jpg"
 tg = "https://t.me/optozorax_dev/214"
+use_katex = true
 +++
 
 # В чём моя проблема? 
@@ -137,3 +138,123 @@ tg = "https://t.me/optozorax_dev/214"
 {{ image(path="1.jpg", scale="1/2") }}
 {{ image(path="2.jpg", scale="1/2") }}
 {{ container_end() }}
+
+# Апдейт от 21.12.2024
+
+Недавно вышла новая модель искусственного интеллекта o1, и я попросил её разработать функцию, которая бы решала эти вероятности, и она сделала очень красивую и маленькую альтернативную функцию, удовлетворяющую моим запросам. Ниже будет запрос и её решение. Когда я писал эту статью, я и подумать не мог чтобы какая-то автоматическая система смогла мне помочь в этой задаче. Воистину, мы вошли в новую эру технологий.
+
+Посмотреть на эту функцию можно в desmos: <https://www.desmos.com/calculator/gzejyiee3u>
+
+{{ details_start(summary="Диалог") }}
+**<center>USER</center>**
+
+Я нашёл один репозиторий, который вводит какую-то функцию умножения "уверенностей". Выведи функцию, которая бы удовлетворяла этим условиям, как бы она могла выглядеть? Размышляй и отвечай на английском.
+
+```
+# Confidence function
+
+Предположим, мы пишем парсер, который для каждого правила грамматики задаёт вероятность. Если данное правило распарсилось, то мы умножаем эту вероятность к итоговой.
+
+В таком случае проблема классических вероятностей, - чисел от 0 до 1, в том, что для большого размера парсируемого текста итоговая вероятность будет очень маленькой. И нам сложно оценить насколько мы уверенны в данном результате.
+
+Здесь же представлен тип данных `confidence`, умножение которых позволяет представлять такую уверенность. У этого типа данных есть три разных состояния:
+* Степень уверенности в том что гипотеза неверна
+* Полная неуверенность
+* Степень уверенности в том гипотеза верна
+
+Его область определения `A = [-1, 1]`:
+* На области `[-1, 0)` отображается уверенность в том что это неправильно. Чем ближе к `-1`, тем больше эта уверенность
+* Элемент `0` означает что неизвестно правильно это или нет
+* На области `(0, 1]` отображается уверенность в том что это правильно. Чем ближе к `1`, тем больше эта уверенность
+
+Переопределён метод для умножения этих "уверенностей" друг на друга. Обозначим его как `P(a: A, b: A) -> A`, то есть функция принимает два аргумента из области определения `A`, и возвращает результат из этой же области определения. Эта функция обладает следующими свойствами:
+* `P(x, 0) = x`
+* `P(x, -1) = -1`
+* `P(x, 1) = 1`
+* `P(x, +y) >= x` - положительные увеличивают
+* `P(x, -y) <= x` - отрицательные уменьшают
+* `P(P(x, y), z) = P(P(x, z), y)` - независимо от порядка применения получается один и тот же результат. Это очень важно, потому что при парсинге возможно много вариантов в какой последовательности применить функцию, и от этого очень много зависит.
+* `P(x, y)` относительно `y` монотонно возрастает.
+* `P(x, y) = P(y, x)` - это свойство не нужно было для парсинга, но оно случайно появилось
+```
+
+**<center>o1</center>**
+
+Below is one example of a function that meets all the specified requirements. The idea is to interpret the "confidence" values in a way that allows us to combine them using an associative, commutative operation that respects the given constraints.
+
+**Key Insight:**  
+If we think of these "confidences" as something like a "scaled opinion" measure on the interval {{ katex(body="[-1,1]") }}, we can use a transformation related to the hyperbolic tangent function. Consider that {{ katex(body="\tanh") }} maps real numbers to {{ katex(body="(-1, 1)") }}, and its inverse, {{ katex(body="\operatorname{atanh}") }}, maps {{ katex(body="(-1,1)") }} to all real numbers. When we apply {{ katex(body="\operatorname{atanh}") }}, the confidence space {{ katex(body="[-1,1]") }} becomes a linear space {{ katex(body="(-\infty,+\infty)") }}. In that linearized space, combining two confidences is just addition. Mapping back to {{ katex(body="[-1,1]") }} gives us a nonlinear combination formula.
+
+**Derivation:**
+
+1. Define a transformation:
+   {{ katex(body="
+   X = \operatorname{atanh}(x), \quad Y = \operatorname{atanh}(y).
+   ", block=true) }}
+   Here, {{ katex(body="x,y \in (-1,1)") }}.
+
+2. In the transformed domain, "combining" two confidences {{ katex(body="X") }} and {{ katex(body="Y") }} is just addition:
+   {{ katex(body="
+   X + Y = \operatorname{atanh}(x) + \operatorname{atanh}(y).
+   ", block=true) }}
+
+3. To get back to the original confidence domain:
+   {{ katex(body="
+   P(x,y) = \tanh(\operatorname{atanh}(x) + \operatorname{atanh}(y)).
+   ", block=true) }}
+
+   Using the hyperbolic tangent addition formula:
+   {{ katex(body="
+   \tanh(A+B) = \frac{\tanh(A)+\tanh(B)}{1+\tanh(A)\tanh(B)},
+   ", block=true) }}
+   we can substitute {{ katex(body="\tanh(A)=x") }} and {{ katex(body="\tanh(B)=y") }}:
+   {{ katex(body="
+   P(x,y) = \frac{x + y}{1 + x y}.
+   ", block=true) }}
+
+**Check the properties:**
+
+- **Identity with 0:**
+  {{ katex(body="
+  P(x,0) = \frac{x + 0}{1 + x \cdot 0} = x.
+  ", block=true) }}
+
+- **Absorbing elements -1 and 1:**
+  {{ katex(body="
+  P(x,1) = \frac{x+1}{1 + x} = 1 \quad \text{for } x \in (-1,1),
+  ", block=true) }}
+  {{ katex(body="
+  P(x,-1) = \frac{x - 1}{1 - x} = -1 \quad \text{for } x \in (-1,1).
+  ", block=true) }}
+
+- **Positive arguments increase the value:**
+  If {{ katex(body="y\gt 0") }}, since {{ katex(body="\frac{\partial P}{\partial y} \gt  0") }}, we have {{ katex(body="P(x,y) \gt  x") }}.
+
+- **Negative arguments decrease the value:**
+  If {{ katex(body="y \lt 0") }}, similarly {{ katex(body="P(x,y) \lt x") }}.
+
+- **Associativity:**
+  The operation is associative because addition in the {{ katex(body="\operatorname{atanh}") }} domain is associative, and we are just transforming back and forth. Formally:
+  {{ katex(body="
+  P(P(x,y), z) = P(x, P(y,z))
+  ", block=true) }}
+  corresponds to:
+  {{ katex(body="
+  \tanh((\operatorname{atanh}(x)+\operatorname{atanh}(y))+\operatorname{atanh}(z)) = \tanh(\operatorname{atanh}(x)+(\operatorname{atanh}(y)+\operatorname{atanh}(z))).
+  ", block=true) }}
+
+- **Monotonicity in each argument:**
+  For fixed {{ katex(body="x") }}, as {{ katex(body="y") }} increases, {{ katex(body="P(x,y)") }} increases (and vice versa) because both the numerator and denominator lead to a monotonic relationship. The {{ katex(body="\tanh") }}-based structure preserves this.
+
+- **Symmetry:**
+  Clearly {{ katex(body="P(x,y)=P(y,x)") }}.
+
+**Final Proposed Function:**
+
+{{ katex(body="
+\boxed{P(x,y) = \frac{x + y}{1 + x\,y}}
+", block=true) }}
+
+with the understanding that for boundary cases like {{ katex(body="P(x,1)=1") }} and {{ katex(body="P(x,-1)=-1") }}, the function behaves as stated. This function satisfies all the listed requirements.
+
+{{ details_end() }}
