@@ -21,7 +21,6 @@
 
 * [utterances](https://utteranc.es/) — комментарии на основе GitHub.
 * [KaTeX](https://katex.org/) — рендеринг математических формул.
-* [Яндекс.Метрика](https://metrika.yandex.ru/) — замер количества посетителей.
 
 ### Ресурсы
 

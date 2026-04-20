@@ -26,7 +26,6 @@ author = "optozorax"
 header_paths = ["/", "/e", "/tags", "/about"]
 header_titles = ["Блог", "Систематизация", "Теги", "Обо мне"]
 show_debug = false
-enable_metrika = true
 
 [extra.social]
 github = "optozorax"
