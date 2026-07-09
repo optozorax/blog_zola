@@ -4,7 +4,7 @@ date = 2026-07-09
 description = "A companion to the video. I take each claim about spherical scaling portals — the outward self-force, the self-collision, the golden-angle fractal, the FEM gravity with its 1/r² background — pin it down with a small simulation, and then keep pulling the thread into alternative models: other rules for inertial mass, other ways to do the gravity, and what happens in 3D."
 
 [taxonomies]
-tags = ["portals", "physics", "math", "gravity", "simulation"]
+tags = []
 
 [extra]
 image = "sims/fig_phyllotaxis.png"

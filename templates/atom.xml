@@ -10,9 +10,11 @@
         <name>{{ config.extra.author | escape_xml | safe }}</name>
         <uri>{{ config.base_url | safe }}</uri>
     </author>
-    <icon>{{ config.base_url ~ "favicon/android-chrome-192x192.png" | safe }}</icon>
+	<icon>{{ config.base_url ~ "favicon/android-chrome-192x192.png" | safe }}</icon>
 	<id>{{ feed_url | safe }}</id>
 	{%- for page in pages %}
+	{%- set hide_from_home = page.extra.hide_from_home | default(value=false) %}
+	{%- if not hide_from_home %}
 	<entry xml:lang="{{ page.lang }}">
 		<title>{{ page.title }}</title>
 		<published>{{ page.date | date(format="%+") }}</published>
@@ -24,5 +26,6 @@
 		<category term="{{ tag }}"/>
 		{%- endfor %}
 	</entry>
+	{%- endif %}
 	{%- endfor %}
 </feed>
