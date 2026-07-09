@@ -53,13 +53,22 @@
 <h1 class="archive-year">Посты в хронологическом порядке</h1>
 <div class="index">
 {% for year, posts in section.pages | group_by(attribute="year") %}
-<h1 class="archive-year">{{year}}</h1>
+{% set_global visible_posts = [] %}
 {% for post in posts %}
+  {% set hide_from_home = post.extra.hide_from_home | default(value=false) %}
+  {% if not hide_from_home %}
+    {% set_global visible_posts = visible_posts | concat(with=post) %}
+  {% endif %}
+{% endfor %}
+{% if visible_posts | length > 0 %}
+<h1 class="archive-year">{{year}}</h1>
+{% for post in visible_posts %}
   {{ macros::index_entry(post=post) }}
   {% if not loop.last %}
   <hr>
   {% endif %}
 {% endfor %}
+{% endif %}
 {% endfor %}
 </div>
 <!-- Костыль, потому что utteranc.es почему-то перенаправляется на главную страницу после авторизации -->
