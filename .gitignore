@@ -3,3 +3,5 @@ static/processed_images
 .DS_store
 */.DS_store
 zola_14
+zola.exe
+openrouter_api_key.txt
