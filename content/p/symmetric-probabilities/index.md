@@ -53,7 +53,7 @@ use_katex = true
 
 Я начал с создания [такой функции](https://www.desmos.com/calculator/njsni62kej).
 
-{{ image(path="1.png") }}
+{{ <image path="1.png" /> }}
 
 Её проблема в том что она не гладкая, и она даёт разные результаты в зависимости от порядка когда её применять. А ведь в грамматиках не задан конкретный порядок, и не знаешь когда надо выполнить ★, а когда нет. К тому же она получала данные в области `[-1; 1]`, а возврщала в области `[0; 1]`. Но это легко поправляется.
 
@@ -86,7 +86,7 @@ use_katex = true
 
 Я вывел график, и...
 
-{{ image(path="bad.jpg") }}
+{{ <image path="bad.jpg" /> }}
 
 Функция получалась... ужасная, она была очень шумной, не монотонной, явно переобучалась где-то. Ну и метрика кое-как доходила до `0.04`. Я ставил оптимизацию функции на несколько часов, и безрезультатно, в итоге у меня получалась полная чушь, да к тому же вырожденная, получалась функция, которая стремится сохранить первое значение.
 
@@ -96,7 +96,7 @@ use_katex = true
 
 Эх, так просто. А я даже не верил что она существует.
 
-{{ image(path="good.jpg") }}
+{{ <image path="good.jpg" /> }}
 
 Вот она, моя идеальная функция ❤️
 
@@ -114,7 +114,7 @@ use_katex = true
 
 Если вы не знаете что такое неравномерная сетка, то вот иллюстрация (которую я нарисовал [кодом](https://github.com/optozorax/bufdraw/blob/b466ecf8e3aa8936fc410809b3644462004fa46e/examples/grid.rs)). Свойство этой сетки в том, что каждый следующий элемент больше другого в `c` раз, где `c` - какое-то положительное число от `0` до `∞`.
 
-{{ image(path="grid.jpg") }}
+{{ <image path="grid.jpg" /> }}
 
 Все обычно строили таблицы, где брали несколько неравномерных сеток и точности на ней, и делали какие-то выводы. А я грёбаный перфекционист, я заставлял компьютер трудиться не покладая транзисторов, и поэтому перебирал с очень маленьким шагом всё что можно, и строил графики через латех.
 
@@ -122,22 +122,22 @@ use_katex = true
 
 Но проводить исследования на чём-то до бесконечности не удобно, взгляните на этот график:
 
-{{ image(path="graph1.jpg") }}
+{{ <image path="graph1.jpg" /> }}
 
 Где мне здесь остановиться? На `10^5`? На `10^10`? Делать экспоненциальное возрастание икса и логарифмическую шкалу? Непонятно. Тем более это очень неудобно логически воспринимать: несимметрично право и лево как-то получается.
 
 Тогда я принял решение придумать такую функцию, которая позволяет задавать неравномерные сетки очень удобно, чтобы для значения коэффициента -1, сетка сгущалась к левому краю, а при значении коэффициента 1 сетка сгущалась к правому краю.
 
-{{ image(path="text.jpg") }}
+{{ <image path="text.jpg" /> }}
 
 Придумал и [описал](https://github.com/optozorax/labs_emf/blob/72e893134ee23ff39607e02c94b3a30d05cd4a53/coursework/report/file.tex#L503-L521) в отчёте.
 
 А вот так офигенно выглядят исследования где одновременно меняется параметр сетки по осям `X` и `Y`.
 
-{{ container_start() }}
-{{ image(path="1.jpg", scale="1/2") }}
-{{ image(path="2.jpg", scale="1/2") }}
-{{ container_end() }}
+{% <container> %}
+{{ <image path="1.jpg" scale="1/2" /> }}
+{{ <image path="2.jpg" scale="1/2" /> }}
+{% </container> %}
 
 # Апдейт от 21.12.2024
 
@@ -145,7 +145,7 @@ use_katex = true
 
 Посмотреть на эту функцию можно в desmos: <https://www.desmos.com/calculator/gzejyiee3u>
 
-{{ details_start(summary="Диалог") }}
+{% <details summary="Диалог"> %}
 **<center>USER</center>**
 
 Я нашёл один репозиторий, который вводит какую-то функцию умножения "уверенностей". Выведи функцию, которая бы удовлетворяла этим условиям, как бы она могла выглядеть? Размышляй и отвечай на английском.
@@ -183,78 +183,78 @@ use_katex = true
 Below is one example of a function that meets all the specified requirements. The idea is to interpret the "confidence" values in a way that allows us to combine them using an associative, commutative operation that respects the given constraints.
 
 **Key Insight:**  
-If we think of these "confidences" as something like a "scaled opinion" measure on the interval {{ katex(body="[-1,1]") }}, we can use a transformation related to the hyperbolic tangent function. Consider that {{ katex(body="\tanh") }} maps real numbers to {{ katex(body="(-1, 1)") }}, and its inverse, {{ katex(body="\operatorname{atanh}") }}, maps {{ katex(body="(-1,1)") }} to all real numbers. When we apply {{ katex(body="\operatorname{atanh}") }}, the confidence space {{ katex(body="[-1,1]") }} becomes a linear space {{ katex(body="(-\infty,+\infty)") }}. In that linearized space, combining two confidences is just addition. Mapping back to {{ katex(body="[-1,1]") }} gives us a nonlinear combination formula.
+If we think of these "confidences" as something like a "scaled opinion" measure on the interval {% <katex> %}[-1,1]{% </katex> %}, we can use a transformation related to the hyperbolic tangent function. Consider that {% <katex> %}\tanh{% </katex> %} maps real numbers to {% <katex> %}(-1, 1){% </katex> %}, and its inverse, {% <katex> %}\operatorname{atanh}{% </katex> %}, maps {% <katex> %}(-1,1){% </katex> %} to all real numbers. When we apply {% <katex> %}\operatorname{atanh}{% </katex> %}, the confidence space {% <katex> %}[-1,1]{% </katex> %} becomes a linear space {% <katex> %}(-\infty,+\infty){% </katex> %}. In that linearized space, combining two confidences is just addition. Mapping back to {% <katex> %}[-1,1]{% </katex> %} gives us a nonlinear combination formula.
 
 **Derivation:**
 
 1. Define a transformation:
-   {{ katex(body="
+   {% <katex block={true}> %}
    X = \operatorname{atanh}(x), \quad Y = \operatorname{atanh}(y).
-   ", block=true) }}
-   Here, {{ katex(body="x,y \in (-1,1)") }}.
+   {% </katex> %}
+   Here, {% <katex> %}x,y \in (-1,1){% </katex> %}.
 
-2. In the transformed domain, "combining" two confidences {{ katex(body="X") }} and {{ katex(body="Y") }} is just addition:
-   {{ katex(body="
+2. In the transformed domain, "combining" two confidences {% <katex> %}X{% </katex> %} and {% <katex> %}Y{% </katex> %} is just addition:
+   {% <katex block={true}> %}
    X + Y = \operatorname{atanh}(x) + \operatorname{atanh}(y).
-   ", block=true) }}
+   {% </katex> %}
 
 3. To get back to the original confidence domain:
-   {{ katex(body="
+   {% <katex block={true}> %}
    P(x,y) = \tanh(\operatorname{atanh}(x) + \operatorname{atanh}(y)).
-   ", block=true) }}
+   {% </katex> %}
 
    Using the hyperbolic tangent addition formula:
-   {{ katex(body="
+   {% <katex block={true}> %}
    \tanh(A+B) = \frac{\tanh(A)+\tanh(B)}{1+\tanh(A)\tanh(B)},
-   ", block=true) }}
-   we can substitute {{ katex(body="\tanh(A)=x") }} and {{ katex(body="\tanh(B)=y") }}:
-   {{ katex(body="
+   {% </katex> %}
+   we can substitute {% <katex> %}\tanh(A)=x{% </katex> %} and {% <katex> %}\tanh(B)=y{% </katex> %}:
+   {% <katex block={true}> %}
    P(x,y) = \frac{x + y}{1 + x y}.
-   ", block=true) }}
+   {% </katex> %}
 
 **Check the properties:**
 
 - **Identity with 0:**
-  {{ katex(body="
+  {% <katex block={true}> %}
   P(x,0) = \frac{x + 0}{1 + x \cdot 0} = x.
-  ", block=true) }}
+  {% </katex> %}
 
 - **Absorbing elements -1 and 1:**
-  {{ katex(body="
+  {% <katex block={true}> %}
   P(x,1) = \frac{x+1}{1 + x} = 1 \quad \text{for } x \in (-1,1),
-  ", block=true) }}
-  {{ katex(body="
+  {% </katex> %}
+  {% <katex block={true}> %}
   P(x,-1) = \frac{x - 1}{1 - x} = -1 \quad \text{for } x \in (-1,1).
-  ", block=true) }}
+  {% </katex> %}
 
 - **Positive arguments increase the value:**
-  If {{ katex(body="y\gt 0") }}, since {{ katex(body="\frac{\partial P}{\partial y} \gt  0") }}, we have {{ katex(body="P(x,y) \gt  x") }}.
+  If {% <katex> %}y\gt 0{% </katex> %}, since {% <katex> %}\frac{\partial P}{\partial y} \gt  0{% </katex> %}, we have {% <katex> %}P(x,y) \gt  x{% </katex> %}.
 
 - **Negative arguments decrease the value:**
-  If {{ katex(body="y \lt 0") }}, similarly {{ katex(body="P(x,y) \lt x") }}.
+  If {% <katex> %}y \lt 0{% </katex> %}, similarly {% <katex> %}P(x,y) \lt x{% </katex> %}.
 
 - **Associativity:**
-  The operation is associative because addition in the {{ katex(body="\operatorname{atanh}") }} domain is associative, and we are just transforming back and forth. Formally:
-  {{ katex(body="
+  The operation is associative because addition in the {% <katex> %}\operatorname{atanh}{% </katex> %} domain is associative, and we are just transforming back and forth. Formally:
+  {% <katex block={true}> %}
   P(P(x,y), z) = P(x, P(y,z))
-  ", block=true) }}
+  {% </katex> %}
   corresponds to:
-  {{ katex(body="
+  {% <katex block={true}> %}
   \tanh((\operatorname{atanh}(x)+\operatorname{atanh}(y))+\operatorname{atanh}(z)) = \tanh(\operatorname{atanh}(x)+(\operatorname{atanh}(y)+\operatorname{atanh}(z))).
-  ", block=true) }}
+  {% </katex> %}
 
 - **Monotonicity in each argument:**
-  For fixed {{ katex(body="x") }}, as {{ katex(body="y") }} increases, {{ katex(body="P(x,y)") }} increases (and vice versa) because both the numerator and denominator lead to a monotonic relationship. The {{ katex(body="\tanh") }}-based structure preserves this.
+  For fixed {% <katex> %}x{% </katex> %}, as {% <katex> %}y{% </katex> %} increases, {% <katex> %}P(x,y){% </katex> %} increases (and vice versa) because both the numerator and denominator lead to a monotonic relationship. The {% <katex> %}\tanh{% </katex> %}-based structure preserves this.
 
 - **Symmetry:**
-  Clearly {{ katex(body="P(x,y)=P(y,x)") }}.
+  Clearly {% <katex> %}P(x,y)=P(y,x){% </katex> %}.
 
 **Final Proposed Function:**
 
-{{ katex(body="
+{% <katex block={true}> %}
 \boxed{P(x,y) = \frac{x + y}{1 + x\,y}}
-", block=true) }}
+{% </katex> %}
 
-with the understanding that for boundary cases like {{ katex(body="P(x,1)=1") }} and {{ katex(body="P(x,-1)=-1") }}, the function behaves as stated. This function satisfies all the listed requirements.
+with the understanding that for boundary cases like {% <katex> %}P(x,1)=1{% </katex> %} and {% <katex> %}P(x,-1)=-1{% </katex> %}, the function behaves as stated. This function satisfies all the listed requirements.
 
-{{ details_end() }}
+{% </details> %}

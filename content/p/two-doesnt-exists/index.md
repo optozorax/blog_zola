@@ -39,4 +39,4 @@ tg_comments = 159
 
 Так что если вам говорят что что-то абстрактное не существует, напомните им что и двойки тоже не существует.
 
-{{ image(path="two-doesnt-exists.png") }}
+{{ <image path="two-doesnt-exists.png" /> }}

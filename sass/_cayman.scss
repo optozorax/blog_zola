@@ -206,11 +206,19 @@ a {
     }
   }
 
-  pre[data-lang] {
+  pre[data-lang]:not([data-lang="plain"]) {
     padding-top: 1.8rem;
   }
 
-  pre[data-lang]::before {
+  // Zola's highlighter puts the grammar name in data-lang, show the names written in the code fences instead
+  pre[data-lang="cpp"]::before { content: "c++" !important; }
+  pre[data-lang="shellscript"]::before { content: "bash" !important; }
+  pre[data-lang="markdown"]::before { content: "md" !important; }
+  pre[data-lang="javascript"]::before { content: "js" !important; }
+  pre[data-lang="typescript"]::before { content: "ts" !important; }
+  pre[data-lang="yaml"]::before { content: "yml" !important; }
+
+  pre[data-lang]:not([data-lang="plain"])::before {
     display: block;
     content: attr(data-lang);
     float: left;

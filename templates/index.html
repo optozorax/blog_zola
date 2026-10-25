@@ -1,5 +1,3 @@
-{% import "macros.html" as macros %}
-
 {% extends "base.html" %}
 
 {# -------------------------------------------------------------------------------------------------------- #}
@@ -39,8 +37,8 @@
 <h1 class="archive-year">⭐ Лучшее ⭐</h1>
 <h2>Лонгрид про правильные клавиатуры</h1>
 <div class="index">
-  {% set posts = section.pages | filter(attribute="path", value="/p/my-keyboard-layout/") %}
-  {{ macros::index_entry(post=posts[0]) }}
+  {% set posts = [p for p in section.pages if p.path == "/p/my-keyboard-layout/"] %}
+  {{ <index_entry post={posts[0]} /> }}
 </div>
 <hr>
 <h2>Моё видео на YouTube</h1>
@@ -52,18 +50,15 @@
 
 <h1 class="archive-year">Посты в хронологическом порядке</h1>
 <div class="index">
-{% for year, posts in section.pages | group_by(attribute="year") %}
-{% set_global visible_posts = [] %}
-{% for post in posts %}
-  {% set hide_from_home = post.extra.hide_from_home | default(value=false) %}
-  {% if not hide_from_home %}
-    {% set_global visible_posts = visible_posts | concat(with=post) %}
-  {% endif %}
-{% endfor %}
+{#- group_by returns the years in random order, so collect them in the order of the pages -#}
+{% set_global years = [] %}
+{% for post in section.pages %}{% if post.year not in years %}{% set_global years = [...years, post.year] %}{% endif %}{% endfor %}
+{% for year in years %}
+{% set visible_posts = [post for post in section.pages if post.year == year and not (post.extra.hide_from_home | default(value=false))] %}
 {% if visible_posts | length > 0 %}
 <h1 class="archive-year">{{year}}</h1>
 {% for post in visible_posts %}
-  {{ macros::index_entry(post=post) }}
+  {{ <index_entry post={post} /> }}
   {% if not loop.last %}
   <hr>
   {% endif %}

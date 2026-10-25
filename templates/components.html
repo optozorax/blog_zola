@@ -1,0 +1,217 @@
+{#- Components used in content. They replace the shortcodes from before Zola 0.23.
+
+Component output is inserted into the markdown before it's rendered, so an output must not contain blank lines:
+a blank line ends a raw HTML block and the rest would be parsed as markdown. Block components put blank lines
+around their body on purpose, so that markdown inside them is rendered. -#}
+
+{#- Prints 2.0 as 2, like Tera v1 did. -#}
+{% component num(x) -%}
+{{ (x | int) if x == (x | round) else x }}
+{%- endcomponent num %}
+
+{% component scale_class(scale) -%}
+{{ {"1": "img-one", "3/4": "img-three-four", "1/2": "img-one-two", "1/4": "img-one-four", "2/3": "img-two-three", "1/3": "img-one-three"} | get(key=scale | str, default="img-one") }}
+{%- endcomponent scale_class %}
+
+{% component admonition(color: string, title: string) -%}
+<div class="admonition {{ color }}-bg {{ color }}-border-left">
+<div class="admonition-title {{ color }}-bg {{ color }}-border">{{ title | markdown(inline=true) | safe }}</div>
+<div class="admonition-content">
+
+{{ body | safe }}
+
+</div></div>
+{% endcomponent admonition %}
+
+{% component pros(text: string = "") -%}
+<div class="pros">
+<span style="color: #090"><big><b>{% if text %}{{ text | markdown(inline=true) | safe }}{% else %}Плюсы:{% endif %}</b></big></span>
+
+{{ body | safe }}
+
+</div>
+{% endcomponent pros %}
+
+{% component cons(text: string = "") -%}
+<div class="cons">
+<span style="color: #c00"><big><b>{% if text %}{{ text | markdown(inline=true) | safe }}{% else %}Минусы:{% endif %}</b></big></span>
+
+{{ body | safe }}
+
+</div>
+{% endcomponent cons %}
+
+{% component container() -%}
+<div class="container">
+
+{{ body | safe }}
+
+</div>
+{% endcomponent container %}
+
+{% component details(summary: string) -%}
+<details>
+<summary>{{ summary | markdown(inline=true) | safe }}</summary>
+<div class="details-content">
+
+{{ body | safe }}
+
+</div>
+</details>
+{% endcomponent details %}
+
+{% component figure(caption: string) -%}
+<figure>
+
+{{ body | safe }}
+
+<figcaption>{{ caption | markdown(inline=true) | safe }}</figcaption>
+</figure>
+{% endcomponent figure %}
+
+{% component not_in_toc() -%}
+{{ body | markdown | safe }}
+{%- endcomponent not_in_toc %}
+
+{% component katex(block: bool = false) -%}
+<script type="math/tex{% if block %};mode=display{% endif %}">{{ body | safe }}</script>
+{%- endcomponent katex %}
+
+{% component image(path: string, scale: string = "1", format: string = "webp", @page) -%}
+{%- set factor = {"1": 1.0, "3/4": 0.75, "1/2": 0.5, "1/4": 0.25, "2/3": 0.666666666666666, "1/3": 0.333333333333333} | get(key=scale, default=1.0) -%}
+{%- set size = (1280 * factor) | round(method="floor") | int -%}
+{%- set new_image = resize_image(path=page.path ~ path, width=size, height=size, op="fit", format=format, quality=75) -%}
+{%- set meta = get_image_metadata(path=page.path ~ path) -%}
+{#- One line, so it can be used inside a list item: a raw HTML block there ends at the first non-indented line -#}
+{%- filter replace(from="\n", to=" ") -%}
+<div class="magnifier-container {{ <scale_class scale={scale} /> }}">
+<img
+    class="not-default full-screen-img"
+    width="{{ new_image.width }}"
+    height="{{ new_image.height }}"
+    src="{{ new_image.static_path | trim_start(pat="static") }}"
+    onclick="full_screen('{{ path }}')"
+    onauxclick="full_screen_new_page('{{ path }}')">
+<div class="magnifier-display">
+<img class="magnifier" src="/ico/magnifier.svg">
+<div class="magnifier-info">×{{ <num x={(meta.width / new_image.width) | round(method="ceil", precision=1)} /> }}<br>{{ meta.format }}</div>
+</div>
+</div>
+{%- endfilter -%}
+{%- endcomponent image %}
+
+{% component other_image(path: string, scale: string = "1", @page) -%}
+{%- set meta = get_image_metadata(path=page.path ~ path) -%}
+{#- on one line: only a complete tag on its own line starts an HTML block, otherwise it gets wrapped in <p> -#}
+<img class="not-default {{ <scale_class scale={scale} /> }}" width="{{ meta.width }}" height="{{ meta.height }}" src="{{ page.path ~ path }}">
+{%- endcomponent other_image %}
+
+{#- `in_list` puts the output on one line for use inside a list item, see `image`. Otherwise <video> must be alone
+on its line, or the markdown parser wraps it in <p>. -#}
+{% component video(path: string, scale: string = "1", in_list: bool = false) -%}
+{%- set html -%}
+<video class="{{ <scale_class scale={scale} /> }}" controls>
+  <source src="{{ path }}" type="video/mp4">
+  Your browser is not supporting video.
+</video>
+{%- endset -%}
+{%- if in_list %}{{ html | replace(from="\n", to=" ") | safe }}{% else %}{{ html | safe }}{% endif -%}
+{%- endcomponent video %}
+
+{#- `in_list` puts the output on one line for use inside a list item, see `image`. Otherwise <video> must be alone
+on its line, or the markdown parser wraps it in <p>. -#}
+{% component video_gif(path: string, scale: string = "1", in_list: bool = false) -%}
+{%- set html -%}
+<video class="{{ <scale_class scale={scale} /> }}" autoplay loop muted inline>
+  <source src="{{ path }}" type="video/mp4">
+  Your browser is not supporting video.
+</video>
+{%- endset -%}
+{%- if in_list %}{{ html | replace(from="\n", to=" ") | safe }}{% else %}{{ html | safe }}{% endif -%}
+{%- endcomponent video_gif %}
+
+{#- `nth` must be unique per page, it identifies the gallery for gallery.js. -#}
+{% component gallery(images: array, nth: integer, alts: array = [], format: string = "webp", @page) -%}
+{%- set len = images | length -%}
+{#- Calculate max height to have consistent size for each element -#}
+{%- set metas = [get_image_metadata(path=page.path ~ image) for image in images] -%}
+{%- set max_height = ([meta.height / meta.width for meta in metas] | sort | last) + 0.01 -%}
+{%- set processed = [resize_image(path=page.path ~ image, width=1280, height=1280, op="fit", format=format, quality=75) for image in images] -%}
+<div class="gallery-container">
+{%- for p in processed %}
+{%- set meta = metas[loop.index0] %}
+{%- set height = (max_height - meta.height / meta.width) / 2 %}
+<div class="gallery-slide" id="{{ "slide_" ~ nth ~ "_" ~ loop.index0 }}" {% if loop.first %}style="display:block;"{% endif %}>
+  <div class="gallery-text">{{ loop.index }} / {{ len }}{%- if alts -%}<hr style="margin: 2px;">{{ alts[loop.index0] | markdown(inline=true) | safe }}{%- endif -%}</div>
+  <svg class="gallery-svg" viewBox="0 0 1 {{ height }}"></svg>
+  <div class="magnifier-container">
+  <img class="gallery-img full-screen-img not-default"
+    src="{{ p.static_path | trim_start(pat="static") }}"
+    onclick="full_screen('{{ images[loop.index0] }}')"
+    onauxclick="full_screen_new_page('{{ images[loop.index0] }}')"
+    width="{{ p.width }}"
+    height="{{ p.height }}">
+  <div class="magnifier-display">
+  <img class="magnifier" src="/ico/magnifier.svg">
+  <div class="magnifier-info">×{{ <num x={(meta.width / p.width) | round(method="ceil", precision=1)} /> }}<br>{{ meta.format }}</div>
+  </div>
+  </div>
+  <svg class="gallery-svg" viewBox="0 0 1 {{ height }}"></svg>
+</div>
+{%- endfor %}
+<a class="gallery-prev" onclick="gallery_plus({{ nth }}, -1)">&#10094;</a>
+<a class="gallery-next" onclick="gallery_plus({{ nth }}, 1)">&#10095;</a>
+</div>
+<div class="gallery-row">
+{%- for p in processed %}
+{%- set meta = metas[loop.index0] %}
+{%- set height = (max_height - meta.height / meta.width) / 2 %}
+  <div class="gallery-column" style="width: {{ <num x={100 / len} /> }}%;">
+    <svg class="gallery-svg" viewBox="0 0 1 {{ height }}"></svg>
+    <img class="gallery-demo not-default{% if loop.first %} gallery-active{% endif %}" src="{{ p.static_path | trim_start(pat="static") }}"
+      id="{{ "demo_" ~ nth ~ "_" ~ loop.index0 }}"
+      onclick="gallery_set({{ nth }}, {{ loop.index0 }})"
+      width="{{ p.width }}" height="{{ p.height }}">
+    <svg class="gallery-svg" viewBox="0 0 1 {{ height }}"></svg>
+  </div>
+{%- endfor %}
+</div>
+<script>
+slide_index[{{ nth }}] = 0;
+slide_count[{{ nth }}] = {{ len }};
+</script>
+{%- endcomponent gallery %}
+
+{% component myyoutube(id: string, timecode: integer = 0) -%}
+{%- set data = load_data(path="static/youtube/" ~ id ~ ".json") -%}
+{%- set image_meta = get_image_metadata(path=data.image_path) -%}
+{%- set link = "https://www.youtube.com/watch?v=" ~ id ~ ("&t=" ~ timecode if timecode else "") -%}
+<div class="yt-container">
+<a target="_blank" href="{{ link }}">
+<div class="yt-image-wrapper">
+<img class="yt-image not-default" src="/{{ data.image_path }}" width="{{ image_meta.width }}" height="{{ image_meta.height }}">
+</div>
+</a>
+<div class="yt-title-wrapper">
+<a class="yt-title" target="_blank" href="{{ link }}">{{ data.title }}</a>
+<span class="yt-text">Канал: </span><a target="_blank" class="yt-channel" href="{{ data.channel_url }}">{{ data.channel_name }}</a>
+</div>
+<div class="yt-duration">{{ data.minutes }}:{% if data.seconds < 10 %}0{% endif %}{{ data.seconds }}</div>
+{%- if timecode %}
+{%- set minutes = (timecode / 60) | round(method="floor") | int %}
+{%- set seconds = timecode % 60 %}
+<div class="yt-timecode">Таймкод {{ minutes }}:{% if seconds < 10 %}0{% endif %}{{ seconds }}</div>
+{%- endif %}
+<a target="_blank" href="{{ link }}">
+<svg class="yt-button" height="100%" width="100%" version="1.1" viewBox="0 0 68 48"><path class="yt-button-inner" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg>
+</a>
+</div>
+{%- endcomponent myyoutube %}
+
+{% component include_code(path: string, language: string, @page) -%}
+{%- set content_dir = page.relative_path | trim_end(pat="index.md") -%}
+{%- set source = load_data(path="@/" ~ content_dir ~ path, format="plain") -%}
+```{{ language }}
+{{ source | safe }}
+```
+{%- endcomponent include_code %}

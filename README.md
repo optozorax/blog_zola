@@ -3,7 +3,7 @@
 ## Компиляция
 
 * `git submodule update --init --recursive`
-* Компилируется `zola v0.14.0`
+* Компилируется `zola v0.23.6`
 * В репозитории [optozorax.github.io](https://github.com/optozorax/optozorax.github.io/) надо выполнить скрипт `.copy`.
 
 ## Использованные материалы

@@ -1,4 +1,6 @@
-{% macro footer_icon(user, path, name, svg) %}
+{#- Components used in templates. -#}
+
+{% component footer_icon(user: string, path: string, name: string, svg: string, @config) -%}
 <span class="my-span-icon">
   <a 
     href="{{path}}{{user}}" 
@@ -12,57 +14,33 @@
       alt="{{ config.extra.author }}'s {{name}}">
   </a>
 </span>
-{% endmacro list_articles %}
+{%- endcomponent footer_icon %}
 
-{%- macro month_to_name(month) -%}
-  {%- if month == "01" -%}
-    января
-  {%- elif month == "02" -%}
-    февраля
-  {%- elif month == "03" -%}
-    марта
-  {%- elif month == "04" -%}
-    апреля
-  {%- elif month == "05" -%}
-    мая
-  {%- elif month == "06" -%}
-    июня
-  {%- elif month == "07" -%}
-    июля
-  {%- elif month == "08" -%}
-    августа
-  {%- elif month == "09" -%}
-    сентября
-  {%- elif month == "10" -%}
-    октября
-  {%- elif month == "11" -%}
-    ноября
-  {%- else -%}
-    декабря
-  {%- endif -%}
-{%- endmacro frac_to_number -%}
+{% component month_to_name(month: string) -%}
+{{ {"01": "января", "02": "февраля", "03": "марта", "04": "апреля", "05": "мая", "06": "июня", "07": "июля", "08": "августа", "09": "сентября", "10": "октября", "11": "ноября", "12": "декабря"}[month] }}
+{%- endcomponent month_to_name %}
 
-{% macro index_entry(post) %}
+{% component index_entry(post, @config) -%}
 <table>
   <tr>
     <td class="first">
-      <a href="/{{ post.permalink | trim_start_matches(pat=config.base_url) }}" title="{{ post.title }}">
-        {% set image = post.permalink ~ post.extra.image | trim_start_matches(pat=config.base_url) %}
+      <a href="/{{ post.permalink | trim_start(pat=config.base_url) }}" title="{{ post.title }}">
+        {% set image = (post.permalink ~ post.extra.image) | trim_start(pat=config.base_url) %}
         {% set new_image = resize_image(path=image, width=200, height=200, op="fit", format="webp") %}
-        <img src="/{{ new_image.url | trim_start_matches(pat=config.base_url) }}"
+        <img src="/{{ new_image.url | trim_start(pat=config.base_url) }}"
           width="{{ new_image.width }}" height="{{ new_image.height }}">
       </a>
       {% if post.date %}
       {% set day = post.date | date(format="%-d") %}
       {% set month = post.date | date(format="%m") %}
-      {% set month = macros::month_to_name(month=month) %}
+      {% set month = <month_to_name month={month} /> %}
       <span class="post-date">{{ day ~ " " ~ month }}</span>
       {% endif %}
       <span class="post-date">🕑 {{ post.reading_time }} мин</span>
     </td>
     <td class="second">
       <h2>
-        <a class="post-link" href="/{{ post.permalink | trim_start_matches(pat=config.base_url) | safe }}" title="{{ post.title }}">
+        <a class="post-link" href="/{{ post.permalink | trim_start(pat=config.base_url) | safe }}" title="{{ post.title }}">
           {{ post.title | safe }}
         </a>
       </h2>
@@ -70,4 +48,4 @@
     </td>
   </tr>
 </table>
-{% endmacro list_articles %}
+{%- endcomponent index_entry %}

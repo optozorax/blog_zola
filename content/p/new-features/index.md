@@ -27,9 +27,9 @@ tg_comments = 56
 
 Желательно открыть статью на десктопе и на телефоне чтобы заценивать все фичи параллельно.
 
-{{ admonition_start(color="red", title="❗️ Обратите внимание") }}
+{% <admonition color="red" title="❗️ Обратите внимание"> %}
 Я не гарантирую что для каждой фичи оставлена вся информация по тому как её надо внедрить в ваш блог. Если у вас что-то не будет получаться — смотрите в исходники или пишите мне в личку. Если запросов будет слишком много, напишу статьи по тому как внедрить самые нужные фичи.
-{{ admonition_end() }}
+{% </admonition> %}
 
 # Фичи кратко
 
@@ -41,15 +41,15 @@ tg_comments = 56
 
 Эта фича по вставке картинки с кучей дополнительных полезностей. Пример использования:
 
+{{ <image path="base.png" /> }}
+
+{% <admonition color="blue" title="Использование"> %}
+{% raw %}```zola
 {{ image(path="base.png") }}
+```{% endraw %}
+{% </admonition> %}
 
-{{ admonition_start(color="blue", title="Использование") }}
-```zola
-{{/* image(path="base.png") */}}
-```
-{{ admonition_end() }}
-
-{{ admonition_start(color="green2", title="Фичи") }}
+{% <admonition color="green2" title="Фичи"> %}
 * Расположена по центру, края скруглены для красоты.
 * Она автоматически ресайзится до размера не больше 1280×1280 пикселей в формат `webp` с качеством `75`. А затем именно в таком виде вставляется в статью. Это позволяет хорошо экономить трафик. Подробнее о ресайзинге и оптимизации трафика можно почитать в [другой статье](/p/blog-optimization/#optimizatsiia-kartinok).
 	* Если передан параметр `scale`, то итоговая картинка будет с максимальным размером `(scale × 1280)²`.
@@ -57,17 +57,31 @@ tg_comments = 56
 * О следующих фичах будет сказано далее в статье:
 	* Возможность [открывать картинку в полном разрешении](#full-screen).
 	* Возможность [задавать масштаб картинки относительно страницы](#scale).
-{{ admonition_end() }}
+{% </admonition> %}
 
-{{ admonition_start(color="gray", title="Техническая сторона") }}
+{% <admonition color="gray" title="Техническая сторона"> %}
 * Шорткоды: [`image.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/image.html).
 * Стили: [`_image.scss`](https://github.com/optozorax/blog_zola/blob/master/sass/shortcodes/_image.scss).
-{{ admonition_end() }}
+{% </admonition> %}
 
 ### Галерея {#gallery}
 
 Галерея имеет все фичи обычной картинки, но ещё позвлояет пролистывать картинки. Пример использования:
 
+{{ <gallery images={[
+	"../portals/368.png", 
+	"../portals/369.png", 
+	"../portals/370.png", 
+	"../portals/371.png", 
+]} alts={[
+	"Тройной портал, вид сбоку",
+	"Тройной портал, вид сверху",
+	"Тройной портал развёрнут и его части направлены в самого себя",
+	"Тройной портал собрался в совет перед важной игрой прямо как в фильмах. Образуется картинка рекурсии.",
+]} nth={1} /> }}
+
+{% <admonition color="blue" title="Использование"> %}
+{% raw %}```zola
 {{ gallery(images=[
 	"../portals/368.png", 
 	"../portals/369.png", 
@@ -79,24 +93,10 @@ tg_comments = 56
 	"Тройной портал развёрнут и его части направлены в самого себя",
 	"Тройной портал собрался в совет перед важной игрой прямо как в фильмах. Образуется картинка рекурсии.",
 ]) }}
+```{% endraw %}
+{% </admonition> %}
 
-{{ admonition_start(color="blue", title="Использование") }}
-```zola
-{{/* gallery(images=[
-	"../portals/368.png", 
-	"../portals/369.png", 
-	"../portals/370.png", 
-	"../portals/371.png", 
-], alts=[
-	"Тройной портал, вид сбоку",
-	"Тройной портал, вид сверху",
-	"Тройной портал развёрнут и его части направлены в самого себя",
-	"Тройной портал собрался в совет перед важной игрой прямо как в фильмах. Образуется картинка рекурсии.",
-]) */}}
-```
-{{ admonition_end() }}
-
-{{ admonition_start(color="green2", title="Фичи") }}
+{% <admonition color="green2" title="Фичи"> %}
 * Аналогично «Изображению» ресайзится до меньшего размера и имеет свои размеры в атрибутах.
 * Показывается номер картинки сверху слева.
 * Можно выбрать нужную картинку снизу.
@@ -104,20 +104,20 @@ tg_comments = 56
 * Можно вставить подписи к картинкам с поддержкой `markdown`. Или подписи можно полностью опустить, не указывая поле `alts`.
 * О следующих фичах будет сказано далее в статье:
 	* Возможность [открывать картинку в полном разрешении](#full-screen).
-{{ admonition_end() }}
+{% </admonition> %}
 
-{{ admonition_start(color="gray", title="Техническая сторона") }}
+{% <admonition color="gray" title="Техническая сторона"> %}
 Основа взята из [этого урока](https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp).
 * Шорткоды: [`gallery.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/gallery.html).
 * Стили: [`_gallery.scss`](https://github.com/optozorax/blog_zola/blob/master/sass/shortcodes/_gallery.scss).
 * Скрипты: [`gallery.js`](https://github.com/optozorax/blog_zola/blob/master/static/js/gallery.js).
-{{ admonition_end() }}
+{% </admonition> %}
 
 ### Масштаб относительно страницы {#scale}
 
 Для фич [«Изображение»](#image), [«Другие картинки»](#other-image), [«Видео-гифка»](#video-gif), [«Видео»](#video) имеется возможность задать масштаб. Этот масштаб будет задавать насколько объект должен быть меньше чем ширина контента, например масштаб `1/2` говорит что контент должен занимать половину от ширины статьи.
 
-{{ admonition_start(color="green2", title="Фичи") }}
+{% <admonition color="green2" title="Фичи"> %}
 * Масштаб задаётся через параметр `scale`.
 * `scale` может принимать следующие строковые значения: 
 	* `1`
@@ -129,26 +129,26 @@ tg_comments = 56
 * Для десктопов они действительно занимают тот размер что тут написан.
 * Но для экранов средних размеров уже побольше, некоторые вплоть до 100%.
 * А для экранов телефонов ещё больше.
-{{ admonition_end() }}
+{% </admonition> %}
 
-{{ admonition_start(color="gray", title="Техническая сторона") }}
+{% <admonition color="gray" title="Техническая сторона"> %}
 * Макросы: [`scale_macros.html`](https://github.com/optozorax/blog_zola/blob/master/templates/macros.html).
 * Стили: [`_image.scss`](https://github.com/optozorax/blog_zola/blob/master/sass/shortcodes/_image.scss).
-{{ admonition_end() }}
+{% </admonition> %}
 
 ### Просмотр увеличенного изображения {#full-screen}
 
 Для фич [«Изображения»](#image) и [«Галерея»](#gallery) добавляется большая фича по возможности открытия картинок в полном разрешении.
 
-{{ figure_start() }}
-{{ image(path="magnifier.png") }}
-{{ figure_end(caption="При наведении мышкой на картинку справа от неё показывается возможность увеличить изображения и мета-информация.") }}
+{% <figure caption="При наведении мышкой на картинку справа от неё показывается возможность увеличить изображения и мета-информация."> %}
+{{ <image path="magnifier.png" /> }}
+{% </figure> %}
 
-{{ figure_start() }}
-{{ image(path="full_screen.png", scale="1/2") }}
-{{ figure_end(caption="Картинка в полном разрешении открывается на весь экран, если нажать по картинке левой кнопкой мыши.") }}
+{% <figure caption="Картинка в полном разрешении открывается на весь экран, если нажать по картинке левой кнопкой мыши."> %}
+{{ <image path="full_screen.png" scale="1/2" /> }}
+{% </figure> %}
 
-{{ admonition_start(color="green2", title="Фичи") }}
+{% <admonition color="green2" title="Фичи"> %}
 * При наведении мыши на картинку видно справа:
 	* картинку лупы, 
 	* насколько оригинальное разрешение больше текущей версии,
@@ -160,186 +160,186 @@ tg_comments = 56
 	* Можно увеличивать и передвигать картинку мышью.
 	* Можно увеличивать и передвигать картинку пальцами!
 	* Пока картинка не загрузилась, висит анимация загрузки.
-{{ admonition_end() }}
+{% </admonition> %}
 
-{{ admonition_start(color="gray", title="Техническая сторона") }}
+{% <admonition color="gray" title="Техническая сторона"> %}
 Основа взята из [этого урока](https://www.w3schools.com/howto/howto_css_modal_images.asp) и [этой демки](https://codepen.io/josephmaynard/pen/OjWvNP).
 * Стили: [`_full_screen.scss`](https://github.com/optozorax/blog_zola/blob/master/sass/shortcodes/_full_screen.scss).
 * Скрипты: [`full_screen.js`](https://github.com/optozorax/blog_zola/blob/master/static/js/full_screen.js) ([источник](https://codepen.io/josephmaynard/pen/OjWvNP)), [`hammer.min.js`](https://github.com/optozorax/blog_zola/blob/master/static/js/hammer.min.js) ([веб-сайт](https://hammerjs.github.io/)).
 * Ресурсы: [`loading.gif`](https://github.com/optozorax/blog_zola/blob/master/static/ico/loading.gif) ([источник](https://icons8.com/preloaders/)), [`magnifier.svg`](https://github.com/optozorax/blog_zola/blob/master/static/ico/magnifier.svg) ([источник](https://iconmonstr.com/magnifier-7-svg/))
-{{ admonition_end() }}
+{% </admonition> %}
 
 ### Другие картинки {#other-image}
 
 Если вдруг надо вставить картинку без автоматического ресайзнига (например, если ресайзинг падает с ошибкой, или у вас `gif` или `svg`), то можно использовать следующий шорткод:
 
-{{ admonition_start(color="blue", title="Использование") }}
-```zola
-{{/* other_image(path="...", scale="1/2") */}}
-```
-{{ admonition_end() }}
+{% <admonition color="blue" title="Использование"> %}
+{% raw %}```zola
+{{ other_image(path="...", scale="1/2") }}
+```{% endraw %}
+{% </admonition> %}
 
-{{ admonition_start(color="green2", title="Фичи") }}
+{% <admonition color="green2" title="Фичи"> %}
 * Записывает размеры картинки в атрибуты `width`, `height`.
 * [Возможность задавать масштаб](#scale).
-{{ admonition_end() }}
+{% </admonition> %}
 
-{{ admonition_start(color="gray", title="Техническая сторона") }}
+{% <admonition color="gray" title="Техническая сторона"> %}
 * Шорткоды: [`other_image.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/other_image.html).
-{{ admonition_end() }}
+{% </admonition> %}
 
 ### Видео-гифка {#video-gif}
 
 Я практически не пользуюсь гифками во имя экономии места и трафика. Поэтому почти все гифки у меня перекодированы в `mp4`, который затем вставляется на страницу с опцией автозапуска, ниже можно наблюдать пример такой гифки:
 
+{{ <video_gif path="../space-objects/explanation_5/post_3_1_web.mp4" scale="1/3" /> }}
+
+{% <admonition color="blue" title="Использование"> %}
+{% raw %}```zola
 {{ video_gif(path="../space-objects/explanation_5/post_3_1_web.mp4", scale="1/3") }}
+```{% endraw %}
+{% </admonition> %}
 
-{{ admonition_start(color="blue", title="Использование") }}
-```zola
-{{/* video_gif(path="../space-objects/explanation_5/post_3_1_web.mp4", scale="1/3") */}}
-```
-{{ admonition_end() }}
-
-{{ admonition_start(color="green2", title="Фичи") }}
+{% <admonition color="green2" title="Фичи"> %}
 * Поддерживает `scale` аналогично картинкам, но без автоматического ресайзинга.
-{{ admonition_end() }}
+{% </admonition> %}
 
-{{ admonition_start(color="gray", title="Техническая сторона") }}
+{% <admonition color="gray" title="Техническая сторона"> %}
 * Шорткоды: [`video_gif.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/video_gif.html).
-{{ admonition_end() }}
+{% </admonition> %}
 
 ### Видео {#video}
 
 Аналогично можно вставить обычные видео и со звуками и управлением:
 
+{{ <video path="../my-keyboard-layout/startup_sound_web.mp4" scale="2/3" /> }}
+
+{% <admonition color="blue" title="Использование"> %}
+{% raw %}```zola
 {{ video(path="../my-keyboard-layout/startup_sound_web.mp4", scale="2/3") }}
+```{% endraw %}
+{% </admonition> %}
 
-{{ admonition_start(color="blue", title="Использование") }}
-```zola
-{{/* video(path="../my-keyboard-layout/startup_sound_web.mp4", scale="2/3") */}}
-```
-{{ admonition_end() }}
-
-{{ admonition_start(color="green2", title="Фичи") }}
+{% <admonition color="green2" title="Фичи"> %}
 * Поддерживает `scale` аналогично картинкам, но без автоматического ресайзинга.
-{{ admonition_end() }}
+{% </admonition> %}
 
-{{ admonition_start(color="gray", title="Техническая сторона") }}
+{% <admonition color="gray" title="Техническая сторона"> %}
 * Шорткоды: [`video.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/video.html).
-{{ admonition_end() }}
+{% </admonition> %}
 
 ### Эмбеддинг YouTube
 
 Максимально производительная аналогия эмбеда ютуба. Не скачивает ничего с серверов ютуба во время скачивания страницы:
 
-{{ myyoutube(id="1q0sHf_n_2Y", timecode=490) }}
+{{ <myyoutube id="1q0sHf_n_2Y" timecode={490} /> }}
 
-{{ admonition_start(color="blue", title="Использование") }}
-```zola
-{{/* youtube(id="1q0sHf_n_2Y", timecode=490) */}}
-```
-{{ admonition_start(color="blue2", title="Дополнительные действия") }}
+{% <admonition color="blue" title="Использование"> %}
+{% raw %}```zola
+{{ youtube(id="1q0sHf_n_2Y", timecode=490) }}
+```{% endraw %}
+{% <admonition color="blue2" title="Дополнительные действия"> %}
 Требуется установить мой скрипт [`youtube-zola`](https://github.com/optozorax/youtube-zola), который в качестве зависимостей требует [`youtube-dl`](https://github.com/ytdl-org/youtube-dl), и для каждого видео запустить его с айдишником, чтобы он локально скачал метаданные и превьюшку:
 ```bash
 youtube-zola 1q0sHf_n_2Y
 ```
 
 В итоге скачивается метаинформация в <code>static/<wbr>youtube/<wbr>1q0sHf_n_2Y.<wbr>json</code> и превьюшка в <code>static/<wbr>youtube/<wbr>1q0sHf_n_2Y.<wbr>webp</code>.
-{{ admonition_end() }}
-{{ admonition_end() }}
+{% </admonition> %}
+{% </admonition> %}
 
-{{ admonition_start(color="green2", title="Фичи") }}
+{% <admonition color="green2" title="Фичи"> %}
 * Не скачивает ничего с внешних серверов во время загрузки страницы, всё скачивание происходит только локально у автора статьи.
 * Не следит за вами.
 * Выглядит почти как настоящий плеер ютуба.
 * При нажатии просто открывает соответствующее видео в новой вкладке.
 * Показывает длительность видео (что обычный плеер ютуба не умеет).
 * Через параметр `timecode` можно передать таймкод с которого начинать видео. Он будет показан на видео и вставлен в ссылку.
-{{ admonition_end() }}
+{% </admonition> %}
 
-{{ admonition_start(color="gray", title="Техническая сторона") }}
+{% <admonition color="gray" title="Техническая сторона"> %}
 * Шорткоды: [`youtube.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/youtube.html).
 * Стили: [`_youtube.scss`](https://github.com/optozorax/blog_zola/blob/master/sass/shortcodes/_youtube.scss).
 * Зависимости: [`youtube-zola`](https://github.com/optozorax/youtube-zola), [`youtube-dl`](https://github.com/ytdl-org/youtube-dl).
-{{ admonition_end() }}
+{% </admonition> %}
 
 ### Математические формулы
 
 Можно вставлять математические формулы:
 
 <div style="font-size: 30px;">
-{{ katex(body="\infty^0 - 1 \neq \textrm{NaN}", block=true) }}
+{% <katex block={true}> %}\infty^0 - 1 \neq \textrm{NaN}{% </katex> %}
 </div>
 
-{{ admonition_start(color="blue", title="Использование") }}
-```zola
-{{/* katex(body="\infty^0 - 1 \neq \textrm{NaN}", block=true) */}}
-```
+{% <admonition color="blue" title="Использование"> %}
+{% raw %}```zola
+{{ katex(body="\infty^0 - 1 \neq \textrm{NaN}", block=true) }}
+```{% endraw %}
 
-{{ admonition_start(color="blue2", title="Дополнительные действия") }}
+{% <admonition color="blue2" title="Дополнительные действия"> %}
 А ещё на странице с математическими формулами в frontmatter надо вставить следующие строчки. Это нужно чтобы в страницы где формулы не используются, не добавлялись ссылки на скрипты, стили и шрифты, чтобы не нагружать сеть почём зря.
 ```toml
 [extra]
 use_katex = true
 ```
-{{ admonition_end() }}
-{{ admonition_end() }}
+{% </admonition> %}
+{% </admonition> %}
 
-{{ admonition_start(color="green2", title="Фичи") }}
+{% <admonition color="green2" title="Фичи"> %}
 * Использует [KaTeX](https://katex.org/).
 * Скрипты, стили и шрифты скачаны локально.
 * Чтобы было по центру надо указать `block=true`, иначе это будет формула, которая может быть внутри текста.
-{{ admonition_end() }}
+{% </admonition> %}
 
-{{ admonition_start(color="gray", title="Техническая сторона") }}
+{% <admonition color="gray" title="Техническая сторона"> %}
 * Шорткоды: [`katex.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/katex.html).
 * Стили: [`katex.min.css`](https://github.com/optozorax/blog_zola/blob/master/static/katex.min.css).
 * Шрифты: [`fonts/KaTeX`](https://github.com/optozorax/blog_zola/tree/master/static/fonts/KaTeX).
 * Скрипты: [`mathtex-script-type.min.js`](https://github.com/optozorax/blog_zola/blob/master/static/js/mathtex-script-type.min.js), [`katex.js`](https://github.com/optozorax/blog_zola/blob/master/static/js/katex.min.js) ([веб-сайт](https://katex.org/)).
-{{ admonition_end() }}
+{% </admonition> %}
 
 ### Цветные блоки
 
+{% <admonition color="red" title="❗️ Обратите внимание"> %}
+Эти блоки с текстом очень милые и красивые.
+{% </admonition> %}
+
+{% <admonition color="blue" title="Использование"> %}
+{% raw %}```zola
 {{ admonition_start(color="red", title="❗️ Обратите внимание") }}
 Эти блоки с текстом очень милые и красивые.
 {{ admonition_end() }}
+```{% endraw %}
+{% </admonition> %}
 
-{{ admonition_start(color="blue", title="Использование") }}
-```zola
-{{/* admonition_start(color="red", title="❗️ Обратите внимание") */}}
-Эти блоки с текстом очень милые и красивые.
-{{/* admonition_end() */}}
-```
-{{ admonition_end() }}
-
-{{ admonition_start(color="gray", title="Фичи") }}
-{{ admonition_start(color="red2", title="❗️ Тут цвет блока фич изменён") }}
+{% <admonition color="gray" title="Фичи"> %}
+{% <admonition color="red2" title="❗️ Тут цвет блока фич изменён"> %}
 Потому что эти блоки имеют прозрачный цвет, который накладывается друг на друга, поэтому здесь серый, чтобы лучше было видно.
-{{ admonition_end() }}
-{{ admonition_start(color="violet", title="Куча цветов") }}
+{% </admonition> %}
+{% <admonition color="violet" title="Куча цветов"> %}
 * `red`, `red2`, `red3`
 * `gren`, `green2`, `green3`
 * `blue`, `blue2`, `blue3`
 * `orange`
 * `violet`
 * `gray`
-{{ admonition_end() }}
-{{ admonition_start(color="orange", title="Поддерживают `markdown` _внутри_ заголовка") }}
+{% </admonition> %}
+{% <admonition color="orange" title="Поддерживают `markdown` _внутри_ заголовка"> %}
 А это цвет `orange`.
-{{ admonition_end() }}
-{{ admonition_start(color="green", title="Гордо украдены") }}
+{% </admonition> %}
+{% <admonition color="green" title="Гордо украдены"> %}
 из темы [LoveIt](https://hugoloveit.com/theme-documentation-extended-shortcodes/#4-admonition)
-{{ admonition_end() }}
-{{ admonition_end() }}
+{% </admonition> %}
+{% </admonition> %}
 
-{{ admonition_start(color="gray", title="Техническая сторона") }}
+{% <admonition color="gray" title="Техническая сторона"> %}
 * Шорткоды: [`admonition_start.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/admonition_start.html), [`admonition_end.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/admonition_end.html).
 * Стили: [`_admonition.scss`](https://github.com/optozorax/blog_zola/blob/master/sass/shortcodes/_admonition.scss).
-{{ admonition_end() }}
+{% </admonition> %}
 
 ### Плюсы и минусы
 
-{{ pros_start(text="Плюсы: (_фичи_)") }}
+{% <pros text="Плюсы: (_фичи_)"> %}
 * Выглядят очень красиво.
 * Зелёные и красные.
 * Реализуются через обычные списки.
@@ -349,130 +349,130 @@ use_katex = true
 * Вторая строчка текста переносится с отступом так как в обычном списке.
 * А ещё я сам такой шорткод придумал, нигде не видел подобного!
 	* А ещё можно использовать вложенные списки.
-{{ pros_end() }}
+{% </pros> %}
 
-{{ cons_start() }}
+{% <cons> %}
 * SVG иконки плюса и минуса мне пришлось вручную рисовать через код: гугл не гуглит и редакторы svg в браузере тоже плохие.
 * Нельзя использовать в виде шорткода с телом, ибо шорткоды с телом плохо сделаны в золе, но об этом в [следующей статье](/p/zola/#shortkody-s-telom).
 * Иногда приходится высавывать плюсы и минусы из пальца, чтобы получилась такая красивая картинка.
-{{ cons_end() }}
+{% </cons> %}
 
-{{ admonition_start(color="blue", title="Использование") }}
-```zola
-{{/* pros_start(text="Плюсы: (_фичи_)") */}}
+{% <admonition color="blue" title="Использование"> %}
+{% raw %}```zola
+{{ pros_start(text="Плюсы: (_фичи_)") }}
 * плюс1
 * плюс2
-{{/* pros_end() */}}
-```
+{{ pros_end() }}
+```{% endraw %}
 
-```zola
-{{/* cons_start() */}}
+{% raw %}```zola
+{{ cons_start() }}
 * минус1
 * минус2
-{{/* cons_end() */}}
-```
-{{ admonition_end() }}
+{{ cons_end() }}
+```{% endraw %}
+{% </admonition> %}
 
-{{ admonition_start(color="gray", title="Техническая сторона") }}
+{% <admonition color="gray" title="Техническая сторона"> %}
 * Шорткоды: [`pros_start.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/pros_start.html), [`pros_end.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/pros_end.html), [`cons_start.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/cons_start.html), [`cons_end.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/cons_end.html).
 * Стили: [`_pros_cons.scss`](https://github.com/optozorax/blog_zola/blob/master/sass/shortcodes/_pros_cons.scss).
 * Ресурсы: [`green_plus.svg`](https://github.com/optozorax/blog_zola/blob/master/static/ico/green_plus.svg), [`red_minus.svg`](https://github.com/optozorax/blog_zola/blob/master/static/ico/red_minus.svg).
-{{ admonition_end() }}
+{% </admonition> %}
 
 ### Подпись к картинке
 
+{% <figure caption="Шерстяной волчара хорош и его лапищи мощны. А ещё тут есть `markdown`."> %}
+{{ <image path="preview.jpeg" /> }}
+{% </figure> %}
+
+{% <admonition color="blue" title="Использование"> %}
+{% raw %}```zola
 {{ figure_start() }}
 {{ image(path="preview.jpeg") }}
 {{ figure_end(caption="Шерстяной волчара хорош и его лапищи мощны. А ещё тут есть `markdown`.") }}
+```{% endraw %}
+{% </admonition> %}
 
-{{ admonition_start(color="blue", title="Использование") }}
-```zola
-{{/* figure_start() */}}
-{{/* image(path="preview.jpeg") */}}
-{{/* figure_end(caption="Шерстяной волчара хорош и его лапищи мощны. А ещё тут есть `markdown`.") */}}
-```
-{{ admonition_end() }}
-
-{{ admonition_start(color="gray", title="Техническая сторона") }}
+{% <admonition color="gray" title="Техническая сторона"> %}
 * Шорткоды: [`figure_start.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/figure_start.html), [`figure_end.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/figure_end.html).
 * Стили: [`_figure.scss`](https://github.com/optozorax/blog_zola/blob/master/sass/shortcodes/_figure.scss).
-{{ admonition_end() }}
+{% </admonition> %}
 
 ### Контейнер для множества картинок
 
 С десктопа вы должны увидеть здесь 3 шерстяных волчары в одной строке, а с телефона 2 волчары в одной строке:
 
+{% <container> %}
+{{ <image path="preview.jpeg" scale="1/3" /> }}
+{{ <image path="preview.jpeg" scale="1/3" /> }}
+{{ <image path="preview.jpeg" scale="1/3" /> }}
+{% </container> %}
+
+{% <admonition color="blue" title="Использование"> %}
+{% raw %}```zola
 {{ container_start() }}
 {{ image(path="preview.jpeg", scale="1/3") }}
 {{ image(path="preview.jpeg", scale="1/3") }}
 {{ image(path="preview.jpeg", scale="1/3") }}
 {{ container_end() }}
+```{% endraw %}
+{% </admonition> %}
 
-{{ admonition_start(color="blue", title="Использование") }}
-```zola
-{{/* container_start() */}}
-{{/* image(path="preview.jpeg", scale="1/3") */}}
-{{/* image(path="preview.jpeg", scale="1/3") */}}
-{{/* image(path="preview.jpeg", scale="1/3") */}}
-{{/* container_end() */}}
-```
-{{ admonition_end() }}
-
-{{ admonition_start(color="gray", title="Техническая сторона") }}
+{% <admonition color="gray" title="Техническая сторона"> %}
 * Шорткоды: [`container_start.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/container_start.html), [`container_end.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/container_end.html).
 * Стили: [`_container.scss`](https://github.com/optozorax/blog_zola/blob/master/sass/shortcodes/_container.scss).
-{{ admonition_end() }}
+{% </admonition> %}
 
 ### Детали
 
+{% <details summary="А подробности внутри"> %}
+Позволяет делать такой элемент, который можно скрывать и раскрывать.
+{% </details> %}
+
+{% <admonition color="blue" title="Использование"> %}
+{% raw %}```zola
 {{ details_start(summary="А подробности внутри") }}
 Позволяет делать такой элемент, который можно скрывать и раскрывать.
 {{ details_end() }}
+```{% endraw %}
+{% </admonition> %}
 
-{{ admonition_start(color="blue", title="Использование") }}
-```zola
-{{/* details_start(summary="А подробности внутри") */}}
-Позволяет делать такой элемент, который можно скрывать и раскрывать.
-{{/* details_end() */}}
-```
-{{ admonition_end() }}
-
-{{ admonition_start(color="green2", title="Фичи") }}
+{% <admonition color="green2" title="Фичи"> %}
 * В `summary` можно использовать `markdown`.
 * Играет анимацию вращения стрелки через CSS, но анимации открытия и закрытия самого элемента нет, ибо для этого надо JS, а мне лень и не хочу нагружать страницу.
-{{ admonition_end() }}
+{% </admonition> %}
 
-{{ admonition_start(color="gray", title="Техническая сторона") }}
+{% <admonition color="gray" title="Техническая сторона"> %}
 * Шорткоды: [`details_start.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/details_start.html), [`details_end.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/details_end.html).
 * Стили: [`_details.scss`](https://github.com/optozorax/blog_zola/blob/master/sass/shortcodes/_details.scss).
-{{ admonition_end() }}
+{% </admonition> %}
 
 ### Убрать из содержания
 
 Данный шорткод используется чтобы убрать что-то из содержания. Это может быть полезно в шорткоде `details`. 
 
-{{ admonition_start(color="gray", title="Использование фичи") }}
-{% not_in_toc() %}
+{% <admonition color="gray" title="Использование фичи"> %}
+{% <not_in_toc> %}
 Например этот заголовок:
 # Данного заголовка нет в содержании
 ## И его потомка тоже
 ### А ещё у них нет ссылки на самих себя
-{% end %}
-{{ admonition_end() }}
+{% </not_in_toc> %}
+{% </admonition> %}
 
-{{ admonition_start(color="blue", title="Использование") }}
-```zola
-{%/* not_in_toc() */%}
+{% <admonition color="blue" title="Использование"> %}
+{% raw %}```zola
+{% not_in_toc() %}
 # Данного заголовка нет в содержании
 ## И его потомка тоже
 ### А ещё у них нет ссылки на самих себя
-{%/* end */%}
-```
-{{ admonition_end() }}
+{% end %}
+```{% endraw %}
+{% </admonition> %}
 
-{{ admonition_start(color="gray", title="Техническая сторона") }}
+{% <admonition color="gray" title="Техническая сторона"> %}
 * Шорткоды: [`not_in_toc.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/not_in_toc.html).
-{{ admonition_end() }}
+{% </admonition> %}
 
 ## Всё остальное
 
@@ -482,18 +482,18 @@ use_katex = true
 
 Статьи имеют оглавление. Статьи большие. Значит можно взять это оглавление и показать где-нибудь. Я сделал это, и в зависимости от вашего устройства, содержание для вас может выглядеть по-разному:
 
-{{ figure_start() }}
-{{ image(path="toc_pc.png") }}
-{{ figure_end(caption="Содержание на десктопе. Находится справа от статьи.") }}
+{% <figure caption="Содержание на десктопе. Находится справа от статьи."> %}
+{{ <image path="toc_pc.png" /> }}
+{% </figure> %}
 
-{{ figure_start() }}
-{{ container_start() }}
-{{ image(path="toc_phone.jpg", scale="1/2") }}
-{{ image(path="toc_phone_2.jpg", scale="1/2") }}
-{{ container_end() }}
-{{ figure_end(caption="Содержание на телефоне выдвигается через кнопку справа снизу.") }}
+{% <figure caption="Содержание на телефоне выдвигается через кнопку справа снизу."> %}
+{% <container> %}
+{{ <image path="toc_phone.jpg" scale="1/2" /> }}
+{{ <image path="toc_phone_2.jpg" scale="1/2" /> }}
+{% </container> %}
+{% </figure> %}
 
-{{ admonition_start(color="green2", title="Фичи") }}
+{% <admonition color="green2" title="Фичи"> %}
 * Для всех платформ:
 	* Автоматически генерируется для всех статей.
 	* Отключается если содержание пустое.
@@ -511,29 +511,29 @@ use_katex = true
 	* Кнопка для выдвижения содержания находится внизу сбоку, благодаря чему не сильно загораживает основной контент.
 	* Меню можно пролистывать вверх-вниз пальцами.
 	* Работает без JS, на чистом CSS + HTML.
-{{ admonition_end() }}
+{% </admonition> %}
 
-{{ admonition_start(color="gray", title="Техническая сторона") }}
+{% <admonition color="gray" title="Техническая сторона"> %}
 * Стили: [`_toc.scss`](https://github.com/optozorax/blog_zola/blob/master/sass/_toc.scss).
 * Скрипты: [`toc.js`](https://github.com/optozorax/blog_zola/blob/master/static/js/toc.js).
-{{ admonition_end() }}
+{% </admonition> %}
 
 ### Выравнивание текста по ширине
 
 Выравнивание текста по ширине — это когда текст старается занимать всю ширину строки за счёт увеличения пробелов или добавления переносов словам.
 
-{{ admonition_start(color="green2", title="Фичи") }}
+{% <admonition color="green2" title="Фичи"> %}
 * Firefox — поддерживает автоматическое вычисление дефисов для переноса текста.
 	* Поэтому выравнивание по ширине включено для всех размеров экрана.
 	* Ещё все слова переносятся через дефис, что очень красиво.
 * Chrome и остальные — не поддерживают автоматическое вычисление переносов для русского языка.
 	* Поэтому для больших и средних экранов включено обычное выравнивание по ширине с увеличением пробелов. Вы этого не заметите, потому что ширина строк довольно большая, и пробелы изменяются относительно не сильно.
 	* А для телефонов на хроме включено выравнивание по левому краю, к которому все так привыкли.
-{{ admonition_end() }}
+{% </admonition> %}
 
-{{ admonition_start(color="gray", title="Техническая сторона") }}
+{% <admonition color="gray" title="Техническая сторона"> %}
 * Стили: [`_justify.scss`](https://github.com/optozorax/blog_zola/blob/master/sass/_justify.scss).
-{{ admonition_end() }}
+{% </admonition> %}
 
 ### Блок кода
 
@@ -545,25 +545,25 @@ fn main() {
 }
 ```
 
-{{ container_start() }}
-{{ image(path="code1.png", scale="1/4") }}
-{{ image(path="code2.png", scale="1/4") }}
-{{ image(path="code3.png", scale="1/4") }}
-{{ image(path="code4.png", scale="1/4") }}
-{{ container_end() }}
+{% <container> %}
+{{ <image path="code1.png" scale="1/4" /> }}
+{{ <image path="code2.png" scale="1/4" /> }}
+{{ <image path="code3.png" scale="1/4" /> }}
+{{ <image path="code4.png" scale="1/4" /> }}
+{% </container> %}
 
-{{ admonition_start(color="green2", title="Фичи") }}
+{% <admonition color="green2" title="Фичи"> %}
 * Для больших и средних экранов код переносится word-wrap'ом.
 * Это не простой word-wrap, а с автоматическим индентом для вторых и следующих строк!
 * Для вторых и следующих строк добавляется дополнительный отступ, прямо как в Sublime.
 * На маленьких экранах телефонов включается обычный режим пролистывания кода вбок. Ибо там word-wrap выглядит плохо.
 * А ещё теперь показываетс язык кода.
-{{ admonition_end() }}
+{% </admonition> %}
 
-{{ admonition_start(color="gray", title="Техническая сторона") }}
+{% <admonition color="gray" title="Техническая сторона"> %}
 * Стили: [`_word_wrap.scss`](https://github.com/optozorax/blog_zola/blob/master/sass/_word_wrap.scss).
 * Скрипты: [`word_wrap.js`](https://github.com/optozorax/blog_zola/blob/master/static/js/word_wrap.js).
-{{ admonition_end() }}
+{% </admonition> %}
 
 ### Новые шрифты
 
@@ -572,12 +572,12 @@ fn main() {
 
 ### По мелочи
 
-{{ admonition_start(color="green2", title="Фичи") }}
+{% <admonition color="green2" title="Фичи"> %}
 * Теперь у каждого заголовка рядом есть ссылка на себя.
 	* Вложенные заголовки показываются через степень, то есть заголовок второго уровня — #², заголовок третьего уровня — #³. Мне кажется это очень прикольно и математично)))
 * Теперь есть [Atom Feed](/atom.xml).
 * Теперь рядом со статьями на главной странице показывается примерное время чтения. Благодаря ему можно сравнивать длину разных статей.
-{{ admonition_end() }}
+{% </admonition> %}
 
 ## Структурные
 
@@ -585,18 +585,18 @@ fn main() {
 
 Теперь в заголовке есть ссылка [«Систематизация»](/e), которая ведёт на страницы, которые могут много редактироваться.
 
-{{ admonition_start(color="green2", title="Фичи") }}
+{% <admonition color="green2" title="Фичи"> %}
 * Дата публикации отсутствует, так как это бессмысленно.
 * Каждая страница является репозиторием и вставлена через `git sumbodule`.
 * У каждой страницы есть обязательный Changelog отдельным файлом.
 * Такие страницы не перемешиваются с обычными статьями и не вводят читателя в заблуждение.
-{{ admonition_end() }}
+{% </admonition> %}
 
 ### Убрал страницы-репозитории
 
 Раньше некоторые страницы-статьи у меня были просто ридмишками из репозиториев, вставленные через `git submodule`, теперь я это убрал.
 
-{{ admonition_start(color="green2", title="Фичи") }}
+{% <admonition color="green2" title="Фичи"> %}
 * Убрал все эти страницы, так как это было ошибкой.
 * Но оставил в блоге это как статьи:
 	* [Раскладка Ильи Шепрута](/p/my-keyboard-layout/).
@@ -607,7 +607,7 @@ fn main() {
 	* [Гиперболическая геометрия](/e/hyperbolic).
 * То что раньше было в блоге теперь ведёт в соответствующий репозиторий, например: 
 	* [/university_<wbr>latex_<wbr>template](/university_latex_template).
-{{ admonition_end() }}
+{% </admonition> %}
 
 ---
 ---
@@ -624,9 +624,9 @@ fn main() {
 Я сейчас переехал на другой генератор статических сайтов, и об этом [есть отдельный пост](/p/zola). Мой прошлый генератор статических сайтов был [Jekyll](https://jekyllrb.com/). Я взял его только потому что GitHub компилировал его в сайт прямо из коробки, ну и в те времена я думал что Jekyll достаточно хорош, потому что типо его же сам гитхаб взял. Сейчас я перешёл на золу, генерирую сайт локально и хосчу на [GitHub Pages](https://pages.github.com/).
 
 Прикол в том, что в золе есть возможность создания так называемых [Shortcodes](https://www.getzola.org/documentation/content/shortcodes/). Эта возможность позволяет в вашей статье на markdown при помощи короткого синтаксиса вставить какой-то html. Например вы написали шорткод чтобы вставлять youtube-видео, а далее в вашей статье это надо вызывать следующим образом:
-```zola
-{{/* youtube(id="1q0sHf_n_2Y") */}}
-```
+{% raw %}```zola
+{{ youtube(id="1q0sHf_n_2Y") }}
+```{% endraw %}
 
 И нужный html сам вставится при компиляции сайта. И это невероятная возможность. Теперь можно очень сильно расширить markdown и свои возможности при написании статей.
 
@@ -641,9 +641,9 @@ fn main() {
 ### Вертикальное центрирование
 
 В галерее есть такая интересная фича «вертикальное центрирование». Она реализована очень интересно. Благодаря тому что в золе можно во время компиляции узнать размеры картинки за счёт функции [`get_image_metadata`](https://www.getzola.org/documentation/templates/overview/#get-image-metadata), я заранее для галереи вычисляю размеры всех картинок, и нахожу максимальный размер. Затем для каждой картинки вычисляю сколько должен быть вертикальный отступ сверху и снизу, и симулирую его при помощи вставленной `svg` картинки нужного размера:
-```html
+{% raw %}```html
 <svg class="gallery-svg" viewBox="0 0 1 {{ height }}"></svg>
-```
+```{% endraw %}
 
 Этой картинке делается `width: 100%`, и все картинки вертикально центрированы относительно максимального размера, благодаря чему при перелистывании страница снизу не скачет и галерея имеет фиксированный размер.
 
@@ -669,9 +669,9 @@ fn main() {
 
 При открытии картинок в полном разрешении вы можете заметить что показывается анимация загрузки:
 
-{{ figure_start() }}
-{{ other_image(path="loading.gif") }}
-{{ figure_end(caption="Это анимация загрузки. Она уже загружена.") }}
+{% <figure caption="Это анимация загрузки. Она уже загружена."> %}
+{{ <other_image path="loading.gif" /> }}
+{% </figure> %}
 
 На самом деле я через JS не отслеживаю никакие запросы к картинке, эта анимация просто по умолчанию стоит в `<img>`, я через JS только меняю поле `src`, а анимация сама пропадает когда браузер получает новую картинку.
 
@@ -711,14 +711,14 @@ fn main() {
 
 Вы только посмотрите, как моя самая большая статья [Раскладка Ильи Шепрута](/p/my-keyboard-layout) теперь выглядит вместе с содержанием и галереей. Здесь сразу видно основной контент, который можно начать читать!
 
-{{ image(path="my-keyboard-layout-new.png", scale="2/3") }}
+{{ <image path="my-keyboard-layout-new.png" scale="2/3" /> }}
 
 А теперь что было в старой статье. Вы только посмотрите сколько надо пролистать до основной статьи, сколько экранов! Я, конечно, молодец что для своей главной статьи сделал такое огромное препятствие, но теперь всё в миллион раз лучше.
 
-{{ container_start() }}
-{{ image(path="my-keyboard-layout-old-1.jpg", scale="1/3") }}
-{{ image(path="my-keyboard-layout-old-2.jpg", scale="1/3") }}
-{{ container_end() }}
+{% <container> %}
+{{ <image path="my-keyboard-layout-old-1.jpg" scale="1/3" /> }}
+{{ <image path="my-keyboard-layout-old-2.jpg" scale="1/3" /> }}
+{% </container> %}
 
 И для такой огромной статьи иметь содержание сбоку, которое можно пролистать, крайне важно. Вдруг человек не хочет читать всё, а хочет увидеть лишь конкретные моменты. Он сможет это сделать.
 
@@ -760,7 +760,7 @@ fn main() {
 
 В итоге выделение выглядит отвратительно, но при вставке всё окей:
 
-{{ image(path="code2.png", scale="1/4") }}
+{{ <image path="code2.png" scale="1/4" /> }}
 
 Ну и ещё я сделал дополнительный отступ для второй врапнутой строки, чтобы это выглядело как в Sublime.
 
@@ -842,6 +842,6 @@ pre[data-lang]::before {
 
 А во время создания всех этих прекрасных фич я чувствовал себя так:
 
-{{ figure_start() }}
-{{ image(path="preview.jpeg", scale="2/3") }}
-{{ figure_end(caption="[Это не я сказал](https://t.me/optozorax_dev_chat/6184)") }}
+{% <figure caption="[Это не я сказал](https://t.me/optozorax_dev_chat/6184)"> %}
+{{ <image path="preview.jpeg" scale="2/3" /> }}
+{% </figure> %}

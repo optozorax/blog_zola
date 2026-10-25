@@ -21,7 +21,7 @@ button = { link = "https://github.com/optozorax/space_objects", text = "Ссыл
 
 Лого библиотеки, на ней показаны все основные объекты и действия для двумерного пространства.
 
-{{ image(path="img/logo.png") }}
+{{ <image path="img/logo.png" /> }}
 
 Я расскажу об особенностях этой библиотеки на основе задачи рисования фрактала [дерево Пифагора](https://ru.wikipedia.org/wiki/%D0%94%D0%B5%D1%80%D0%B5%D0%B2%D0%BE_%D0%9F%D0%B8%D1%84%D0%B0%D0%B3%D0%BE%D1%80%D0%B0).
 
@@ -39,7 +39,7 @@ button = { link = "https://github.com/optozorax/space_objects", text = "Ссыл
 
 Наглядно этот процесс можно увидеть на следующей гифке.
 
-{{ video_gif(path="explanation_4/anim_web.mp4") }}
+{{ <video_gif path="explanation_4/anim_web.mp4" /> }}
 
 Самое сложное в рисовании этого фрактала - вычисления координат каждого квадрата.
 
@@ -93,7 +93,7 @@ end;
 
 Но, благо, здесь хотя бы можно менять угол при основании прямоугольного треугольника. И в то время я получил примерно следующую анимацию:
 
-{{ video_gif(path="explanation_4/angle_web.mp4") }}
+{{ <video_gif path="explanation_4/angle_web.mp4" /> }}
 
 ## Путь получше и с использованием библиотеки
 
@@ -156,7 +156,7 @@ void draw_pythagoras_tree(const space2& space) {
 
 Пошаговое описание действий с визуализацией вычислений:
 
-{{ image(path="explanation_4/explanation.png") }}
+{{ <image path="explanation_4/explanation.png" /> }}
 
 1. Создаем координаты квадрата.
 	```c++
@@ -204,35 +204,35 @@ void draw_pythagoras_tree(const space2& space) {
 
 Если для написания кода, из плохого пункта выше, я убил много времени на расчет формул на бумажке, на поиск багов и подбор параметров, то первичную версию данного решения я написал реально за полчаса, и занимала она, грубо говоря, 7 строк. Следующие версии модифицировались, чтобы быть более понятными для других людей.
 
-{{ pros_start() }}
+{% <pros> %}
 * Здесь используются классы векторов и систем координат.
 * Координаты квадрата вычисляются интуитивно понятным образом.
 * Координаты прямоугольного треугольника вычисляются очень просто.
 * Код применим для построения дерева Пифагора на любой стороне квадрата, надо лишь изменить параметры в строке `space2 tr_line = makeLine2(b, c);`.
 * Данное решение можно применить к любому многоугольнику (главное, чтобы он своей стороной полностью лежал на оси Х).
-{{ pros_end() }}
+{% </pros> %}
 
 И вот, например построение дерева Пифагора на 0 и 1 стороне квадрата:
 
 `space2 tr_line = makeLine2(b, a);`
 
-{{ container_start() }}
-{{ video_gif(path="explanation_4/4_0_web.mp4", scale="1/2") }}
-{{ image(path="explanation_4/pythagor_0.png", scale="1/2") }}
-{{ container_end() }}
+{% <container> %}
+{{ <video_gif path="explanation_4/4_0_web.mp4" scale="1/2" /> }}
+{{ <image path="explanation_4/pythagor_0.png" scale="1/2" /> }}
+{% </container> %}
 
 `space2 tr_line = makeLine2(a, c);`
 
-{{ container_start() }}
-{{ video_gif(path="explanation_4/4_1_web.mp4", scale="1/2") }}
-{{ image(path="explanation_4/pythagor_1.png", scale="1/2") }}
-{{ container_end() }}
+{% <container> %}
+{{ <video_gif path="explanation_4/4_1_web.mp4" scale="1/2" /> }}
+{{ <image path="explanation_4/pythagor_1.png" scale="1/2" /> }}
+{% </container> %}
 
 Далее я немного изменил рисование, теперь вместо рисования лишь линий, рисуются многоугольники, в итоге картинка выглядит намного красивей. Так же из-за того, что размеры всё время меняются, я каждый раз вычисляю новые границы, где задано изображение, и смещаю фрактал так, чтобы он полностью помещался в изображении. Вот анимация для каждого дерева Пифагора на основе квадрата:
 
-{{ video_gif(path="explanation_4/pyth_0_web.mp4") }}
-{{ video_gif(path="explanation_4/pyth_1_web.mp4") }}
-{{ video_gif(path="explanation_4/pyth_2_web.mp4") }}
+{{ <video_gif path="explanation_4/pyth_0_web.mp4" /> }}
+{{ <video_gif path="explanation_4/pyth_1_web.mp4" /> }}
+{{ <video_gif path="explanation_4/pyth_2_web.mp4" /> }}
 
 # Рисуем дерево Пифагора на основе произвольного многоугольника
 
@@ -341,7 +341,7 @@ end;
 
 Вообще, мне страшно смотреть на этот код и вспоминать как я с ним возился... Я старался привести его к красивому виду как мог, но его суть остается в костылях и фиговых решениях. И данная картинка прекрасно его описывает:
 
-{{ image(path="img/code.jpg", scale="1/2") }}
+{{ <image path="img/code.jpg" scale="1/2" /> }}
 
 Но я постараюсь это всё изложить, чтобы вы прочувствовали весь ужас.
 
@@ -353,7 +353,7 @@ end;
 
 А теперь, что же здесь делается? Да всё по сути написано в комментариях. Главная идея в том, что для генерации правильного многоугольника есть формула, взятая с [Википедии](https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D0%BC%D0%BD%D0%BE%D0%B3%D0%BE%D1%83%D0%B3%D0%BE%D0%BB%D1%8C%D0%BD%D0%B8%D0%BA):
 
-{{ image(path="img/polygon_f.png", scale="1/2") }}
+{{ <image path="img/polygon_f.png" scale="1/2" /> }}
 
 Если изучить её, то можно понять, что у правильного многоугольника есть несколько параметров, которые определяют его однозначно: координаты центра `C`, радиус `R` и угол поворота `ф`. И можно вычислить эти параметры, зная `n`, и координаты одной стороны. 
 
@@ -366,7 +366,7 @@ end;
 
 *Пояснение:* тип `20_3` означает, что берется 20-угольник и на его третьей стороне строится остальной фрактал.
 
-{{ gallery(images=[
+{{ <gallery images={[
 	"explanation_5/3_0.png",
 	"explanation_5/3_1.png",
 	"explanation_5/5_1.png",
@@ -382,7 +382,7 @@ end;
 	"explanation_5/20_7.png",
 	"explanation_5/20_8.png",
 	"explanation_5/20_9.png",
-], alts=[
+]} alts={[
 	"3_0",
 	"3_1",
 	"5_1",
@@ -398,7 +398,7 @@ end;
 	"20_7",
 	"20_8",
 	"20_9",
-], format="jpg") }}
+]} format="jpg" nth={1} /> }}
 
 Минусы этого решения:
 
@@ -462,7 +462,7 @@ void draw_pythagoras_tree(const space2& space) {
 
 Пошаговое объяснение создания многоугольника:
 
-{{ image(path="explanation_5/explanation_poly.png") }}
+{{ <image path="explanation_5/explanation_poly.png" /> }}
 
 1. Для начала, самое главное, построение координат правильного многоугольника:
 	```c++
@@ -503,16 +503,16 @@ for (auto& i : poly) i = poly_line.to(i);
 
 Немного построения:
 
-{{ container_start() }}
-{{ video_gif(path="explanation_5/post_3_1_web.mp4", scale="1/2") }}
-{{ video_gif(path="explanation_5/post_5_2_web.mp4", scale="1/2") }}
-{{ container_end() }}
+{% <container> %}
+{{ <video_gif path="explanation_5/post_3_1_web.mp4" scale="1/2" /> }}
+{{ <video_gif path="explanation_5/post_5_2_web.mp4" scale="1/2" /> }}
+{% </container> %}
 
 А теперь наиболее интересные по моему мнению анимации изменения угла для разных многоугольников:
 
-{{ video_gif(path="explanation_5/3_1_web.mp4") }}
-{{ video_gif(path="explanation_5/5_1_web.mp4") }}
-{{ video_gif(path="explanation_5/5_2_web.mp4") }}
+{{ <video_gif path="explanation_5/3_1_web.mp4" /> }}
+{{ <video_gif path="explanation_5/5_1_web.mp4" /> }}
+{{ <video_gif path="explanation_5/5_2_web.mp4" /> }}
 
 # Пути дальнейшего развития
 
@@ -534,11 +534,11 @@ for (auto& i : poly) i = poly_line.to(i);
 
 Вообще данное решение является очень топорным, и работает недостаточно эффективно при маленьких углах. Вот мои старые замеры времени генерации кадра в зависимости от угла при основании прямоугольного треугольника для стандартного дерева Пифагора:
 
-{{ image(path="img/time.4.3.png") }}
+{{ <image path="img/time.4.3.png" /> }}
 
 Вот такие повышения времени идут когда рисуется при очень маленьком угле, либо угле, близком к 90 градусов. В этом случае дерево выглядит как-то так:
 
-{{ image(path="img/angle_2.png", format="jpg") }}
+{{ <image path="img/angle_2.png" format="jpg" /> }}
 
 Хотя здесь максимальная глубина задана 1000. Такое долгое время вычислений получается из-за того что дерево слишком большое.
 

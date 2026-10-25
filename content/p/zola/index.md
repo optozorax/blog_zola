@@ -14,9 +14,9 @@ tg_comments = 37
 
 # Введение
 
-{{ admonition_start(color="gray", title="Контекст") }}
+{% <admonition color="gray" title="Контекст"> %}
 [**Zola**](https://www.getzola.org/) — генератор статических сайтов, она из шаблонов и статей в markdown один раз генерирует веб-страницы, которые можно статически хостить, без всяких сложных бэкендов и фронтэндов.
-{{ admonition_end() }}
+{% </admonition> %}
 
 Недавно я перевёл свой блог с [Jekyll](https://jekyllrb.com/) на [Zola](https://www.getzola.org/). Поэтому данная статья сфокусируется на том как проходил этот переход, и в процессе вы узнаете зачем стоит или не стоит использовать золу для себя. В данной статье будет рассказно:
 * Как я переехал на золу, с какими проблемами и удобствами столкнулся.
@@ -76,9 +76,9 @@ tg_comments = 37
 
 А здесь это из коробки нормально работает, каждый пост по умолчанию симулирует папку со своим названием и как будто там лежит файл `index.md`. В общем я щас все картинки и прочие штуки храню рядом с постами и очень кайфую от этого. А то создавать каждый раз папку в папке `assets` было неприятно.
 
-{{ admonition_start(color="blue3", title="Цитата документации [отсюда](https://www.getzola.org/documentation/content/page/)") }}
+{% <admonition color="blue3" title="Цитата документации [отсюда](https://www.getzola.org/documentation/content/page/)"> %}
 As you can see, creating an `about.md` file is equivalent to creating an `about/index.md` file. The only difference between the two methods is that creating the `about` directory allows you to use asset co-location, as discussed in the overview section.
-{{ admonition_end() }}
+{% </admonition> %}
 
 ## Table Of Contents
 
@@ -88,7 +88,7 @@ As you can see, creating an `about.md` file is equivalent to creating an `about/
 
 А что тем временем в золе? А там парсинг содержания уже встроен в движок, и оно автоматически доступно для каждой страницы, и это содержание представляет собой удобный структурированный объект с прописанным типом
 
-{{ admonition_start(color="blue3", title="Цитата документации [отсюда](https://www.getzola.org/documentation/templates/pages-sections/#table-of-contents)") }}
+{% <admonition color="blue3" title="Цитата документации [отсюда](https://www.getzola.org/documentation/templates/pages-sections/#table-of-contents)"> %}
 Both page and section templates have a `toc` variable that corresponds to an array of `Header`. A `Header` has the following fields:
 ```ts
 // The hX level
@@ -102,7 +102,7 @@ permalink: String;
 // All lower level headers below this header
 children: Array<Header>;
 ```
-{{ admonition_end() }}
+{% </admonition> %}
 
 То есть ты тупо берёшь и по [этому примеру](https://www.getzola.org/documentation/content/table-of-contents/) генерируешь такое содержание как тебе нужно.
 
@@ -129,20 +129,20 @@ children: Array<Header>;
 ## Блоки и наследование страниц
 
 В золе имеется возможность в `html` странице написать что какие-то участки являются блоками, а затем в других страницах наследовать эту страницу и переопределять что делают блоки. Например у нас есть страница `base.html`:
-```html
+{% raw %}```html
 <title>{% block title %}My blog{% endblock title %}</title>
-```
+```{% endraw %}
 
 Затем мы хотим создать новую страницу `post.html` на основе `base.html` и сделать там другой заголовок, тогда можно написать следующее:
-```html
+{% raw %}```html
 {% extends "base.html" %}
 
 {% block title %}My post{% endblock title %}
-```
+```{% endraw %}
 
 И теперь страница, сгенерированная по шаблону `post.html` будет во всём похожа на `base.html`, только заголовок будет `My post`.
 
-А если хочется иметь ещё и старый заголовок, то можно внутри блока просто использовать `{{/* super() */}}`.
+А если хочется иметь ещё и старый заголовок, то можно внутри блока просто использовать `{% raw %}{{ super() }}{% endraw %}`.
 
 Ещё удобно создавать блоки, в которых изначально ничего нет, например `extra_head`, чтобы наследующий мог дополнительно определить что ему нужно в `<head>` секции.
 
@@ -150,25 +150,25 @@ children: Array<Header>;
 
 ## Дебаг
 
-{{ admonition_start(color="blue3", title="Цитата документации [отсюда](https://tera.netlify.app/docs/#variables)") }}
+{% <admonition color="blue3" title="Цитата документации [отсюда](https://tera.netlify.app/docs/#variables)"> %}
 A magical variable is available in every template if you want to print the current context: `__tera_context`.
-{{ admonition_end() }}
+{% </admonition> %}
 
 Это очень удобно при первичной разработке, чтобы постоянно не смотреть в документацию, а сразу видеть какие значения принимают какие переменные. Я использую дебаг следующим образом, чтобы прямо на странице получать результат в удобном виде:
 
-```html
+{% raw %}```html
 <pre><code>
 {{ __tera_context | escape_xml | safe }}
 </code></pre>
-```
+```{% endraw %}
 
 А обычные переменные дебажу следующим образом:
 
-```html
+{% raw %}```html
 <pre><code>
 {{ variable | json_encode(pretty=true) | safe }}
 </code></pre>
-```
+```{% endraw %}
 
 Правда тут есть одна проблема, что когда ваш блог наполняется контентом, то пользоваться дебагом через `__tera_context` уже невозможно из-за того что она содержит в себе весь контент, и страница начинает очень много весить и нагружать браузер. По этому поводу [попросил фичу](https://zola.discourse.group/t/add-analogue-of-tera-context-but-without-content/1023) для новой переменной аналогичного действия, но без контента, так что заходите, ставьте лайки.
 
@@ -223,29 +223,29 @@ A magical variable is available in every template if you want to print the curre
 
 В золе есть такая возможность:
 
-{{ admonition_start(color="blue3", title="Цитата документации [отсюда](https://www.getzola.org/documentation/content/shortcodes/#shortcodes-with-body)") }}
+{% <admonition color="blue3" title="Цитата документации [отсюда](https://www.getzola.org/documentation/content/shortcodes/#shortcodes-with-body)"> %}
 Let's imagine that we have the following shortcode `quote.html` template:
-```html
+{% raw %}```html
 <blockquote>
     {{ body }} <br>
     -- {{ author }}
 </blockquote>
-```
+```{% endraw %}
 We could use it in our Markdown file like so:
-```md
+{% raw %}```md
 As someone said:
 
-{%/* quote(author="Vincent") */%}
+{% quote(author="Vincent") %}
 A quote
-{%/* end */%}
-```
+{% end %}
+```{% endraw %}
 The body of the shortcode will be automatically passed down to the rendering context as the body variable and needs to be on a new line.
-{{ admonition_end() }}
+{% </admonition> %}
 
 Проблема в том что `body` передаётся в виде текста. То есть если мы там напишем какой-то markdown или другой шорткод, то они передадутся в виде обычного текста. Окей, чтобы это распарсить надо написать всего-лишь:
-```zola
+{% raw %}```zola
 {{ body | markdown | safe }}
-```
+```{% endraw %}
 
 Только тут есть несколько проблем:
 * Если там есть заголовки, то они не попадут в содержание.
@@ -254,18 +254,18 @@ The body of the shortcode will be automatically passed down to the rendering con
 
 Из-за этого шорткоды с телом становятся абсолютно неюзабельны. Поэтому все [мои фичи](p/new-features/) состоят из двух частей — начала и конца:
 
-```zola
-{{/* pros_start(text="Плюсы: (_фичи_)") */}}
+{% raw %}```zola
+{{ pros_start(text="Плюсы: (_фичи_)") }}
 * плюс1
 * плюс2
-{{/* pros_end() */}}
-```
+{{ pros_end() }}
+```{% endraw %}
 
 Где `pros_start.html`:
-```html
+{% raw %}```html
 <div class="pros">
 <span style="color: #090"><big><b>{%/* if text*/ %}{{/*text | markdown(inline=true) | safe/*}}{%/* else */%}Плюсы:{%/* endif */%}</b></big></span>
-```
+```{% endraw %}
 
 а `pros_end.html`:
 ```html
@@ -274,11 +274,11 @@ The body of the shortcode will be automatically passed down to the rendering con
 
 Таким образом у меня «тело» шорткода `pros` парсится автоматически движком золы, а лишь вставляю инфу между ними. Я считаю что шорткоды с телом должны работать так по умолчанию.
 
-{{ cons_start(text="Минусы моего подхода:") }}
+{% <cons text="Минусы моего подхода:"> %}
 * Приходится создавать на один файлик больше
 * Приходится использовать на одно имя больше
 * Если я что-то не закрыл, зола не поругается на меня, потому что это два разных шорткода
-{{ cons_end() }}
+{% </cons> %}
 
 Но что поделать, приходится делать так.
 
@@ -287,35 +287,35 @@ The body of the shortcode will be automatically passed down to the rendering con
 ### Фильтры
 
 Есть небольшая проблема, что некоторые вещи можно получить только через механизм фильтров, например:
-```zola
+{% raw %}```zola
 {{ [1, 2, 3] | length }}
-```
+```{% endraw %}
 
 Вот только этот механизм нельзя засунуть в скобки. И если хочется добавить единицу к результату, то придётся писать в две строчки:
-```zola
+{% raw %}```zola
 {% set temp = [1, 2, 3] | length %}
 {{ temp + 1 }}
-```
+```{% endraw %}
 
 И фильтры нельзя применять в виде `length(value=[1, 2, 3])`, что довольно печально. Я [написал по этому поводу фич-реквест](https://zola.discourse.group/t/allow-writing-filters-inside-parenthesis/1025), так что заходим, ставим лайки.
 
 ### Falsy
 
-{{ admonition_start(color="blue3", title="Цитата документации [отсюда](https://tera.netlify.app/docs/#if)") }}
+{% <admonition color="blue3" title="Цитата документации [отсюда](https://tera.netlify.app/docs/#if)"> %}
 Undefined variables are considered falsy. This means that you can test for the presence of a variable in the current context by writing:
 
-```zola
+{% raw %}```zola
 {% if my_var %}
     {{ my_var }}
 {% else %}
     Sorry, my_var isn't defined.
 {% endif %}
-```
-{{ admonition_end() }}
+```{% endraw %}
+{% </admonition> %}
 
 В этом проблема. Мне кажется было бы намного лучше если бы присутствие переменной проверялось через функцию, например: `exists("my_var")` и `exists_field(config.extra, "variable")`; а обращение к несуществующему полю возвращало не `null`-подобную штуку, а сразу выкидывало сообщение об ошибке.
 
-Я так на этом прокололся, и опубликовал сайт без одно важной фичи, которую долго не мог найти, потому что в `{% if config.extra.enable_something %}` в `enable_something` допустил опечатку.
+Я так на этом прокололся, и опубликовал сайт без одно важной фичи, которую долго не мог найти, потому что в `{% raw %}{% if config.extra.enable_something %}{% endraw %}` в `enable_something` допустил опечатку.
 
 Вообще весь язык создаёт впечатление такого расслабленного динамически-слабо-типизированного языка по типу JS, Pyhton. Лично мне хотелось бы чтобы порождение Rust'а была таким же строгим как и Rust. Но к сожалению имеем что имеем.
 
@@ -355,7 +355,7 @@ Undefined variables are considered falsy. This means that you can test for the p
 
 Давайте подведём итоги и соберём в одно место все аргументы «за» и «против» золы:
 
-{{ pros_start() }}
+{% <pros> %}
 * Одна папка — одна статья, картинки можно хранить локально со статьёй.
 * Содеражние парсится из коробки.
 * Таксономии поддерживаются из коробки и позволяют легко сделать тэги.
@@ -367,13 +367,13 @@ Undefined variables are considered falsy. This means that you can test for the p
 * Быстрая скорость работы.
 * Лайв-релоадинг при изменениях в режиме `zola serve`.
 * Не требуется никаких зависимостей, всё в одном бинаре.
-{{ pros_end() }}
-{{ cons_start() }}
+{% </pros> %}
+{% <cons> %}
 * Шорткоды с телом не удобны в использовании.
 * Фильтры нельзя написать в скобках.
 * Концепция `falsy` позволяет игнорировать ошибки.
 * Довольно сыра.
-{{ cons_end() }}
+{% </cons> %}
 
 ## Ссылка на все мои фич-реквесты и баг-репорты
 

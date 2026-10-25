@@ -12,7 +12,7 @@ image = "pinocchio.jpg"
 vk = "https://vk.com/optoblog?w=wall-169103586_5"
 +++
 
-{{ image(path="pinocchio.jpg", scale="2/3") }}
+{{ <image path="pinocchio.jpg" scale="2/3" /> }}
 
 Что произойдет, если Пиноккио скажет: "Мой нос сейчас вырастет"?
 

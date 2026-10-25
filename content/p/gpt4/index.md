@@ -35,7 +35,7 @@ use_katex = true
 >
 > **Примеры:** "BOBR" - 19, "ABACABA" - 73.
 
-{{ details_start(summary="Что такое Z-функция") }}
+{% <details summary="Что такое Z-функция"> %}
 
 Это функция, которая принимает строку, а возвращает массив чисел такой же длины как и эта строка. Этот массив описывает сколько символов текущего суффикса совпадает с началом строки. Данный массив можно хитро посчитать за O(n). Z-функцию можно использовать для поиска подстроки в строке за O(n) и в множестве других задач на строки.
 
@@ -58,7 +58,7 @@ a b $ a b a c a b a
 
 Места где встречается 2 (длина искомой строки) - и есть места где строка `ab` является подстрокой `abacaba`.
 
-{{ details_end() }}
+{% </details> %}
 
 Взял эту задачу, потому что:
 * Скорее всего её или похожей на неё нет в обучающей выборке, потому что она скрыта за дверьми регистрации.
@@ -66,7 +66,7 @@ a b $ a b a c a b a
 * Она относительно простая и относительно сложная, идеальный вариант для того чтобы тестировать машинный интеллект.
 * Я её когда-то решил (кстати не самым оптимальным методом).
 
-{{ details_start(summary="Суть решения") }}
+{% <details summary="Суть решения"> %}
 
 Все подстроки данной строки могут начинаться с какого-то места, давайте рассмотрим одно такое место:
 ```
@@ -101,7 +101,7 @@ abacababa
 
 Можно заметить что в Z-функции нам требуется только максимум, а посчитать сумму длин можно по формуле арифметической прогрессии, взяв сумму длин суффикса, и вычтя сумму длин повторяющихся строк в начале.
 
-{{ details_end() }}
+{% </details> %}
 
 Ключевые моменты:
 * Перебираем каждый суффикс и считаем для него Z-функцию.
@@ -121,7 +121,7 @@ abacababa
 
 Вот возьмём и прям сходу спросим ChatGPT как решить эту задачу, без ограничения на Z-функцию:
 
-{{ details_start(summary="Диалог") }}
+{% <details summary="Диалог"> %}
 
 **<center>USER</center>**
 
@@ -304,13 +304,13 @@ In the `main` function, we initialize the root node of the trie using the `new` 
 
 This solution has a time complexity of O(n^2), where n is the length of the input string `s`. The space complexity is also O(n^2), since there can be up to n^2 nodes in the trie[MAX TOKENS REACHED]
 
-{{ details_end() }}
+{% </details> %}
 
 (Ну это не совсем сходу, мне пришлось несколько раз перегенирировать ответ, и менять промт, но на самом деле это решение нейронка выдаёт часто, поскольку я часто встречал что она хочет использовать именно его, и она говорит про него с разных углов.)
 
 ChatGPT сходу пишет решение на основе суффиксного дерева (trie), и оно кстати правильно работает, но требует некоторых доработок, которые я пишу в следующем промте. Правда это решение плохо тем, что оно не проходит по памяти, поскольку требует её O(n^2). Даже если заморочиться, 8000 символов в квадрате в 512МБ всё-равно не влезет.
 
-{{ image(path="cf.png") }}
+{{ <image path="cf.png" /> }}
 
 Вероятно это решение было в обучающей выборке, уж слишком легко она его выдала.
 
@@ -322,7 +322,7 @@ ChatGPT сходу пишет решение на основе суффиксн�
 
 Теперь попросим её решить данную задачу используя Z-функцию:
 
-{{ details_start(summary="Диалог") }}
+{% <details summary="Диалог"> %}
 
 **<center>USER</center>**
 
@@ -369,7 +369,7 @@ def unique_substring_lengths(s):
 
 In this implementation, the `z_function` function computes the Z-values for the input string `s`, and the `unique_substring_lengths` function computes the sum of lengths of unique substrings of `s`. The `z` array is used to keep track of the Z-values for each position in `s`. The sum of the Z-values for all positions in `z`, except for the first position, is the sum of lengths of all unique substrings of `s`. Adding the length of `s` itself gives us the total sum of lengths of all substrings of `s`.
 
-{{ details_end() }}
+{% </details> %}
 
 Она выдаёт решение, которое:
 * Не перебирает каждый суффикс.
@@ -382,7 +382,7 @@ In this implementation, the `z_function` function computes the Z-values for the 
 
 Теперь попробуем более совершенную GPT-4:
 
-{{ details_start(summary="Диалог") }}
+{% <details summary="Диалог"> %}
 
 **<center>USER</center>**
 
@@ -462,11 +462,11 @@ print(sum_unique_substrings_lengths(S))  # Output: 14
 
 This implementation has a time complexity of O(n^2), as we calculate the Z-array for each suffix of the string.
 
-{{ details_end() }}
+{% </details> %}
 
 Что интересно, GPT-4 каким-то образом додумывается что эта задача не может быть решена за O(n) одним вычислением Z-функции, и начинает перебирать все возможные суффиксы! В этот момент я подумал что занимаюсь какой-то фигнёй, и может действительно ответ на все вопросы - это стакать больше слоёв, и давать больше входных данных?
 
-{{ details_start(summary="Возможные причины") }}
+{% <details summary="Возможные причины"> %}
 
 Уже после написания этой статьи я погуглил, и обнаружил что в интернете есть очень много статей о том как найти количество уникальных строк с использованием Z-функции, например:
 * [stackoverflow](https://stackoverflow.com/questions/72304669/z-function-and-unique-substrings-broken-algorithm-parroted-everywhere)
@@ -481,7 +481,7 @@ This implementation has a time complexity of O(n^2), as we calculate the Z-array
 
 Возможно за счёт увеличения числа параметров, нейросеть наконец запомнила одно из решений, которое было описано где-то здесь, аналогично вместе с другими решениями подобных задач.
 
-{{ details_end() }}
+{% </details> %}
 
 Но затем она снова берётся за сумму значений внутри Z-функции, так что восстание машин откладывается.
 
@@ -497,7 +497,7 @@ This implementation has a time complexity of O(n^2), as we calculate the Z-array
 
 Далее я пытался общаться с нейронкой, запуская решение, и иногда давая подсказки:
 
-{{ details_start(summary="Диалог") }}
+{% <details summary="Диалог"> %}
 
 **<center>USER</center>**
 
@@ -725,13 +725,13 @@ print(sum_unique_substrings_lengths(S))  # Output: 19
 
 This implementation has a time complexity of O(n^2) and should now provide the correct output for the given input strings.
 
-{{ details_end() }}
+{% </details> %}
 
 Она начала выдавать какой-то бред про set значений Z-функции, затем какую-то странную конкатенацию. Далее она додумалась до кусочка формулы (с моей подсказки), но применила её абсолютно неправильно.
 
 Продолжаю общение:
 
-{{ details_start(summary="Диалог") }}
+{% <details summary="Диалог"> %}
 
 **<center>USER</center>**
 
@@ -827,7 +827,7 @@ print(sum_unique_substrings_lengths(S))  # Output: 19
 
 This implementation has a time complexity of O(n^2) and memory complexity of O(n), which should be suitable for the given programming competition constraints.
 
-{{ details_end() }}
+{% </details> %}
 
 Она поняла что жизнь тщетна и каким-то образом начала говорить про подход с trie, на который она реально знает решение. Я её остановил и сказал что данный подход требует O(n^2) памяти, так что он нам не подходит.
 
@@ -837,7 +837,7 @@ This implementation has a time complexity of O(n^2) and memory complexity of O(n
 
 Я подумал, что у меня скоро кончится контекст в 8к токенов, поэтому решил посмотреть что будет, если я дам ей правильную формулу без всяких объяснений:
 
-{{ details_start(summary="Диалог") }}
+{% <details summary="Диалог"> %}
 
 **<center>USER</center>**
 
@@ -986,7 +986,7 @@ sum_lengths += (n - i) * (n - i + 1) // 2 - max_z * (max_z + 1) // 2
 
 By iterating through the string and performing this calculation for each suffix, we can compute the sum of lengths of unique substrings for the entire input string S.
 
-{{ details_end() }}
+{% </details> %}
 
 В итоге она допустила небольшую ошибку компиляции, но смогла починить код и дать полностью работающее и правильное оптимальное решение. А затем ещё и хорошо объяснила почему формула именно такая.
 
@@ -1002,7 +1002,7 @@ By iterating through the string and performing this calculation for each suffix,
 
 Один из примеров:
 
-{{ details_start(summary="Диалог") }}
+{% <details summary="Диалог"> %}
 
 **<center>USER</center>**
 
@@ -1013,7 +1013,7 @@ Can you please summarize full idea to solve that task in one sentence?
 **<center>GPT-4</center>**
 Compute the sum of lengths of unique substrings for an input string S by iterating through its suffixes, calculating the Z-array for each suffix, and subtracting the sum of lengths of repeated substrings (represented by max_z) from the total number of substrings for each suffix.
 
-{{ details_end() }}
+{% </details> %}
 
 ## Few-shot learning
 
@@ -1021,7 +1021,7 @@ Compute the sum of lengths of unique substrings for an input string S by iterati
 
 Решил попробовать так же, нашёл похожую задачу про палиндромы и Z-функцию, затем пошёл сложным путём: сначала написал решение текущей задачи, и попросил решить задачу про палиндром, а затем решение про палиндром в подходящем стиле вставил нейронке для решения задачи про сумму. Не очень правильно поступил, но уже как есть.
 
-{{ details_start(summary="Диалог") }}
+{% <details summary="Диалог"> %}
 
 **<center>USER</center>**
 
@@ -1089,13 +1089,13 @@ So, the complete solution using Z-function will look like this:
     * Update sum_of_unique_substrings_length by adding the number of unique substrings for the current suffix
 * The sum_of_unique_substrings_length variable now stores the sum of lengths of unique substrings in S
 
-{{ details_end() }}
+{% </details> %}
 
 В итоге додумалось до максимума, но не додумалось до "формулы", даже не рассматривало примеры как это делалось в оригинальном промте. Хотя и в оригинальном промте GPT-4 написало примеры для галочки, у меня они хоть как-то использовались внутри размышления.
 
 Затем я попросил проанализировать это решение и сравнить его с наивным на основе строки "BOBR", и оно выдало следующий шедевр:
 
-{{ details_start(summary="Диалог") }}
+{% <details summary="Диалог"> %}
 
 **<center>USER</center>**
 
@@ -1142,7 +1142,7 @@ All substrings are unique, so the sum of lengths of unique substrings is equal t
 
 <span class="red-bg example">Both the Z-function-based algorithm and the naive approach produce the same result, which is 9. The algorithm seems to work correctly for the given input.</span>
 
-{{ details_end() }}
+{% </details> %}
 
 Это просто прекрасно: `1 + 1 + 1 + 2 + 2 + 2 + 3 + 3 + 4 = 9`. Видимо в обучающей выборке было слишком много сравнений двух решений, и они оба всегда оказывались правильными, поэтому нейронка поддалась такой страшной когнитивной ошибке. Причём такой результат у меня воспроизводился из раза в раз, нейронка всегда говорила что наивное и предложенное решения верные.
 
@@ -1152,7 +1152,7 @@ All substrings are unique, so the sum of lengths of unique substrings is equal t
 
 Я решил пойти последним путём: руками напишу все размышления, которые ведут к правильномy решению, и буду потихоньку убирать предложения с конца, чтобы увидеть с какого момента нейронка способна прийти к правильному решению. Рекомендую внимательно прочитать промт.
 
-{{ details_start(summary="Диалог") }}
+{% <details summary="Диалог"> %}
 
 **<center>USER</center>**
 
@@ -1235,13 +1235,13 @@ print(unique_substrings(S))
 
 This implementation calculates the sum of lengths of unique substrings for the given string `S` using the Z-function in an efficient way.
 
-{{ details_end() }}
+{% </details> %}
 
 Легендарно! Она додумалась до "формулы" по текстовому описанию!!! Ура, хоть каким-то образом получилось её заставить сделать это. Есть мотивация работать дальше.
 
 Далее я буду понемногу убирать предложения, убранный текст будет зачёркнут. Это чтобы экономить ваше время и внимание.
 
-{{ details_start(summary="Диалог") }}
+{% <details summary="Диалог"> %}
 
 **<center>USER</center>**
 
@@ -1292,11 +1292,11 @@ So, to reiterate, we have determined that we should focus on the maximum value o
 
 By following this algorithm, we efficiently calculate the sum of lengths of unique substrings using the Z-function.
 
-{{ details_end() }}
+{% </details> %}
 
 Смогла продолжить до верного решения, удаляю дальше, но мне пришлось немного добавить, чтобы сработало, а то видел что нейронка не заводилась (ох уж этот промт инжиниринг):
 
-{{ details_start(summary="Диалог") }}
+{% <details summary="Диалог"> %}
 
 **<center>USER</center>**
 
@@ -1375,14 +1375,14 @@ Here's the updated step 2d:
 
 Following these steps will help you perform step 2d correctly in the algorithm.
 
-{{ details_end() }}
+{% </details> %}
 
 Это предел, после которого она способна додуматься до максимума, но не может придумать формулу. Особенно меня впечатляет как именно она догадалась про максимум с такой подсказки.
 
 И ещё раз подчеркну, что GPT-4 крайне умна! Смочь продолжить правильное решение на основе такого текстового размышления - это хорошая работа. Осталось научить её мыслить таким образом, и она сможет решать задачи.
 
 
-{{ details_start(summary="Самокритика") }}
+{% <details summary="Самокритика"> %}
 
 Всё это я понял уже после написания данной статьи. Переделывать слишком дорого, и кажется всегда можно найти такие придирки, и никогда не сделать такую статью. Но не написать самокритику не могу.
 
@@ -1404,7 +1404,7 @@ Following these steps will help you perform step 2d correctly in the algorithm.
 >
 > Стоит заметить, что совершенно аналогично можно пересчитывать за O(n) количество различных подстрок и при дописывании символа в начало, а также при удалении символа с конца или с начала.
 
-{{ details_end() }}
+{% </details> %}
 
 # Философия
 
@@ -1422,7 +1422,7 @@ Following these steps will help you perform step 2d correctly in the algorithm.
 
 Нет. Это доказывается тем, что нейросеть способна решать задачи, которые раньше никогда не видела:
 
-{{ details_start(summary="Диалог") }}
+{% <details summary="Диалог"> %}
 
 **<center>USER</center>**
 
@@ -1473,7 +1473,7 @@ In addition to the substrings I listed earlier, "BOBR" itself is also a unique s
 
 <span class="red-bg example">So the answer for the given string "BOBR" is 19.</span>
 
-{{ details_end() }}
+{% </details> %}
 
 Была ли такая задача в интернете? Конечно нет, тут видно, что нейросеть способна совершать какие-то умственные вычисления в процессе простого предсказания следующего слова. Хотя конкретно к анализируемой задаче есть вопросы, какие-то кусочки есть в интернете. Но разве мы не составляем все наши решения из кусочков того что уже раньше поняли?
 
@@ -1485,7 +1485,7 @@ In addition to the substrings I listed earlier, "BOBR" itself is also a unique s
 
 В этом месте хочется процитировать [научную работу про анализ GPT-4](https://arxiv.org/abs/2303.12712):
 
-{{ details_start(summary="Цитата") }}
+{% <details summary="Цитата"> %}
 
 These examples illustrate some of the limitations of the next-word prediction paradigm, which manifest
 as the model’s lack of planning, working memory, ability to backtrack, and reasoning abilities. The model
@@ -1520,7 +1520,7 @@ uses the fast-thinking component as a subroutine together with working memory an
 scheme. We note that a similar argument was made by LeCun in [LeC22], where a different architecture is
 proposed to overcome these limitations.
 
-{{ details_end() }}
+{% </details> %}
 
 У нас уже есть примеры нейросетей, образующих мышление: AlphaGoZero. Если вы не знаете как данная штука устроена, то рекомендую прочитать статью на хабре про неё: [AlphaGo Zero совсем на пальцах](https://habr.com/ru/articles/343590/). В AlphaGo нейросеть является интуицией, а сам алгоритм Monte Carlo Tree Search (далее MCTS) вместе с нейросетью образуют мышление. Я сразу влюбился в эту идею, как только прочитал статью ещё в 2017.
 
@@ -1555,7 +1555,7 @@ GPT-нейросети являются именно чистой интуици
 
 Пример того как на такой промт отвечает ChatGPT:
 
-{{ details_start(summary="Диалог") }}
+{% <details summary="Диалог"> %}
 
 **<center>USER</center>**
 
@@ -1578,7 +1578,7 @@ Sure, here are some possible ideas that could help in solving this task:
 
 Note that some of these ideas might be more efficient or feasible than others depending on the length of the string and the constraints of the problem.
 
-{{ details_end() }}
+{% </details> %}
 
 Кстати 8 идея очень и очень правильная, в итоге задача так и решается с использованием Z-функции.
 
@@ -1680,7 +1680,7 @@ Note that some of these ideas might be more efficient or feasible than others de
 
 Теперь надо искать новую задачу и оценивать модели на ней)
 
-{{ details_start(summary="Диалог") }}
+{% <details summary="Диалог"> %}
 
 **<center>USER</center>**
 
@@ -1702,86 +1702,86 @@ For string ABA it should output 9, for string ABB 9 too.
 
 **Idea**
 
-We want to find the sum of lengths of all *distinct* substrings of a given string {{ katex(body=" S ") }}.
+We want to find the sum of lengths of all *distinct* substrings of a given string {% <katex> %} S {% </katex> %}.
 
 A well-known formula (from suffix arrays and LCP arrays) for counting distinct substrings is:
 
-- The total number of distinct substrings of a string {{ katex(body=" S ") }} of length {{ katex(body=" n ") }} is:
-{{ katex(body="
+- The total number of distinct substrings of a string {% <katex> %} S {% </katex> %} of length {% <katex> %} n {% </katex> %} is:
+{% <katex block={true}> %}
 \frac{n(n+1)}{2} - \sum LCP
-", block=true) }}
-where {{ katex(body=" LCP ") }} is the Longest Common Prefix array from the suffix array construction. Similarly, there is a known formula for the sum of lengths of distinct substrings:
-{{ katex(body="
+{% </katex> %}
+where {% <katex> %} LCP {% </katex> %} is the Longest Common Prefix array from the suffix array construction. Similarly, there is a known formula for the sum of lengths of distinct substrings:
+{% <katex block={true}> %}
 \text{sum\_of\_lengths\_of\_distinct} = \sum_{i=1}^{n} \frac{(n - SA[i]) (n - SA[i] + 1)}{2} - \frac{LCP[i](LCP[i] + 1)}{2}
-", block=true) }}
-But we are forbidden from using suffix arrays or LCP arrays directly. We must use the Z-function and the solution is allowed to be {{ katex(body="O(n^2)") }}.
+{% </katex> %}
+But we are forbidden from using suffix arrays or LCP arrays directly. We must use the Z-function and the solution is allowed to be {% <katex> %}O(n^2){% </katex> %}.
 
 **Key Insight Using Z-function**
 
 We can avoid building the suffix array. Instead, we can use the following trick:
 
-1. Consider suffixes of {{ katex(body=" S ") }}: {{ katex(body=" S[i..n-1] ") }} for {{ katex(body=" i = 0,1,\ldots,n-1 ") }}.
+1. Consider suffixes of {% <katex> %} S {% </katex> %}: {% <katex> %} S[i..n-1] {% </katex> %} for {% <katex> %} i = 0,1,\ldots,n-1 {% </katex> %}.
    
-2. For each suffix {{ katex(body=" i ") }}, consider the string:
-   {{ katex(body="
+2. For each suffix {% <katex> %} i {% </katex> %}, consider the string:
+   {% <katex block={true}> %}
    T = S[i..n-1] + \# + S
-   ", block=true) }}
-   where {{ katex(body="\#") }} is a separator character not in the alphabet of {{ katex(body=" S ") }}.
+   {% </katex> %}
+   where {% <katex> %}\#{% </katex> %} is a separator character not in the alphabet of {% <katex> %} S {% </katex> %}.
 
-   Compute the Z-function for {{ katex(body=" T ") }}.
+   Compute the Z-function for {% <katex> %} T {% </katex> %}.
 
-   The part after {{ katex(body="\#") }} corresponds to the original string {{ katex(body=" S ") }}. The Z-values in that part tell us how much of the prefix of {{ katex(body=" S[i..] ") }} appears starting at various positions in {{ katex(body=" S ") }}.
+   The part after {% <katex> %}\#{% </katex> %} corresponds to the original string {% <katex> %} S {% </katex> %}. The Z-values in that part tell us how much of the prefix of {% <katex> %} S[i..] {% </katex> %} appears starting at various positions in {% <katex> %} S {% </katex> %}.
 
-3. We are interested only in occurrences *before* {{ katex(body=" i ") }} (to detect previously seen substrings). That is, we look at the part of {{ katex(body=" S ") }} in {{ katex(body=" T ") }} corresponding to indices that represent starting positions in {{ katex(body=" S[0..i-1] ") }}.
+3. We are interested only in occurrences *before* {% <katex> %} i {% </katex> %} (to detect previously seen substrings). That is, we look at the part of {% <katex> %} S {% </katex> %} in {% <katex> %} T {% </katex> %} corresponding to indices that represent starting positions in {% <katex> %} S[0..i-1] {% </katex> %}.
 
-   Formally, in {{ katex(body=" T ") }}:
-   - {{ katex(body=" T[0..(n-i-1)] = S[i..n-1] ") }}
-   - {{ katex(body=" T[n-i] = \# ") }}
-   - {{ katex(body=" T[n-i+1..n-i+n] = S[0..n-1] ") }}
+   Formally, in {% <katex> %} T {% </katex> %}:
+   - {% <katex> %} T[0..(n-i-1)] = S[i..n-1] {% </katex> %}
+   - {% <katex> %} T[n-i] = \# {% </katex> %}
+   - {% <katex> %} T[n-i+1..n-i+n] = S[0..n-1] {% </katex> %}
 
-   The segment {{ katex(body=" T[n-i+1..n-i+i] ") }} corresponds to {{ katex(body=" S[0..i-1] ") }}.
+   The segment {% <katex> %} T[n-i+1..n-i+i] {% </katex> %} corresponds to {% <katex> %} S[0..i-1] {% </katex> %}.
 
-   We take the maximum Z-value in this segment (call it {{ katex(body=" \text{maxZ}_i ") }}). This {{ katex(body=" \text{maxZ}_i ") }} tells us the longest prefix of {{ katex(body=" S[i..] ") }} that has appeared before position {{ katex(body=" i ") }}.
+   We take the maximum Z-value in this segment (call it {% <katex> %} \text{maxZ}_i {% </katex> %}). This {% <katex> %} \text{maxZ}_i {% </katex> %} tells us the longest prefix of {% <katex> %} S[i..] {% </katex> %} that has appeared before position {% <katex> %} i {% </katex> %}.
 
-4. The number of new distinct substrings introduced by suffix {{ katex(body=" S[i..] ") }} is:
-   {{ katex(body="
+4. The number of new distinct substrings introduced by suffix {% <katex> %} S[i..] {% </katex> %} is:
+   {% <katex block={true}> %}
    (n - i) - \text{maxZ}_i
-   ", block=true) }}
+   {% </katex> %}
    But we need the sum of lengths of these new distinct substrings.
 
-   The substrings contributed by suffix {{ katex(body=" i ") }} that are *new* are those from length {{ katex(body="\text{maxZ}_i + 1") }} up to {{ katex(body="(n - i)") }}.
+   The substrings contributed by suffix {% <katex> %} i {% </katex> %} that are *new* are those from length {% <katex> %}\text{maxZ}_i + 1{% </katex> %} up to {% <katex> %}(n - i){% </katex> %}.
 
    The sum of these lengths is:
-   {{ katex(body="
+   {% <katex block={true}> %}
    \sum_{\ell = \text{maxZ}_i + 1}^{n - i} \ell = \frac{(n - i)(n - i + 1)}{2} - \frac{\text{maxZ}_i(\text{maxZ}_i + 1)}{2}
-   ", block=true) }}
+   {% </katex> %}
 
-5. Summing this over all suffixes {{ katex(body=" i ") }} gives the total sum of lengths of distinct substrings.
+5. Summing this over all suffixes {% <katex> %} i {% </katex> %} gives the total sum of lengths of distinct substrings.
 
 **Complexity**
 
-- For each {{ katex(body=" i ") }}, we construct {{ katex(body=" T ") }} of length approximately {{ katex(body=" 2n - i ") }} and compute the Z-function in {{ katex(body=" O(|T|) = O(n) ") }}.
-- Summation over {{ katex(body=" i ") }} results in {{ katex(body=" O(n^2) ") }} time.
+- For each {% <katex> %} i {% </katex> %}, we construct {% <katex> %} T {% </katex> %} of length approximately {% <katex> %} 2n - i {% </katex> %} and compute the Z-function in {% <katex> %} O(|T|) = O(n) {% </katex> %}.
+- Summation over {% <katex> %} i {% </katex> %} results in {% <katex> %} O(n^2) {% </katex> %} time.
 
 This meets the requirement and uses only Z-function.
 
 **Example Check**
 
-For {{ katex(body=" S = \text{'ABA'} ") }}:
+For {% <katex> %} S = \text{'ABA'} {% </katex> %}:
 
-- {{ katex(body=" n=3 ") }}
-- For {{ katex(body=" i=0 ") }}:
-  - {{ katex(body=" T = 'ABA#ABA' ") }}
-  - No previous occurrences can appear before {{ katex(body=" i=0 ") }}, so {{ katex(body=" \text{maxZ}_0=0 ") }}.
-  - Contribution = {{ katex(body="\frac{3 \cdot 4}{2}-0 = 6") }}.
-- For {{ katex(body=" i=1 ") }}:
-  - {{ katex(body=" T = 'BA#ABA' ") }}
-  - Check first {{ katex(body=" i=1 ") }} positions in {{ katex(body=" S ") }}-part of {{ katex(body=" T ") }}: found {{ katex(body="\text{maxZ}_1=0 ") }}
-  - Contribution = {{ katex(body="\frac{2 \cdot 3}{2}-0=3") }}
-- For {{ katex(body=" i=2 ") }}:
-  - {{ katex(body=" T = 'A#ABA' ") }}
-  - Check first {{ katex(body=" i=2 ") }} positions: {{ katex(body="\text{maxZ}_2=1") }}
-  - Contribution = {{ katex(body="\frac{1 \cdot 2}{2}-\frac{1 \cdot 2}{2}=1-1=0") }}
+- {% <katex> %} n=3 {% </katex> %}
+- For {% <katex> %} i=0 {% </katex> %}:
+  - {% <katex> %} T = 'ABA#ABA' {% </katex> %}
+  - No previous occurrences can appear before {% <katex> %} i=0 {% </katex> %}, so {% <katex> %} \text{maxZ}_0=0 {% </katex> %}.
+  - Contribution = {% <katex> %}\frac{3 \cdot 4}{2}-0 = 6{% </katex> %}.
+- For {% <katex> %} i=1 {% </katex> %}:
+  - {% <katex> %} T = 'BA#ABA' {% </katex> %}
+  - Check first {% <katex> %} i=1 {% </katex> %} positions in {% <katex> %} S {% </katex> %}-part of {% <katex> %} T {% </katex> %}: found {% <katex> %}\text{maxZ}_1=0 {% </katex> %}
+  - Contribution = {% <katex> %}\frac{2 \cdot 3}{2}-0=3{% </katex> %}
+- For {% <katex> %} i=2 {% </katex> %}:
+  - {% <katex> %} T = 'A#ABA' {% </katex> %}
+  - Check first {% <katex> %} i=2 {% </katex> %} positions: {% <katex> %}\text{maxZ}_2=1{% </katex> %}
+  - Contribution = {% <katex> %}\frac{1 \cdot 2}{2}-\frac{1 \cdot 2}{2}=1-1=0{% </katex> %}
 
 Sum = 6+3+0=9, matches the sample.
 
@@ -1833,10 +1833,10 @@ def solve():
 **Explanation of Code**
 
 - We define a standard Z-function computation routine.
-- For each suffix {{ katex(body=" i ") }}, we form {{ katex(body=" T ") }} and compute Z.
+- For each suffix {% <katex> %} i {% </katex> %}, we form {% <katex> %} T {% </katex> %} and compute Z.
 - We find `maxZ_i` by looking only at the portion of Z corresponding to suffixes starting in `S[0..i-1]`.
 - Use the formula to accumulate the result.
 - Print the final sum.
 
-This will yield the correct answer in {{ katex(body=" O(n^2) ") }} time, uses only Z-function, and matches the provided test cases.
-{{ details_end() }}
+This will yield the correct answer in {% <katex> %} O(n^2) {% </katex> %} time, uses only Z-function, and matches the provided test cases.
+{% </details> %}

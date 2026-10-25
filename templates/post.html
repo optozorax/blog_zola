@@ -121,7 +121,7 @@
   <time datetime="{{ page.date | date(format="%F") }}" itemprop="datePublished">
     {% set day = page.date | date(format="%d") %}
     {% set month = page.date | date(format="%m") %}
-    {% set month = macros::month_to_name(month=month) %}
+    {% set month = <month_to_name month={month} /> %}
     {% set year = page.date | date(format="%Y") %}
     <span class="post-date">{{ day ~ " " ~ month ~ " " ~ year }}</span>
   </time>
@@ -198,37 +198,37 @@
  <h2>Содержание</h2>
  <ul class="first">
  {% for h1 in page.toc %}
- {% set url = h1.permalink | trim_start_matches(pat=current_url) | safe %}
+ {% set url = h1.permalink | trim_start(pat=current_url) | safe %}
   <li>
    <a href="{{url}}">{{ h1.title }}</a>
    {% if h1.children %}
     <ul class="second">
      {% for h2 in h1.children %}
-      {% set url = h2.permalink | trim_start_matches(pat=current_url) | safe %}
+      {% set url = h2.permalink | trim_start(pat=current_url) | safe %}
       <li>
        <a href="{{url}}">{{ h2.title }}</a>
        {% if h2.children %}
        <ul class="third">
         {% for h3 in h2.children %}
-         {% set url = h3.permalink | trim_start_matches(pat=current_url) | safe %}
+         {% set url = h3.permalink | trim_start(pat=current_url) | safe %}
          <li>
           <a href="{{url}}">{{ h3.title }}</a>
           {% if h3.children %}
           <ul class="fourth">
            {% for h4 in h3.children %}
-            {% set url = h4.permalink | trim_start_matches(pat=current_url) | safe %}
+            {% set url = h4.permalink | trim_start(pat=current_url) | safe %}
             <li>
              <a href="{{url}}">{{ h4.title }}</a>
              {% if h4.children %}
              <ul class="fifth">
               {% for h5 in h4.children %}
-               {% set url = h5.permalink | trim_start_matches(pat=current_url) | safe %}
+               {% set url = h5.permalink | trim_start(pat=current_url) | safe %}
                <li>
                 <a href="{{url}}">{{ h5.title }}</a>
                 {% if h5.children %}
                 <ul class="fifth">
                  {% for h6 in h5.children %}
-                  {% set url = h6.permalink | trim_start_matches(pat=current_url) | safe %}
+                  {% set url = h6.permalink | trim_start(pat=current_url) | safe %}
                   <li>
                    <a href="{{url}}">{{ h6.title }}</a>
                   </li>
@@ -280,7 +280,7 @@
 <table class="toc-aligmenter"><tr><td>
 {% endif %}
 <section class="comments section second-section">
-{% if config.mode != "Serve" %}
+{% if config.mode != "serve" %}
 <script src="https://utteranc.es/client.js"
         repo="optozorax/optozorax.github.io"
         issue-term="pathname"

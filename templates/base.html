@@ -1,5 +1,3 @@
-{% import "macros.html" as macros %}
-
 <!DOCTYPE html>
 <html lang="{{lang}}">
 
@@ -114,41 +112,41 @@
     <tr><td style="border: 0px; padding: 0.2rem;">
     <!-- SVG icons from https://iconmonstr.com -->
 
-    {{ macros::footer_icon(
-      user=config.extra.social.github, 
-      path="https://github.com/", 
-      name="GitHub", 
-      svg="github") }}
+    {{ <footer_icon
+      user={config.extra.social.github}
+      path="https://github.com/"
+      name="GitHub"
+      svg="github" /> }}
 
-    {{ macros::footer_icon(
-      user=config.extra.social.tg_channel, 
-      path="https://t.me/", 
-      name="Telegram channel", 
-      svg="tg") }}
+    {{ <footer_icon
+      user={config.extra.social.tg_channel}
+      path="https://t.me/"
+      name="Telegram channel"
+      svg="tg" /> }}
 
-    {{ macros::footer_icon(
-      user=config.extra.social.youtube, 
-      path="https://www.youtube.com/c/", 
-      name="YouTube channel", 
-      svg="youtube") }}
+    {{ <footer_icon
+      user={config.extra.social.youtube}
+      path="https://www.youtube.com/c/"
+      name="YouTube channel"
+      svg="youtube" /> }}
 
-    {{ macros::footer_icon(
-      user=config.extra.social.donate, 
-      path="", 
-      name="donate page", 
-      svg="donate") }}
+    {{ <footer_icon
+      user={config.extra.social.donate}
+      path=""
+      name="donate page"
+      svg="donate" /> }}
 
-    {{ macros::footer_icon(
-      user="", 
-      path="/atom.xml", 
-      name="Atom Feed", 
-      svg="rss") }}
+    {{ <footer_icon
+      user=""
+      path="/atom.xml"
+      name="Atom Feed"
+      svg="rss" /> }}
 
-    {{ macros::footer_icon(
-      user=config.extra.social.email, 
-      path="mailto:", 
-      name="email", 
-      svg="contact") }}
+    {{ <footer_icon
+      user={config.extra.social.email}
+      path="mailto:"
+      name="email"
+      svg="contact" /> }}
 
     </td><td style="border: 0px; padding: 0.2rem;">
 
@@ -164,7 +162,7 @@
   {% block after_site_footer %}
   {% endblock after_site_footer %}
 
-  {% if config.mode == "Serve" and config.extra.show_debug %}
+  {% if config.mode == "serve" and config.extra.show_debug %}
   <hr style="border-top: 2px dashed #606c71; margin: 20px;">
   <div class="section second-section">
   <center><h1>DEBUG INFO</h1></center>

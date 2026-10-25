@@ -10,4 +10,4 @@ insert_anchor_links = "left"
 image = "thumbnail.png"
 +++
 
-{{ myyoutube(id="1q0sHf_n_2Y") }}
+{{ <myyoutube id="1q0sHf_n_2Y" /> }}

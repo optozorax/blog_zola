@@ -2,6 +2,8 @@
 title = "Обо мне"
 description = "Что за человек этот optozorax"
 page_template = "page.html"
+# Zola 0.23 doesn't render pages without a date in a date-sorted section, `hidden` renders it without listing it.
+hidden = true
 
 [extra]
 image = ""
