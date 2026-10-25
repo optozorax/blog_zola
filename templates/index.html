@@ -34,21 +34,24 @@
 
 {# -------------------------------------------------------------------------------------------------------- #}
 {% block content %}
-<h1 class="archive-year">⭐ Лучшее ⭐</h1>
-<h2>Лонгрид про правильные клавиатуры</h1>
+{#- A translated home page shows the best post once it's translated too -#}
+{% set posts = [p for p in section.pages if p.colocated_path == "p/my-keyboard-layout/"] %}
+{% if posts %}
+<h1 class="archive-year">{{ trans(key="best", lang=lang) }}</h1>
+<h2>{{ trans(key="best_keyboards", lang=lang) }}</h1>
 <div class="index">
-  {% set posts = [p for p in section.pages if p.path == "/p/my-keyboard-layout/"] %}
   {{ <index_entry post={posts[0]} /> }}
 </div>
 <hr>
-<h2>Моё видео на YouTube</h1>
+{% endif %}
+<h2>{{ trans(key="my_youtube_video", lang=lang) }}</h1>
 {{ section.content | safe }}
 <hr>
 <hr>
 <hr>
 
 
-<h1 class="archive-year">Посты в хронологическом порядке</h1>
+<h1 class="archive-year">{{ trans(key="posts_by_date", lang=lang) }}</h1>
 <div class="index">
 {#- group_by returns the years in random order, so collect them in the order of the pages -#}
 {% set_global years = [] %}

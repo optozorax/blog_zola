@@ -25,14 +25,114 @@ extra_grammars = ["highlighting/zola.json"]
 # The language label of code blocks is made from the data-lang attribute of <pre>
 data_attr_position = "both"
 
+# Interface strings of the default language, templates get them with `trans(key=..., lang=lang)`
+[translations]
+language_name = "Русский"
+after_title = " — Блог optozorax'а"
+blog = "Блог"
+collections = "Систематизация"
+tags = "Теги"
+tags_description = "Архив всех постов, отсортированных по тегам."
+about = "Обо мне"
+best = "⭐ Лучшее ⭐"
+best_keyboards = "Лонгрид про правильные клавиатуры"
+my_youtube_video = "Моё видео на YouTube"
+posts_by_date = "Посты в хронологическом порядке"
+minutes = "мин"
+vk_post = "Пост в ВК"
+tg_post = "Пост в Telegram"
+toc = "Содержание"
+self_advert = 'Если вам нравится что я делаю, то подписывайтесь на меня в <a href="https://t.me/optozorax_dev">Telegram</a> и <a href="https://www.youtube.com/c/optozorax">YouTube</a>.'
+pros = "Плюсы:"
+cons = "Минусы:"
+yt_channel = "Канал:"
+yt_timecode = "Таймкод"
+copyright = "© Шепрут Илья. Лицензия:"
+license_url = "https://creativecommons.org/licenses/by/3.0/deed.ru"
+made_with = "Сделано с помощью"
+theme_base = "База темы"
+site_sources = "Исходники сайта"
+month_01 = "января"
+month_02 = "февраля"
+month_03 = "марта"
+month_04 = "апреля"
+month_05 = "мая"
+month_06 = "июня"
+month_07 = "июля"
+month_08 = "августа"
+month_09 = "сентября"
+month_10 = "октября"
+month_11 = "ноября"
+month_12 = "декабря"
+translated_from = "Переведено с"
+translation_by = "Перевод:"
+original = "Оригинал"
+from_ru = "русского"
+from_en = "английского"
+
+# English version: `index.en.md` next to `index.md` (`_index.en.md` for sections) is published at /en/<same path>.
+# Untranslated stubs have `draft = true`, so they're only visible with `zola serve --drafts`.
+[languages.en]
+title = "optozorax.blog"
+description = "My programs and the results of their work"
+generate_feeds = true
+feed_filenames = ["atom.xml"]
+taxonomies = [
+	{name = "tags"},
+]
+
+[languages.en.translations]
+language_name = "English"
+after_title = " — optozorax's blog"
+blog = "Blog"
+collections = "Collections"
+tags = "Tags"
+tags_description = "Archive of all posts sorted by tags."
+about = "About me"
+best = "⭐ Best ⭐"
+best_keyboards = "A longread about proper keyboards"
+my_youtube_video = "My video on YouTube"
+posts_by_date = "Posts in chronological order"
+minutes = "min"
+vk_post = "Post on VK"
+tg_post = "Post on Telegram"
+toc = "Contents"
+self_advert = 'If you like what I do, follow me on <a href="https://t.me/optozorax_dev">Telegram</a> and <a href="https://www.youtube.com/c/optozorax">YouTube</a>.'
+pros = "Pros:"
+cons = "Cons:"
+yt_channel = "Channel:"
+yt_timecode = "Timecode"
+copyright = "© Ilya Sheprut. License:"
+license_url = "https://creativecommons.org/licenses/by/3.0/deed.en"
+made_with = "Made with"
+theme_base = "Theme based on"
+site_sources = "Site sources"
+month_01 = "January"
+month_02 = "February"
+month_03 = "March"
+month_04 = "April"
+month_05 = "May"
+month_06 = "June"
+month_07 = "July"
+month_08 = "August"
+month_09 = "September"
+month_10 = "October"
+month_11 = "November"
+month_12 = "December"
+translated_from = "Translated from"
+translation_by = "Translation by"
+original = "Original"
+from_ru = "Russian"
+from_en = "English"
+
 [extra]
 name = "optozorax.blog"
-after_title = " — Блог optozorax'а"
 domain = "optozorax.github.io"
 twitter_creator_username = "optozorax"
 author = "optozorax"
 header_paths = ["/", "/e", "/tags", "/about"]
-header_titles = ["Блог", "Систематизация", "Теги", "Обо мне"]
+# Translation keys, see [translations]
+header_titles = ["blog", "collections", "tags", "about"]
 show_debug = false
 
 [extra.social]

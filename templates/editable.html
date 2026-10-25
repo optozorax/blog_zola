@@ -12,7 +12,9 @@
 {% endif %}
 <section class="comments section second-section main-content">
 <h1 class="archive-year">Changelog</h1>
-{% set data = load_data(path=page.path ~ "changelog.txt") %}
+{#- A translation can have its own `changelog.<lang>.txt`, otherwise the original one is shown -#}
+{% set data = load_data(path="/" ~ page.colocated_path ~ "changelog." ~ lang ~ ".txt", required=false) %}
+{% if not data %}{% set data = load_data(path="/" ~ page.colocated_path ~ "changelog.txt") %}{% endif %}
 {{ data | markdown | safe }}
 </section>
 {% if page.toc | length > 0 %}

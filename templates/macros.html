@@ -16,16 +16,16 @@
 </span>
 {%- endcomponent footer_icon %}
 
-{% component month_to_name(month: string) -%}
-{{ {"01": "января", "02": "февраля", "03": "марта", "04": "апреля", "05": "мая", "06": "июня", "07": "июля", "08": "августа", "09": "сентября", "10": "октября", "11": "ноября", "12": "декабря"}[month] }}
+{% component month_to_name(month: string, @lang) -%}
+{{ trans(key="month_" ~ month, lang=lang) }}
 {%- endcomponent month_to_name %}
 
-{% component index_entry(post, @config) -%}
+{% component index_entry(post, @config, @lang) -%}
 <table>
   <tr>
     <td class="first">
       <a href="/{{ post.permalink | trim_start(pat=config.base_url) }}" title="{{ post.title }}">
-        {% set image = (post.permalink ~ post.extra.image) | trim_start(pat=config.base_url) %}
+        {% set image = post.colocated_path ~ post.extra.image %}
         {% set new_image = resize_image(path=image, width=200, height=200, op="fit", format="webp") %}
         <img src="/{{ new_image.url | trim_start(pat=config.base_url) }}"
           width="{{ new_image.width }}" height="{{ new_image.height }}">
@@ -36,7 +36,7 @@
       {% set month = <month_to_name month={month} /> %}
       <span class="post-date">{{ day ~ " " ~ month }}</span>
       {% endif %}
-      <span class="post-date">🕑 {{ post.reading_time }} мин</span>
+      <span class="post-date">🕑 {{ post.reading_time }} {{ trans(key="minutes", lang=lang) }}</span>
     </td>
     <td class="second">
       <h2>

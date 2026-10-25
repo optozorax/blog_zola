@@ -3,9 +3,11 @@
 	<title>{{ config.title }}</title>
 	<subtitle>{{ config.description }}</subtitle>
 	<link href="{{ feed_url | safe }}" rel="self" type="application/atom+xml"/>
-  	<link href="{{ config.base_url | escape_xml | safe }}"/>
+  	<link href="{{ (config.base_url ~ ("" if lang == config.default_language else lang ~ "/")) | escape_xml | safe }}"/>
 	<generator uri="https://www.getzola.org/">Zola</generator>
+	{%- if last_updated is defined %}
 	<updated>{{ last_updated | date(format="%Y-%m-%dT%H:%M:%S%:z") }}</updated>
+	{%- endif %}
 	<author>
         <name>{{ config.extra.author | escape_xml | safe }}</name>
         <uri>{{ config.base_url | safe }}</uri>

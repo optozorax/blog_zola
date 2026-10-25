@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    {#- A language is listed once its home page has posts, like in the language links of base.html #}
+    {%- set_global hidden_prefixes = [] %}
+    {%- for code, options in config.languages %}
+    {%- set home = get_section(path="_index.md", lang=code) %}
+    {%- if not home.pages %}{% set_global hidden_prefixes = [...hidden_prefixes, config.base_url ~ code ~ "/"] %}{% endif %}
+    {%- endfor %}
     {%- for sitemap_entry in entries %}
     {%- set hide_from_home = sitemap_entry.extra?.hide_from_home or false %}
-    {%- if not hide_from_home %}
+    {%- set hidden_language = [p for p in hidden_prefixes if sitemap_entry.permalink is starting_with(pat=p)] %}
+    {%- if not hide_from_home and not hidden_language %}
     <url>
         <loc>{{ sitemap_entry.permalink | escape_xml | safe }}</loc>
         {%- if sitemap_entry.updated %}

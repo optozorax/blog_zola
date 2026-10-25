@@ -1,3 +1,26 @@
+{#- `lang_prefix` starts the site's own links in the current language. `alternates` are the versions of the current
+page in all languages, the current one included, that have content: a section counts once it has pages, so the empty
+English home page isn't linked before the first post is translated. -#}
+{%- set lang_prefix = "" if lang == config.default_language else "/" ~ lang -%}
+{%- set_global alternates = [] -%}
+{%- if page is defined -%}
+{%- set_global alternates = page.translations -%}
+{%- elif section is defined -%}
+{%- for t in section.translations -%}
+{%- set translated = get_section(path=section.relative_path, lang=t.lang) -%}
+{%- if t.lang == lang or translated.pages -%}
+{%- set_global alternates = [...alternates, t] -%}
+{%- endif -%}
+{%- endfor -%}
+{%- elif taxonomy is defined -%}
+{%- set_global alternates = [{"lang": lang, "permalink": current_url}] -%}
+{%- for code, options in config.languages -%}
+{%- set other = get_taxonomy(kind=taxonomy.name, lang=code, required=false) -%}
+{%- if other and other.items -%}
+{%- set_global alternates = [...alternates, {"lang": code, "permalink": config.base_url ~ ("" if code == config.default_language else code ~ "/") ~ taxonomy.name ~ "/"}] -%}
+{%- endif -%}
+{%- endfor -%}
+{%- endif -%}
 <!DOCTYPE html>
 <html lang="{{lang}}">
 
@@ -18,9 +41,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" content="#157878">
-  <link rel="canonical" href="{{config.base_url | safe}}">
+  <link rel="canonical" href="{{ (current_url if current_url is defined else config.base_url) | safe }}">
+  {%- if alternates | length > 1 %}
+  {%- for t in alternates %}
+  <link rel="alternate" hreflang="{{ t.lang }}" href="{{ t.permalink | safe }}">
+  {%- if t.lang == config.default_language %}
+  <link rel="alternate" hreflang="x-default" href="{{ t.permalink | safe }}">
+  {%- endif %}
+  {%- endfor %}
+  {%- endif %}
   <meta name="robots" content="noarchive">
-  <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml"> 
+  <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="{{ lang_prefix }}/atom.xml"> 
   <!-- --- -->
 
   <!-- Social metatags -->
@@ -60,7 +91,20 @@
   <header class="site-header" role="banner">
   {% block site_header %}
   <div class="wrapper">
-    <a class="site-title" href="/">{{ config.title | safe }}</a>
+    <a class="site-title" href="{{ lang_prefix }}/">{{ config.title | safe }}</a>
+    {%- if alternates | length > 1 %}
+
+    <div class="lang-switch">
+      <svg class="lang-switch-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      {%- for t in alternates | sort(attribute="lang") %}
+      {%- if t.lang == lang %}
+      <span class="lang-switch-item lang-switch-current" lang="{{ t.lang }}" title="{{ trans(key="language_name", lang=t.lang) }}">{{ t.lang | upper }}</span>
+      {%- else %}
+      <a class="lang-switch-item" href="/{{ t.permalink | trim_start(pat=config.base_url) | safe }}" hreflang="{{ t.lang }}" lang="{{ t.lang }}" title="{{ trans(key="language_name", lang=t.lang) }}">{{ t.lang | upper }}</a>
+      {%- endif %}
+      {%- endfor %}
+    </div>
+    {%- endif %}
 
     <nav class="site-nav">
       <input type="checkbox" id="nav-trigger" class="nav-trigger" />
@@ -72,7 +116,7 @@
 
       <div class="trigger">
         {% for path in config.extra.header_paths %}
-          <a class="page-link" href="{{ path | safe }}">{{ config.extra.header_titles[loop.index0] | safe }}</a>
+          <a class="page-link" href="{{ (lang_prefix ~ path) | safe }}">{{ trans(key=config.extra.header_titles[loop.index0], lang=lang) | safe }}</a>
         {% endfor %}
       </div>
     </nav>
@@ -107,7 +151,7 @@
   <footer class="site-footer section second-section">
   {% block footer %}
     <center>
-    <div style="margin-bottom: 10px;">© Шепрут Илья. Лицензия: <a href="https://creativecommons.org/licenses/by/3.0/deed.ru">CC-BY</a>.</div>
+    <div style="margin-bottom: 10px;">{{ trans(key="copyright", lang=lang) }} <a href="{{ trans(key="license_url", lang=lang) | safe }}">CC-BY</a>.</div>
     <table style="border: 0px; display: contents;">
     <tr><td style="border: 0px; padding: 0.2rem;">
     <!-- SVG icons from https://iconmonstr.com -->
@@ -138,7 +182,7 @@
 
     {{ <footer_icon
       user=""
-      path="/atom.xml"
+      path={lang_prefix ~ "/atom.xml"}
       name="Atom Feed"
       svg="rss" /> }}
 
@@ -153,7 +197,7 @@
     </td></tr>
     </table>
     <div class="small-info">
-      Сделано с помощью <a href="https://www.getzola.org/">Zola</a> | База темы <a href="https://github.com/lorepirri/cayman-blog">Cayman Blog</a> | <a href="https://github.com/optozorax/blog_zola">Исходники сайта</a>
+      {{ trans(key="made_with", lang=lang) }} <a href="https://www.getzola.org/">Zola</a> | {{ trans(key="theme_base", lang=lang) }} <a href="https://github.com/lorepirri/cayman-blog">Cayman Blog</a> | <a href="https://github.com/optozorax/blog_zola">{{ trans(key="site_sources", lang=lang) }}</a>
       <a rel="me" href="https://mathstodon.xyz/@optozorax" style="display: none;">Mastodon</a>
     </div>
     </center>

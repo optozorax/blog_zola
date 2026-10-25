@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {# -------------------------------------------------------------------------------------------------------- #}
-{% block title %}Теги{{config.extra.after_title}}{% endblock title %}
+{% block title %}{{ trans(key="tags", lang=lang) }}{{ trans(key="after_title", lang=lang) }}{% endblock title %}
 
 {# -------------------------------------------------------------------------------------------------------- #}
 {% block page_header %}
-<h1 class="project-name">Теги</h1>
-<h2 class="project-tagline">Архив всех постов, отсортированных по тегам.</h2>
+<h1 class="project-name">{{ trans(key="tags", lang=lang) }}</h1>
+<h2 class="project-tagline">{{ trans(key="tags_description", lang=lang) }}</h2>
 {% endblock page_header %}
 
 {% block content %}
