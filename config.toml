@@ -28,6 +28,7 @@ data_attr_position = "both"
 # Interface strings of the default language, templates get them with `trans(key=..., lang=lang)`
 [translations]
 language_name = "Русский"
+language_flag = "🇷🇺"
 after_title = " — Блог optozorax'а"
 blog = "Блог"
 collections = "Систематизация"
@@ -83,6 +84,7 @@ taxonomies = [
 
 [languages.en.translations]
 language_name = "English"
+language_flag = "🇬🇧"
 after_title = " — optozorax's blog"
 blog = "Blog"
 collections = "Collections"

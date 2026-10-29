@@ -160,7 +160,7 @@
 {% set originals = [t for t in page.translations if t.lang == from] %}
 <div class="translation-note">
   <svg class="translation-note-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-  <span>{{ trans(key="translated_from", lang=lang) }} {{ trans(key="from_" ~ from, lang=lang) }}</span>
+  <span>{{ trans(key="translated_from", lang=lang) }} {{ trans(key="language_flag", lang=from) }} {{ trans(key="from_" ~ from, lang=lang) }}</span>
   {%- if page.extra.translation.by %}
   <span class="translation-note-sep">·</span>
   <span>{{ trans(key="translation_by", lang=lang) }} {{ page.extra.translation.by }}</span>

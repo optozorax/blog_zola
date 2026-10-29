@@ -60,13 +60,13 @@ tg_comments = 56
 {% </admonition> %}
 
 {% <admonition color="gray" title="Техническая сторона"> %}
-* Шорткоды: [`image.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/image.html).
+* Шорткоды: [`image.html`](https://github.com/optozorax/blog_zola/blob/c3eb0f2d9e4e7fdb78acc9bc5ea7af0d844c8c22/templates/shortcodes/image.html).
 * Стили: [`_image.scss`](https://github.com/optozorax/blog_zola/blob/master/sass/shortcodes/_image.scss).
 {% </admonition> %}
 
 ### Галерея {#gallery}
 
-Галерея имеет все фичи обычной картинки, но ещё позвлояет пролистывать картинки. Пример использования:
+Галерея имеет все фичи обычной картинки, но ещё позволяет пролистывать картинки. Пример использования:
 
 {{ <gallery images={[
 	"../portals/368.png", 
@@ -108,7 +108,7 @@ tg_comments = 56
 
 {% <admonition color="gray" title="Техническая сторона"> %}
 Основа взята из [этого урока](https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp).
-* Шорткоды: [`gallery.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/gallery.html).
+* Шорткоды: [`gallery.html`](https://github.com/optozorax/blog_zola/blob/c3eb0f2d9e4e7fdb78acc9bc5ea7af0d844c8c22/templates/shortcodes/gallery.html).
 * Стили: [`_gallery.scss`](https://github.com/optozorax/blog_zola/blob/master/sass/shortcodes/_gallery.scss).
 * Скрипты: [`gallery.js`](https://github.com/optozorax/blog_zola/blob/master/static/js/gallery.js).
 {% </admonition> %}
@@ -171,7 +171,7 @@ tg_comments = 56
 
 ### Другие картинки {#other-image}
 
-Если вдруг надо вставить картинку без автоматического ресайзнига (например, если ресайзинг падает с ошибкой, или у вас `gif` или `svg`), то можно использовать следующий шорткод:
+Если вдруг надо вставить картинку без автоматического ресайзинга (например, если ресайзинг падает с ошибкой, или у вас `gif` или `svg`), то можно использовать следующий шорткод:
 
 {% <admonition color="blue" title="Использование"> %}
 {% raw %}```zola
@@ -185,7 +185,7 @@ tg_comments = 56
 {% </admonition> %}
 
 {% <admonition color="gray" title="Техническая сторона"> %}
-* Шорткоды: [`other_image.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/other_image.html).
+* Шорткоды: [`other_image.html`](https://github.com/optozorax/blog_zola/blob/c3eb0f2d9e4e7fdb78acc9bc5ea7af0d844c8c22/templates/shortcodes/other_image.html).
 {% </admonition> %}
 
 ### Видео-гифка {#video-gif}
@@ -205,7 +205,7 @@ tg_comments = 56
 {% </admonition> %}
 
 {% <admonition color="gray" title="Техническая сторона"> %}
-* Шорткоды: [`video_gif.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/video_gif.html).
+* Шорткоды: [`video_gif.html`](https://github.com/optozorax/blog_zola/blob/c3eb0f2d9e4e7fdb78acc9bc5ea7af0d844c8c22/templates/shortcodes/video_gif.html).
 {% </admonition> %}
 
 ### Видео {#video}
@@ -225,7 +225,7 @@ tg_comments = 56
 {% </admonition> %}
 
 {% <admonition color="gray" title="Техническая сторона"> %}
-* Шорткоды: [`video.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/video.html).
+* Шорткоды: [`video.html`](https://github.com/optozorax/blog_zola/blob/c3eb0f2d9e4e7fdb78acc9bc5ea7af0d844c8c22/templates/shortcodes/video.html).
 {% </admonition> %}
 
 ### Эмбеддинг YouTube
@@ -258,7 +258,7 @@ youtube-zola 1q0sHf_n_2Y
 {% </admonition> %}
 
 {% <admonition color="gray" title="Техническая сторона"> %}
-* Шорткоды: [`youtube.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/youtube.html).
+* Шорткоды: [`myyoutube.html`](https://github.com/optozorax/blog_zola/blob/c3eb0f2d9e4e7fdb78acc9bc5ea7af0d844c8c22/templates/shortcodes/myyoutube.html).
 * Стили: [`_youtube.scss`](https://github.com/optozorax/blog_zola/blob/master/sass/shortcodes/_youtube.scss).
 * Зависимости: [`youtube-zola`](https://github.com/optozorax/youtube-zola), [`youtube-dl`](https://github.com/ytdl-org/youtube-dl).
 {% </admonition> %}
@@ -292,7 +292,7 @@ use_katex = true
 {% </admonition> %}
 
 {% <admonition color="gray" title="Техническая сторона"> %}
-* Шорткоды: [`katex.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/katex.html).
+* Шорткоды: [`katex.html`](https://github.com/optozorax/blog_zola/blob/c3eb0f2d9e4e7fdb78acc9bc5ea7af0d844c8c22/templates/shortcodes/katex.html).
 * Стили: [`katex.min.css`](https://github.com/optozorax/blog_zola/blob/master/static/katex.min.css).
 * Шрифты: [`fonts/KaTeX`](https://github.com/optozorax/blog_zola/tree/master/static/fonts/KaTeX).
 * Скрипты: [`mathtex-script-type.min.js`](https://github.com/optozorax/blog_zola/blob/master/static/js/mathtex-script-type.min.js), [`katex.js`](https://github.com/optozorax/blog_zola/blob/master/static/js/katex.min.js) ([веб-сайт](https://katex.org/)).
@@ -318,7 +318,7 @@ use_katex = true
 {% </admonition> %}
 {% <admonition color="violet" title="Куча цветов"> %}
 * `red`, `red2`, `red3`
-* `gren`, `green2`, `green3`
+* `green`, `green2`, `green3`
 * `blue`, `blue2`, `blue3`
 * `orange`
 * `violet`
@@ -333,7 +333,7 @@ use_katex = true
 {% </admonition> %}
 
 {% <admonition color="gray" title="Техническая сторона"> %}
-* Шорткоды: [`admonition_start.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/admonition_start.html), [`admonition_end.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/admonition_end.html).
+* Шорткоды: [`admonition_start.html`](https://github.com/optozorax/blog_zola/blob/c3eb0f2d9e4e7fdb78acc9bc5ea7af0d844c8c22/templates/shortcodes/admonition_start.html), [`admonition_end.html`](https://github.com/optozorax/blog_zola/blob/c3eb0f2d9e4e7fdb78acc9bc5ea7af0d844c8c22/templates/shortcodes/admonition_end.html).
 * Стили: [`_admonition.scss`](https://github.com/optozorax/blog_zola/blob/master/sass/shortcodes/_admonition.scss).
 {% </admonition> %}
 
@@ -354,7 +354,7 @@ use_katex = true
 {% <cons> %}
 * SVG иконки плюса и минуса мне пришлось вручную рисовать через код: гугл не гуглит и редакторы svg в браузере тоже плохие.
 * Нельзя использовать в виде шорткода с телом, ибо шорткоды с телом плохо сделаны в золе, но об этом в [следующей статье](/p/zola/#shortkody-s-telom).
-* Иногда приходится высавывать плюсы и минусы из пальца, чтобы получилась такая красивая картинка.
+* Иногда приходится высасывать плюсы и минусы из пальца, чтобы получилась такая красивая картинка.
 {% </cons> %}
 
 {% <admonition color="blue" title="Использование"> %}
@@ -374,7 +374,7 @@ use_katex = true
 {% </admonition> %}
 
 {% <admonition color="gray" title="Техническая сторона"> %}
-* Шорткоды: [`pros_start.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/pros_start.html), [`pros_end.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/pros_end.html), [`cons_start.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/cons_start.html), [`cons_end.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/cons_end.html).
+* Шорткоды: [`pros_start.html`](https://github.com/optozorax/blog_zola/blob/c3eb0f2d9e4e7fdb78acc9bc5ea7af0d844c8c22/templates/shortcodes/pros_start.html), [`pros_end.html`](https://github.com/optozorax/blog_zola/blob/c3eb0f2d9e4e7fdb78acc9bc5ea7af0d844c8c22/templates/shortcodes/pros_end.html), [`cons_start.html`](https://github.com/optozorax/blog_zola/blob/c3eb0f2d9e4e7fdb78acc9bc5ea7af0d844c8c22/templates/shortcodes/cons_start.html), [`cons_end.html`](https://github.com/optozorax/blog_zola/blob/c3eb0f2d9e4e7fdb78acc9bc5ea7af0d844c8c22/templates/shortcodes/cons_end.html).
 * Стили: [`_pros_cons.scss`](https://github.com/optozorax/blog_zola/blob/master/sass/shortcodes/_pros_cons.scss).
 * Ресурсы: [`green_plus.svg`](https://github.com/optozorax/blog_zola/blob/master/static/ico/green_plus.svg), [`red_minus.svg`](https://github.com/optozorax/blog_zola/blob/master/static/ico/red_minus.svg).
 {% </admonition> %}
@@ -394,7 +394,7 @@ use_katex = true
 {% </admonition> %}
 
 {% <admonition color="gray" title="Техническая сторона"> %}
-* Шорткоды: [`figure_start.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/figure_start.html), [`figure_end.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/figure_end.html).
+* Шорткоды: [`figure_start.html`](https://github.com/optozorax/blog_zola/blob/c3eb0f2d9e4e7fdb78acc9bc5ea7af0d844c8c22/templates/shortcodes/figure_start.html), [`figure_end.html`](https://github.com/optozorax/blog_zola/blob/c3eb0f2d9e4e7fdb78acc9bc5ea7af0d844c8c22/templates/shortcodes/figure_end.html).
 * Стили: [`_figure.scss`](https://github.com/optozorax/blog_zola/blob/master/sass/shortcodes/_figure.scss).
 {% </admonition> %}
 
@@ -419,7 +419,7 @@ use_katex = true
 {% </admonition> %}
 
 {% <admonition color="gray" title="Техническая сторона"> %}
-* Шорткоды: [`container_start.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/container_start.html), [`container_end.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/container_end.html).
+* Шорткоды: [`container_start.html`](https://github.com/optozorax/blog_zola/blob/c3eb0f2d9e4e7fdb78acc9bc5ea7af0d844c8c22/templates/shortcodes/container_start.html), [`container_end.html`](https://github.com/optozorax/blog_zola/blob/c3eb0f2d9e4e7fdb78acc9bc5ea7af0d844c8c22/templates/shortcodes/container_end.html).
 * Стили: [`_container.scss`](https://github.com/optozorax/blog_zola/blob/master/sass/shortcodes/_container.scss).
 {% </admonition> %}
 
@@ -443,7 +443,7 @@ use_katex = true
 {% </admonition> %}
 
 {% <admonition color="gray" title="Техническая сторона"> %}
-* Шорткоды: [`details_start.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/details_start.html), [`details_end.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/details_end.html).
+* Шорткоды: [`details_start.html`](https://github.com/optozorax/blog_zola/blob/c3eb0f2d9e4e7fdb78acc9bc5ea7af0d844c8c22/templates/shortcodes/details_start.html), [`details_end.html`](https://github.com/optozorax/blog_zola/blob/c3eb0f2d9e4e7fdb78acc9bc5ea7af0d844c8c22/templates/shortcodes/details_end.html).
 * Стили: [`_details.scss`](https://github.com/optozorax/blog_zola/blob/master/sass/shortcodes/_details.scss).
 {% </admonition> %}
 
@@ -471,7 +471,7 @@ use_katex = true
 {% </admonition> %}
 
 {% <admonition color="gray" title="Техническая сторона"> %}
-* Шорткоды: [`not_in_toc.html`](https://github.com/optozorax/blog_zola/blob/master/templates/shortcodes/not_in_toc.html).
+* Шорткоды: [`not_in_toc.html`](https://github.com/optozorax/blog_zola/blob/c3eb0f2d9e4e7fdb78acc9bc5ea7af0d844c8c22/templates/shortcodes/not_in_toc.html).
 {% </admonition> %}
 
 ## Всё остальное
@@ -557,7 +557,7 @@ fn main() {
 * Это не простой word-wrap, а с автоматическим индентом для вторых и следующих строк!
 * Для вторых и следующих строк добавляется дополнительный отступ, прямо как в Sublime.
 * На маленьких экранах телефонов включается обычный режим пролистывания кода вбок. Ибо там word-wrap выглядит плохо.
-* А ещё теперь показываетс язык кода.
+* А ещё теперь показывается язык кода.
 {% </admonition> %}
 
 {% <admonition color="gray" title="Техническая сторона"> %}
@@ -587,7 +587,7 @@ fn main() {
 
 {% <admonition color="green2" title="Фичи"> %}
 * Дата публикации отсутствует, так как это бессмысленно.
-* Каждая страница является репозиторием и вставлена через `git sumbodule`.
+* Каждая страница является репозиторием и вставлена через `git submodule`.
 * У каждой страницы есть обязательный Changelog отдельным файлом.
 * Такие страницы не перемешиваются с обычными статьями и не вводят читателя в заблуждение.
 {% </admonition> %}
@@ -619,7 +619,7 @@ fn main() {
 
 ## Причина такого обилия фич
 
-Вообще как так получилось что раньше у даже зачатков меня всего этого не было, а теперь есть?
+Вообще как так получилось что раньше у меня даже зачатков всего этого не было, а теперь есть?
 
 Я сейчас переехал на другой генератор статических сайтов, и об этом [есть отдельный пост](/p/zola). Мой прошлый генератор статических сайтов был [Jekyll](https://jekyllrb.com/). Я взял его только потому что GitHub компилировал его в сайт прямо из коробки, ну и в те времена я думал что Jekyll достаточно хорош, потому что типо его же сам гитхаб взял. Сейчас я перешёл на золу, генерирую сайт локально и хосчу на [GitHub Pages](https://pages.github.com/).
 
@@ -653,7 +653,7 @@ fn main() {
 
 ### Свайп
 
-Мне говорят что надо сделать чтобы в галерее можно было свайпать картинки. Но я не хочу это делать, ибо слишком трудоёмко. Если вы это сделаете через библиотеку hammerjs, то можете прилывать Pull Request, я это с радостью приму.
+Мне говорят что надо сделать чтобы в галерее можно было свайпать картинки. Но я не хочу это делать, ибо слишком трудоёмко. Если вы это сделаете через библиотеку hammerjs, то можете присылать Pull Request, я это с радостью приму.
 
 ## Просмотр увеличенного изображения
 
@@ -663,7 +663,7 @@ fn main() {
 
 Идею показывать лупу в правом верхнем углу картинки я украл с [joyreactor.cc](http://joyreactor.cc/).
 
-Заодно подумал что неплохо бы сразу показывать а зачем эта увеличенная картинка может быть нужна. Поэтмоу рядом приписал во сколько раз оригинал больше чем то что сейчас, и какой формат у оригинала. Вдруг, если вы хотите сохранить картинку из этой статьи, вам важно чтобы формат оригинала был `png`.
+Заодно подумал что неплохо бы сразу показывать а зачем эта увеличенная картинка может быть нужна. Поэтому рядом приписал во сколько раз оригинал больше чем то что сейчас, и какой формат у оригинала. Вдруг, если вы хотите сохранить картинку из этой статьи, вам важно чтобы формат оригинала был `png`.
 
 ### Анимация загрузки
 
@@ -681,19 +681,19 @@ fn main() {
 
 ## Цветные блоки
 
-Мне очень нравится эта фича!!! Наверное вы смогли заметить это по данной статье. Изначально что-то подобное я использовать в статье [Раскладка Ильи Шепрута](/p/my-keyboard-layout). В старом блоге там я просто использовал цитаты, но сейчас с этими цветными блоками эта статья выглядит супер-красиво! Обязательно зацените, если ещё не читали.
+Мне очень нравится эта фича!!! Наверное вы смогли заметить это по данной статье. Изначально что-то подобное я использовал в статье [Раскладка Ильи Шепрута](/p/my-keyboard-layout). В старом блоге там я просто использовал цитаты, но сейчас с этими цветными блоками эта статья выглядит супер-красиво! Обязательно зацените, если ещё не читали.
 
 ## Плюсы и минусы
 
 Эту фичу я придумал самостоятельно. Мне кажется когда рядом с пунктами плюсов и минусов рисуются зелёные и красные иконки, это выглядит бомбически.
 
-## Подпись с картинке, Контейнер для множества картинок, Детали
+## Подпись к картинке, Контейнер для множества картинок, Детали {#podpis-s-kartinke-konteiner-dlia-mnozhestva-kartinok-detali}
 
 Это просто концепции, которыми мы мыслим, но которых нет в ванильном markdown, из-за чего читать и писать статьи иногда больно. Рад что я наконец это исправил.
 
 ## Убрать из содержания
 
-Это единственная фича, которая использует синтаксис шорткода с телом, а не шорткод, состоящий из двух частей, как во всех остальных частях. Проблема в том, что шорткод с телом сломан, и не может нормально рендерить вложенные шорткоды или вызывать методы ресайзинга картинок. А ещё всё что внутри него написано не попадает в содеражние, именно это я и использую. Именно поэтому у меня все шорткоды и состоят из двух частей. Но подробнее об этом сказано в [другой статье](/p/zola/#shortkody-s-telom).
+Это единственная фича, которая использует синтаксис шорткода с телом, а не шорткод, состоящий из двух частей, как во всех остальных частях. Проблема в том, что шорткод с телом сломан, и не может нормально рендерить вложенные шорткоды или вызывать методы ресайзинга картинок. А ещё всё что внутри него написано не попадает в содержание, именно это я и использую. Именно поэтому у меня все шорткоды и состоят из двух частей. Но подробнее об этом сказано в [другой статье](/p/zola/#shortkody-s-telom).
 
 ## Содержание
 
@@ -732,11 +732,11 @@ fn main() {
 
 Но классическое выравнивание по ширине создаёт огромные пробелы, которые превращают текст в уродство, а пробелы в конце строки не так ужасны. Поэтому классическое выравнивание по ширине никто не использует.
 
-Но ведь есть улучшенное выравнивание по ширине, когда некоторые слова переносятся через дефис, чтобы изменения длины пробелов были минимальны. Оно же использует в книгах, и выглядит хорошо. Да, оно есть, но с парой нюансов.
+Но ведь есть улучшенное выравнивание по ширине, когда некоторые слова переносятся через дефис, чтобы изменения длины пробелов были минимальны. Оно же используется в книгах, и выглядит хорошо. Да, оно есть, но с парой нюансов.
 
 Проблема в том, что в Chrome оно поддерживается только для английского языка, а в Firefox поддерживается для множества языков. Поэтому не везде можно заставить текст выглядеть хорошо. Тут просто хочу респектануть Firefox за поддержку множества языков, [ну вы только посмотрите](https://developer.mozilla.org/en-US/docs/Web/CSS/hyphens#browser_compatibility).
 
-В общем я постарался сделать так чтобы для каждого браузера и размера экрана было сделано своё выравнивание, которое максимальн не напрягает. Рад теперь что мой блог стал немного похож на книгу.
+В общем я постарался сделать так чтобы для каждого браузера и размера экрана было сделано своё выравнивание, которое максимально не напрягает. Рад теперь что мой блог стал немного похож на книгу.
 
 ## Блок кода
 
@@ -744,7 +744,7 @@ fn main() {
 
 Итак, напоминаю, значит я сделал чтобы в блоках кода слишком длинные строки переносились на новую строку, но таким образом чтобы для перенесённых строк сохранялся отступ. Так делают все нормальные редакторы кода, и word-wrap ненавидят как раз из-за неправильного способа, когда они игнорируют отступы.
 
-Для этой фичи нет просто решения через CSS, поэтому придётся придумывать самому. Первое решение которое приходит в голову: создать таблицу для каждой строки, и засунуть отступ в первый столбец, а остальную строку в второй столбец. И да, это работает и всё переносится как надо.
+Для этой фичи нет просто решения через CSS, поэтому придётся придумывать самому. Первое решение которое приходит в голову: создать таблицу для каждой строки, и засунуть отступ в первый столбец, а остальную строку во второй столбец. И да, это работает и всё переносится как надо.
 
 Только есть малюсенькая проблема: при копировании текста между отступом и текстом вставляется символ таба `\t`. Ну просто потому что это таблица, так делается всегда, для вашего же удобства. Отключить это невозможно.
 
@@ -836,7 +836,7 @@ pre[data-lang]::before {
 
 # Заключение
 
-Очень много новых фич, и мне они нравятся! Они сильно улучшают User Experience и сильно упрощают для меня написание статей, добавляют цвета и формы. Крадите наздоровье! Если не получается что-то вставить в свой блог — пишите мне в личку, подскажу. 
+Очень много новых фич, и мне они нравятся! Они сильно улучшают User Experience и сильно упрощают для меня написание статей, добавляют цвета и формы. Крадите на здоровье! Если не получается что-то вставить в свой блог — пишите мне в личку, подскажу. 
 
 Благодаря этим шорткодам мне удалось практически полностью избавиться от `html` в статьях. 
 

@@ -1,33 +1,53 @@
-// Language switch in the site header: always visible, also on phones where the menu is collapsed
+// Language switch in the site header: always visible, also on phones where the menu is collapsed.
+// It is as tall as a line of the menu, so it's centered like the menu items.
 .lang-switch {
   float: right;
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 2px;
-  margin: 3px 0 0 24px;
-  padding: 2px 2px 2px 8px;
-  border: 1.5px solid $header-bg-color;
-  border-radius: 999px;
+  gap: 4px;
+  height: $header-line-height;
+  margin-left: 20px;
+  padding-left: 16px;
+  position: relative;
   font-family: "Rubik";
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 500;
-  line-height: 1;
   color: $header-bg-color;
+
+  // separator from the menu
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 15%;
+    height: 70%;
+    border-left: 1px solid $grey-color-light;
+  }
 
   @include small {
     // leave room for the menu button
     margin-right: 42px;
+    padding-left: 0;
+
+    &::before {
+      display: none;
+    }
   }
 }
 
-.lang-switch-icon {
-  margin-right: 4px;
+.lang-switch-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 22px;
+  padding: 0 9px;
+  border-radius: 999px;
+  line-height: 1;
+  letter-spacing: 0.05em;
 }
 
-.lang-switch-item {
-  padding: 5px 10px;
-  border-radius: 999px;
-  letter-spacing: 0.05em;
+.lang-switch-flag {
+  letter-spacing: 0;
 }
 
 a.lang-switch-item {
