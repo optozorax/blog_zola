@@ -445,7 +445,7 @@ The turn is needed because the worlds are flat 3D spaces, and a flat torus does 
 {% <figure caption="*Left:* **The donut-shaped mouth**, seen from one of the worlds. Through the donut's body you look into the throat; through its hole you see the world behind it. Around the mouth the floor bends down into the collar. *Right:* **Inside the flat throat.** Up and down the middle, the spheres repeat on an exact lattice, and so do you: the red ball in the centre is your own back. To the left the throat opens into the green world, to the right into the orange one."> %}
 {% <container> %}
 {{ <image path="img/throat_mouth.webp" scale="1/2" /> }}
-{{ <image path="img/throat_far.png" scale="1/2" /> }}
+{{ <image path="img/throat_far.webp" scale="1/2" /> }}
 {% </container> %}
 {% </figure> %}
 
@@ -661,7 +661,7 @@ In the 3D pictures you are drawn too: a red ball just behind the eye, with a whi
 
 {% <figure caption="*Left:* **The mirroring donut, from in front.** Light that goes into the tube comes back out of its other side, so the ring shows the floor and the sky again, in bands: on the way the light can also travel some way around the ring. *Right:* **Inside the throat, near the glued end,** looking around the tube's small circle, with the end above. Above you, half a circumference away and just across the end, is your image: upside down, yellow top below, but its ear still on its left, so it is a reflection, not a turn. Straight ahead, a whole circumference around the tube, are copies of your own back, as you are."> %}
 {% <container> %}
-{{ <image path="img/mono_donut_front.png" scale="1/2" /> }}
+{{ <image path="img/mono_donut_front.webp" scale="1/2" /> }}
 {{ <image path="img/mono_donut_inside.png" scale="1/2" /> }}
 {% </container> %}
 {% </figure> %}
@@ -692,8 +692,8 @@ Here `cutoff(r, r0, r1)` is a smooth step from 1 below `r0` to 0 above `r1`. The
 
 {% <figure caption="*Left:* **The ball-shaped wormhole into itself, from in front.** Light that goes in comes back out of the opposite side of the same mouth, so the ball shows the world behind and around it, warped by the trip. *Right:* **Inside its throat,** looking up towards the glued end. The world comes back from all sides, and so do you, the right way round."> %}
 {% <container> %}
-{{ <image path="img/mono_ball_front.png" scale="1/2" /> }}
-{{ <image path="img/mono_ball_inside.png" scale="1/2" /> }}
+{{ <image path="img/mono_ball_front.webp" scale="1/2" /> }}
+{{ <image path="img/mono_ball_inside.webp" scale="1/2" /> }}
 {% </container> %}
 {% </figure> %}
 
