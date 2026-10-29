@@ -20,7 +20,7 @@ by = "Claude Opus 5.5"
 This post was inspired by the following message:
 
 {% <figure caption="[Link to the message](https://t.me/klavaorgwork/159174) (in Russian)"> %}
-{{ <image path="tg_klavaorgwork_159174.png" scale="2/3" /> }}
+{{ <image path="tg_klavaorgwork_159174.en.png" scale="2/3" /> }}
 {% </figure> %}
 
 In it, a guy says that a `3` is the "satisfactory" rating, for when a service works as it should. He gives a `4` when there's something really good about it. And that's when it hit me: my whole life I had thought a `3` was for bad work. So by default I gave `5` stars, and if something didn't work well, I gave a lower rating depending on how bad it was. In other words, for me a `5` was the equivalent of "satisfactory". And I don't think I'm the only one. Our understanding of these ratings was broken by the school system (Russian schools grade on a 5-point scale, where a `3` officially means "satisfactory"), which says that you mustn't be a `3` student, that the only acceptable grade is a `4`, or better yet a `5`.

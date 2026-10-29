@@ -7,7 +7,7 @@ description = "My reasoning on the question. Spoiler: no 'the universe explodes'
 tags = ["thoughts"]
 
 [extra]
-image = "pinocchio.jpg"
+image = "pinocchio.en.jpg"
 vk = "https://vk.com/optoblog?w=wall-169103586_5"
 
 [extra.translation]
@@ -15,7 +15,7 @@ from = "ru"
 by = "Claude Opus 5.5"
 +++
 
-{{ <image path="pinocchio.jpg" scale="2/3" /> }}
+{{ <image path="pinocchio.en.jpg" scale="2/3" /> }}
 
 What happens if Pinocchio says "My nose will grow now"?
 

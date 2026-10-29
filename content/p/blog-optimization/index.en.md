@@ -441,5 +441,5 @@ As for why speed matters, I also want to refer to the post ["Stand under the boo
 And finally, a meme:
 
 {% <figure caption="[Not my words](https://t.me/optozorax_dev_chat/6228). The text says: “The world if everyone fussed over optimization as much as optozorax.blog:”"> %}
-{{ <image path="future_meme.jpg" scale="2/3" /> }}
+{{ <image path="future_meme.en.jpg" scale="2/3" /> }}
 {% </figure> %}

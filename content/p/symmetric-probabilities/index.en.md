@@ -117,7 +117,7 @@ A year ago, when I was writing my [term paper](https://github.com/optozorax/labs
 
 If you don't know what a non-uniform grid is, here's an illustration (which I drew [with code](https://github.com/optozorax/bufdraw/blob/b466ecf8e3aa8936fc410809b3644462004fa46e/examples/grid.rs)). The property of this grid is that each next element is `c` times larger than the previous one, where `c` is some positive number from `0` to `∞`.
 
-{{ <image path="grid.jpg" /> }}
+{{ <image path="grid.en.jpg" /> }}
 
 Everyone usually made tables: they took a few non-uniform grids and the accuracy on each, and drew some conclusions. But I'm a goddamn perfectionist: I made the computer work its transistors to the bone, so I swept through everything I could with a very small step and plotted graphs in LaTeX.
 
@@ -125,13 +125,31 @@ At first, like everyone else, I set the number c from `0` to `∞`. So the close
 
 But doing research on something that goes to infinity is inconvenient; look at this graph:
 
-{{ <image path="graph1.jpg" /> }}
+{{ <image path="graph1.en.jpg" /> }}
 
 Where do I stop here? At `10^5`? At `10^10`? Make x grow exponentially and use a logarithmic scale? Who knows. Besides, it's very inconvenient to reason about logically: left and right somehow end up asymmetric.
 
 So I decided to come up with a function that makes specifying non-uniform grids very convenient: with a coefficient of -1 the grid gets denser towards the left edge, and with a coefficient of 1 it gets denser towards the right edge.
 
-{{ <image path="text.jpg" /> }}
+> **4.2.2 Non-uniform grid functions**
+>
+> While doing the lab work, I found a function that makes it easy to specify a non-uniform grid that gets denser towards one of the ends.
+>
+> If the grid starts at {% <katex> %}a{% </katex> %} and ends at {% <katex> %}b{% </katex> %}, and the number of elements is {% <katex> %}n{% </katex> %}, then the grid can be defined as follows:
+>
+> {% <katex block={true}> %}x_i = a + m\left(\frac{i}{n}\right)\cdot(b-a),\quad i=\overline{0,n}{% </katex> %}
+>
+> where {% <katex> %}m(x){% </katex> %} is some function that defines the non-uniform grid. Here {% <katex> %}x{% </katex> %} must belong to the interval {% <katex> %}[0, 1]{% </katex> %}, and the function {% <katex> %}m{% </katex> %} must return values from the same interval and be monotonic on it. Then the grid is guaranteed to be monotonic, that is, {% <katex> %}j \leqslant i \Rightarrow x_j \leqslant x_i{% </katex> %}.
+>
+> *Example:* with {% <katex> %}m(x) = x{% </katex> %} the grid becomes uniform.
+>
+> The function I found depends on the non-uniformity parameter {% <katex> %}t{% </katex> %}:
+>
+> {% <katex block={true}> %}m_t(x) = \frac{1-(1-|t|)^{x \operatorname{sign} t}}{1-(1-|t|)^{\operatorname{sign} t}}{% </katex> %}
+>
+> This function degenerates into {% <katex> %}x{% </katex> %} at {% <katex> %}t = 0{% </katex> %}; at {% <katex> %}t = -1{% </katex> %} it degenerates into a grid that lies entirely at 0; and at {% <katex> %}t = 1{% </katex> %} it is entirely concentrated at 1.
+>
+> Thus, you can study various non-uniform grids by changing the parameter from {% <katex> %}-1{% </katex> %} to {% <katex> %}1{% </katex> %}, where the point {% <katex> %}t = 0{% </katex> %} gives the result on a uniform grid.
 
 I came up with it and [described it](https://github.com/optozorax/labs_emf/blob/72e893134ee23ff39607e02c94b3a30d05cd4a53/coursework/report/file.tex#L503-L521) (in Russian) in the report.
 

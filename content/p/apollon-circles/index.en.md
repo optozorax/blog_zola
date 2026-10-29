@@ -31,7 +31,7 @@ Given the center coordinates and radii of three circles, how do you find all the
 
 But first, *a property of two tangent circles:* if they touch externally, the distance between their centers equals the sum of their radii; if they touch internally, the distance between their centers equals the absolute value of the difference of their radii.
 
-{{ <image path="apollon_3.png" scale="2/3" /> }}
+{{ <image path="apollon_3.en.png" scale="2/3" /> }}
 
 Since there are three circles, and each of them can touch the fourth one in two ways, we get 2³=8 ways in total for the three circles to touch the fourth circle we need to find.
 

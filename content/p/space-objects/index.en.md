@@ -344,7 +344,7 @@ end;
 
 Honestly, it scares me to look at this code and remember how I struggled with it... I tried to make it look as nice as I could, but at its core it's still all kludges and crappy hacks. And this picture (its caption says "A visual representation of how my code works") describes it perfectly:
 
-{{ <image path="img/code.jpg" scale="1/2" /> }}
+{{ <image path="img/code.en.jpg" scale="1/2" /> }}
 
 But I'll try to walk you through it all, so you can feel the full horror.
 

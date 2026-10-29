@@ -314,7 +314,7 @@ This solution has a time complexity of O(n^2), where n is the length of the inpu
 
 ChatGPT immediately writes a solution based on a suffix tree (a trie), and by the way it works correctly, but it needs a few tweaks, which I ask for in the next prompt. The trouble with this solution, though, is that it doesn't fit into the memory limit, because it needs O(n^2) memory. Even if you go to great lengths, 8000 characters squared still won't fit into 512 MB.
 
-{{ <image path="cf.png" /> }}
+{{ <image path="cf.en.png" /> }}
 
 This solution was probably in the training set; it produced it way too easily.
 

@@ -1146,7 +1146,7 @@ This is just the rotating scaling monoportal I told you about earlier, only in a
 ## Poll
 
 {% <figure caption="[Link to the message](https://t.me/optozorax_dev/420) (in Russian)"> %}
-{{ <image path="tg_optozorax_dev_420.png" scale="2/3" /> }}
+{{ <image path="tg_optozorax_dev_420.en.png" scale="2/3" /> }}
 {% </figure> %}
 
 ## Result
@@ -1424,7 +1424,7 @@ This one I like. But this option has a downside. Previously the teleporting surf
 ## Poll
 
 {% <figure caption="[Link to the message](https://t.me/optozorax_dev/456) (in Russian)"> %}
-{{ <image path="tg_optozorax_dev_456.png" scale="2/3" /> }}
+{{ <image path="tg_optozorax_dev_456.en.png" scale="2/3" /> }}
 {% </figure> %}
 
 # 4.06.2021

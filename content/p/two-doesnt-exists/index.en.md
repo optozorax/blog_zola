@@ -7,7 +7,7 @@ description = "I refute, wholesale, the argument that something abstract and mat
 tags = ["thoughts", "math"]
 
 [extra]
-image = "two-doesnt-exists.png"
+image = "two-doesnt-exists.en.png"
 tg = "https://t.me/optozorax_dev/464"
 tg_comments = 159
 
@@ -42,4 +42,4 @@ The word "exist" can be defined by the following list:
 
 So if someone tells you that something abstract doesn't exist, remind them that two doesn't exist either.
 
-{{ <image path="two-doesnt-exists.png" /> }}
+{{ <image path="two-doesnt-exists.en.png" /> }}

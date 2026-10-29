@@ -20,7 +20,7 @@ by = "Claude Opus 5.5"
 Have you ever had the feeling that all current neural networks are somehow too linear? Take the perceptron, for example:
 
 {% <figure caption="[Source](https://ru.wikipedia.org/wiki/%D0%9F%D0%B5%D1%80%D1%86%D0%B5%D0%BF%D1%82%D1%80%D0%BE%D0%BD#/media/%D0%A4%D0%B0%D0%B9%D0%BB:Perceptron-ru.svg) (in Russian)"> %}
-{{ <image path="perceptron.png" /> }}
+{{ <image path="perceptron.en.png" /> }}
 {% </figure> %}
 
 Or a multilayer neural network:
@@ -97,7 +97,7 @@ Since the weights aren't specified, we can simply mark that a connection exists 
 
 By the way, in this form you can't represent more than one connection from one node to another. I don't really know why you'd ever need that, except to use different activation functions, and that's a pretty pointless thing too, so let's leave this case aside.
 
-{{ <image path="not_allowed.png" /> }}
+{{ <image path="not_allowed.en.png" /> }}
 
 # Why this is better
 

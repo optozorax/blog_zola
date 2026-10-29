@@ -7,7 +7,7 @@ description = "I show it with two examples and cover everything: collecting idea
 tags = ["programming", "ideas"]
 
 [extra]
-image = "preview.png"
+image = "preview.en.png"
 tg = "https://t.me/optozorax_dev/493"
 tg_comments = 209
 
@@ -729,12 +729,12 @@ This feature turned out to be one of those where I didn't have the slightest ide
 
 So first I sat down and started writing out questions and answers to them. The most important thing here is to think through how the feature will fit into the existing structure of the program. I reasoned in the form of text. When some first understanding appeared, I sketched out a few structs and enums. You can see the result of the reasoning and the types in the screenshot below:
 
-{{ <image path="plan.png" /> }}
+{{ <image path="plan.en.png" /> }}
 
 
 After that I thought about it some more, worked through all the unclear spots and resolved them, the picture came together in my head, and I decided to write down the todo items that need to be implemented for this feature to be fully done; that's the second screenshot.
 
-{{ <image path="todo.png" /> }}
+{{ <image path="todo.en.png" /> }}
 
 
 Now, after everything became clear and understood in my head, I could start cranking out code very efficiently.
